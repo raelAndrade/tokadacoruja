@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="Israel Andrade" content="">
+	
+	<title>Demo</title>
+	
+	<!-- Bootstrap Core CSS -->
+	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		
+	<!-- MetisMenu CSS -->
+	<link href="/css/metisMenu.min.css" rel="stylesheet" type="text/css" />
+	
+	<!-- Timeline CSS -->
+	<link href="/css/timeline.css" rel="stylesheet" type="text/css" />
+	
+	<!-- Custom CSS -->
+	<link href="/css/startmin.css" rel="stylesheet" type="text/css" />
+	
+	<!-- Morris Charts CSS -->
+	<link href="/css/morris.css" rel="stylesheet" type="text/css" />
+	
+	<link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	
+	<!-- DataTables CSS -->
+    <link href="/css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="/css/dataTables/dataTables.responsive.css" rel="stylesheet">
+	
+	<!-- Custom Fonts -->
+	
+	<link href="/css/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+	
+	<link rel="stylesheet" href="/css/style.css"  type="text/css" />
+	
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+	<div id="wrapper">
+
+		<!-- Navigation -->
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html"><img alt="Logotipo da toka da coruja" src="/img/logo/logotipo-toka-da-coruja-min.png" width="35px" /></a>
+			</div>
+
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+
+			<ul class="nav navbar-right navbar-top-links">
+				<li class="dropdown navbar-inverse"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw"></i>
+						<b class="caret"></b>
+				</a>
+				</li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>secondtruth
+						<b class="caret"></b>
+				</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil</a></li>
+						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Configurações</a>
+						</li>
+						<li class="divider"></li>
+						<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>Sair</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<!-- /.navbar-top-links -->
+
+			<div class="navbar-default sidebar" role="navigation">
+				<div class="sidebar-nav navbar-collapse">
+					<ul class="nav" id="side-menu">
+						<li class="sidebar-search">
+							<div class="input-group custom-search-form">
+								<input type="text" class="form-control" placeholder="Search...">
+								<span class="input-group-btn">
+									<button class="btn btn-primary" type="button">
+										<i class="fa fa-search"></i>
+									</button>
+								</span>
+							</div> <!-- /input-group -->
+						</li>
+						<li><a href="index.html" class="active"> <i
+								class="fa fa-dashboard fa-fw"></i> Demo
+						</a></li>
+						<li><a href="#"> <i class="fa fa-list-alt fa-fw"></i>
+								Cadastro <span class="fa arrow"></span>
+						</a>
+							<ul class="nav nav-second-level">
+								<li><a href="#"> <i class="fa fa-user fa-fw"></i> Opção 1<span class="fa arrow"></span>
+								</a>
+									<ul class="nav nav-second-level">
+										<li><a href="/pais">Adicionar</a></li>
+										<li><a href="/pais/listar">Listar</a></li>
+									</ul>
+								</li>
+								<li><a href="#"> <i class="fa fa-child fa-fw"></i> Opção 2<span class="fa arrow"></span>
+								</a>
+									<ul class="nav nav-second-level">
+										<li><a href="/pais">Adicionar</a></li>
+										<li><a href="/pais/listar">Listar</a></li>
+									</ul>
+								</li>
+							</ul> <!-- /.nav-second-level --></li>
+						<li><a href="tables.html"> <i class="fa fa-calendar fa-fw"></i>
+								Agendamento
+						</a></li>
+						<li><a href="forms.html"> <i class="fa fa-edit fa-fw"></i>
+								Relatório
+						</a></li>
+						<!-- <li><a href="#"> <i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span>
+						</a>
+							<ul class="nav nav-second-level">
+								<li><a href="panels-wells.html">Panels and Wells</a></li>
+								<li><a href="buttons.html">Buttons</a></li>
+								<li><a href="notifications.html">Notifications</a></li>
+								<li><a href="typography.html">Typography</a></li>
+								<li><a href="icons.html"> Icons</a></li>
+								<li><a href="grid.html">Grid</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-sitemap fa-fw"></i>
+								Multi-Level Dropdown<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="#">Second Level Item</a></li>
+								<li><a href="#">Second Level Item</a></li>
+								<li><a href="#">Third Level <span class="fa arrow"></span></a>
+									<ul class="nav nav-third-level">
+										<li><a href="#">Third Level Item</a></li>
+										<li><a href="#">Third Level Item</a></li>
+										<li><a href="#">Third Level Item</a></li>
+										<li><a href="#">Third Level Item</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-files-o fa-fw"></i>
+								Sample Pages<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="blank.html">Blank Page</a></li>
+								<li><a href="login.html">Login Page</a></li>
+							</ul>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+			
+			<div class="clearfix"></div>
+			
+		</nav>
+		<!-- Fim do menu -->
+		
+		
+		<div id="page-wrapper">
+       		
+       		<br /><br />
+       		
+       		<!-- Breadcrumbs-->
+	        <ol class="breadcrumb">
+	          <li class="breadcrumb-item">
+	            <a href="index.html">Pais</a>
+	          </li>
+	          <li class="breadcrumb-item active">Cadastro</li>
+	        </ol>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header">Cadastro de Pais</h3>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Dados Pessoais
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <form role="form" action="/pais" method="POST">
+                                	<div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label>Nome do Responsável</label>
+                                            <input class="form-control" placeholder="Digite o nome do Responsável" type="text" name="name" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>CPF</label>
+                                            <input class="form-control" placeholder="Digite o CPF" type="text" name="cpf">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>RG</label>
+                                            <input class="form-control" placeholder="Digite o RG" type="text" name="rg">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                            <label>Endereço</label>
+                                            <input class="form-control" placeholder="Rua Exemplo, 123" type="text" name="address" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>Cidade</label>
+                                            <input class="form-control" placeholder="Digite a cidade" type="text" name="city" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label>E-mail</label>
+                                            <input class="form-control" placeholder="email@exemple.com" type="email" name="email" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Telefone</label>
+                                            <input class="form-control" placeholder="Digite o telefone" type="text" name="telephones" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Telefone de Emergência</label>
+                                            <input class="form-control" placeholder="Digite o telefone de emergência" type="text" name="telephonesContact">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label>Responsável Autorizado</label>
+                                            <label class="radio-inline">
+                                                <input class="resposibleOption" type="radio" name="statusResponsible" id="optionsRadiosInline1" value="sim">Sim
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input class="resposibleOption" type="radio" name="statusResponsible" id="optionsRadiosInline2" value="nao">Não
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label>Nome do responsável</label>
+                                            <input class="form-control" placeholder="Digite o nome do responsável" id="responsible" type="text" name="responsible" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 text-right">
+	                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    	                                <button type="reset" class="btn btn-danger">Cancelar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sticky Footer -->
+	      	<!-- <footer class="sticky-footer">
+	        	<div class="container my-auto">
+	          		<div class="copyright text-center my-auto">
+	            		<span>Copyright © Your Website 2019</span>
+	          		</div>
+	        	</div>
+	      	</footer> -->
+        </div><!-- Fim do conteudo -->
+	
+		<div class="clearfix"></div>
+		
+		<!-- Footer -->
+		<!-- <footer class="footer">
+			<div class="footer-copyright text-center">
+				© 2019 Copyright: <a href="#">Demo.com</a>
+			</div>
+		</footer> -->
+		<!-- Fim do Footer -->
+		
+	</div>
+
+	<!-- jQuery -->
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/js/bootstrap.min.js"></script>
+
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="/js/metisMenu.min.js"></script>
+	
+
+	<!-- Morris Charts JavaScript -->
+	<script src="/js/raphael.min.js"></script>
+	<script src="/js/morris.min.js"></script>
+	<script src="/js/morris-data.js"></script>
+
+	<!-- Data Tables -->
+	<script type="text/javascript" src="/js/dataTables/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/dataTables/jquery.dataTables.min.js"></script>
+
+	<!-- Flot Charts JavaScript -->
+	<script src="/js/flot/excanvas.min.js"></script>
+	<script src="/js/flot/jquery.flot.js"></script>
+	<script src="/js/flot/jquery.flot.pie.js"></script>
+	<script src="/js/flot/jquery.flot.resize.js"></script>
+	<script src="/js/flot/jquery.flot.time.js"></script>
+	<script src="/js/flot/jquery.flot.tooltip.min.js"></script>
+	
+	<!-- DataTables JavaScript -->
+    <script src="/js/dataTables/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables/dataTables.bootstrap.min.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="/js/startmin.js"></script>
+	
+	<script src="/js/form.js"></script>
+</body>
+</html>
