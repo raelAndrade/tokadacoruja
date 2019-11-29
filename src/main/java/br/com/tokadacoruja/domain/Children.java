@@ -2,6 +2,7 @@ package br.com.tokadacoruja.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -51,7 +52,10 @@ public class Children implements Serializable {
 	private String observation;
 	
 	@Column(name = "chi_publicity")
-	private Boolean publicity;
+	private String publicity;
+	
+	@Column(name = "chi_date_create")
+	private LocalDateTime create;
 	
 	@ManyToOne
 	@JoinColumn(name = "par_id")
@@ -59,11 +63,22 @@ public class Children implements Serializable {
 	
 	public Children() { }
 
-	public Children(final Long id, final String name, final String status, final String allergy) {
+	public Children(final Long id, final String name, final LocalDate dateBirth, final String status, final String allergy, final String allergyDescription,
+			final String food, final String foodRestriction, final String foodRestrictionDescription, final String observation,
+			final String publicity, final LocalDateTime create, final Parent parent) {
 		this.id = id;
 		this.name = name;
+		this.dateBirth = dateBirth;
 		this.status = status;
 		this.allergy = allergy;
+		this.allergyDescription = allergyDescription;
+		this.food = food;
+		this.foodRestriction = foodRestriction;
+		this.foodRestrictionDescription = foodRestrictionDescription;
+		this.observation = observation;
+		this.publicity = publicity;
+		this.create = create;
+		this.parent = parent;
 	}
 
 	public Long getId() {
@@ -82,12 +97,92 @@ public class Children implements Serializable {
 		this.name = name;
 	}
 
+	public LocalDate getDateBirth() {
+		return dateBirth;
+	}
+
+	public void setDateBirth(LocalDate dateBirth) {
+		this.dateBirth = dateBirth;
+	}
+
 	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getAllergy() {
+		return allergy;
+	}
+
+	public void setAllergy(String allergy) {
+		this.allergy = allergy;
+	}
+
+	public String getAllergyDescription() {
+		return allergyDescription;
+	}
+
+	public void setAllergyDescription(String allergyDescription) {
+		this.allergyDescription = allergyDescription;
+	}
+
+	public String getFood() {
+		return food;
+	}
+
+	public void setFood(String food) {
+		this.food = food;
+	}
+
+	public String getFoodRestriction() {
+		return foodRestriction;
+	}
+
+	public void setFoodRestriction(String foodRestriction) {
+		this.foodRestriction = foodRestriction;
+	}
+
+	public String getFoodRestrictionDescription() {
+		return foodRestrictionDescription;
+	}
+
+	public void setFoodRestrictionDescription(String foodRestrictionDescription) {
+		this.foodRestrictionDescription = foodRestrictionDescription;
+	}
+
+	public String getObservation() {
+		return observation;
+	}
+
+	public void setObservation(String observation) {
+		this.observation = observation;
+	}
+
+	public String getPublicity() {
+		return publicity;
+	}
+
+	public void setPublicity(String publicity) {
+		this.publicity = publicity;
+	}
+
+	public LocalDateTime getCreate() {
+		return create;
+	}
+
+	public void setCreate(LocalDateTime create) {
+		this.create = create;
+	}
+
+	public Parent getParent() {
+		return parent;
+	}
+
+	public void setParent(Parent parent) {
+		this.parent = parent;
 	}
 
 	@Override
@@ -115,12 +210,16 @@ public class Children implements Serializable {
 		return true;
 	}
 
-	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Children [id=").append(id).append(", name=").append(name).append(", status=").append(status)
-				.append(", allergy=").append(allergy).append(", parent=").append(parent).append("]");
+		builder.append("Children [id=").append(id).append(", name=").append(name).append(", dateBirth=")
+				.append(dateBirth).append(", status=").append(status).append(", allergy=").append(allergy)
+				.append(", allergyDescription=").append(allergyDescription).append(", food=").append(food)
+				.append(", foodRestriction=").append(foodRestriction).append(", foodRestrictionDescription=")
+				.append(foodRestrictionDescription).append(", observation=").append(observation).append(", publicity=")
+				.append(publicity).append(", create=").append(create).append(", parent=").append(parent).append("]");
 		return builder.toString();
 	}
+	
 }
