@@ -27,8 +27,14 @@ body {
 	position: relative;
 	margin-left: 0;
 	margin-right: 0;
-	top: 130px;
+	top: 120px;
 	display: block;
+	opacity: 0.2;
+}
+
+img {
+    vertical-align: middle;
+    width: 500px;
 }
 
 .navbar-top-links>li>a {
@@ -95,4 +101,18 @@ a:focus, a:hover {
     color: #ae659f;
 }
 
+.dropdown-submenu {
+    position:relative;
+}
+.dropdown-submenu>.dropdown-menu {
+    top:0;
+    left:-10rem; /* 10rem is the min-width of dropdown-menu */
+    margin-top:-6px;
+}
+
+/* rotate caret on hover */
+.dropdown-menu > li > a:hover:after {
+    text-decoration: underline;
+    transform: rotate(-90deg);
+}
 
