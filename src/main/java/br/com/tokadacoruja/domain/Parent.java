@@ -53,7 +53,7 @@ public class Parent implements Serializable{
 	private String responsible;
 	
 	@Column(name = "par_status")
-	private String status;
+	private Boolean status;
 	
 	@ElementCollection
 	@CollectionTable(name = "par_telephone")
@@ -69,23 +69,28 @@ public class Parent implements Serializable{
 	@Column(name = "par_date_register")
 	private LocalDateTime create;
 
-	public Parent() {
-		this.create = LocalDateTime.now();
-	}
+	public Parent() { }
 	
-	public Parent(final Long id, final String name, final String cpf, final String rg, final String address, final String email, final String responsible,
-			Set<String> telephones, final String statusResponsible) {
+
+	public Parent(final Long id, final String name, final String cpf, final String rg, final String address, final String city, final String email,
+			final String statusResponsible, final String responsible, final Boolean status, final Set<String> telephones,
+			final Set<String> telephonesContact, final List<Children> childrens) {
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
 		this.rg = rg;
 		this.address = address;
+		this.city = city;
 		this.email = email;
-		this.responsible = responsible;
-		this.telephones = telephones;
 		this.statusResponsible = statusResponsible;
+		this.responsible = responsible;
+		this.status = status;
+		this.telephones = telephones;
+		this.telephonesContact = telephonesContact;
+		this.childrens = childrens;
 		this.create = LocalDateTime.now();
 	}
+
 
 	public Long getId() {
 		return id;
@@ -166,6 +171,30 @@ public class Parent implements Serializable{
 	public void setCreate(LocalDateTime create) {
 		this.create = create;
 	}
+	
+	public String getCity() {
+		return city;
+	}
+	
+	public void setCity(String city) {
+		this.city = city;
+	}
+	
+	public Boolean getStatus() {
+		return status;
+	}
+	
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+	
+	public Set<String> getTelephonesContact() {
+		return telephonesContact;
+	}
+	
+	public void setTelephonesContact(Set<String> telephonesContact) {
+		this.telephonesContact = telephonesContact;
+	}
 
 	@Override
 	public int hashCode() {
@@ -196,9 +225,11 @@ public class Parent implements Serializable{
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Parent [id=").append(id).append(", name=").append(name).append(", cpf=").append(cpf)
-				.append(", rg=").append(rg).append(", address=").append(address).append(", email=").append(email)
-				.append(", statusResponsible=").append(statusResponsible).append(", responsible=").append(responsible)
-				.append(", telephones=").append(telephones).append(", childrens=").append(childrens).append("]");
+				.append(", rg=").append(rg).append(", address=").append(address).append(", city=").append(city)
+				.append(", email=").append(email).append(", statusResponsible=").append(statusResponsible)
+				.append(", responsible=").append(responsible).append(", status=").append(status).append(", telephones=")
+				.append(telephones).append(", telephonesContact=").append(telephonesContact).append(", childrens=")
+				.append(childrens).append(", create=").append(create).append("]");
 		return builder.toString();
 	}
 	

@@ -28,10 +28,10 @@ public class Children implements Serializable {
 	private String name;
 	
 	@Column(name = "chi_date_birth")
-	private LocalDate dateBirth;
+	private String dateBirth;
 	
 	@Column(name = "chi_status")
-	private String status;
+	private Boolean status;
 	
 	@Column(name = "chi_allergy")
 	private String allergy;
@@ -63,9 +63,9 @@ public class Children implements Serializable {
 	
 	public Children() { }
 
-	public Children(final Long id, final String name, final LocalDate dateBirth, final String status, final String allergy, final String allergyDescription,
+	public Children(final Long id, final String name, final String dateBirth, final Boolean status, final String allergy, final String allergyDescription,
 			final String food, final String foodRestriction, final String foodRestrictionDescription, final String observation,
-			final String publicity, final LocalDateTime create, final Parent parent) {
+			final String publicity, final Parent parent) {
 		this.id = id;
 		this.name = name;
 		this.dateBirth = dateBirth;
@@ -77,7 +77,7 @@ public class Children implements Serializable {
 		this.foodRestrictionDescription = foodRestrictionDescription;
 		this.observation = observation;
 		this.publicity = publicity;
-		this.create = create;
+		this.create = LocalDateTime.now();
 		this.parent = parent;
 	}
 
@@ -97,19 +97,19 @@ public class Children implements Serializable {
 		this.name = name;
 	}
 
-	public LocalDate getDateBirth() {
+	public String getDateBirth() {
 		return dateBirth;
 	}
 
-	public void setDateBirth(LocalDate dateBirth) {
+	public void setDateBirth(String dateBirth) {
 		this.dateBirth = dateBirth;
 	}
 
-	public String getStatus() {
+	public Boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
 

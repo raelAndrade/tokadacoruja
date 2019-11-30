@@ -38,6 +38,7 @@ public class ParentController {
 		if(result.hasErrors()) {
 			return getForm(parent);
 		}
+		parent.setStatus(true);
 		parentRepository.save(parent);		
 		return new ModelAndView("redirect:registration/parents/sucesso"); 
 	}

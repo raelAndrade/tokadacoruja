@@ -1,4 +1,3 @@
-
 body {
 	color: #606060;
 }
@@ -7,16 +6,6 @@ body {
 	min-height: 888px;
 }
 
-/* .footer { */
-/*    position: fixed; */
-/*    left: 0; */
-/*    bottom: 0; */
-/*    width: 100%; */
-/*    height: 50px; */
-/*    background-color: #f5d8ef; */
-/*    text-align: center; */
-/* } */
-
 .text-center {
    text-align: center;
    top: 15px;
@@ -24,17 +13,13 @@ body {
 }
 
 .icone-home {
-	position: relative;
-	margin-left: 0;
-	margin-right: 0;
-	top: 120px;
-	display: block;
-	opacity: 0.2;
+	opacity: 0.5;
+	max-width: 300px;		
 }
 
 img {
-    vertical-align: middle;
-    width: 500px;
+	display: block;
+	margin: 0 auto;
 }
 
 .navbar-top-links>li>a {

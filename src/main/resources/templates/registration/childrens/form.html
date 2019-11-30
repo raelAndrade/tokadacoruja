@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -179,16 +181,28 @@
                         <div class="panel-body">
                             <div class="row">
                                 <form role="form" action="/criancas/salvar" method="POST">
+                                	<div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label>Nome do Responsável</label>
+                                            <select name="parent.id" class="form-control" multiple>
+									            <option th:each="p : ${parents}"                                        
+									                    th:value="${p.id}"
+									                    th:text="${p.name}">               
+									            </option>
+									        </select>
+<!--                                             <input class="form-control" placeholder="Digite o nome do Responsável" type="text" name="name" required="required" > -->
+                                        </div>
+                                    </div>
                                 	<div class="col-lg-9">
                                         <div class="form-group">
                                             <label>Nome da criança</label>
-                                            <input class="form-control" placeholder="Digite o nome da criança" type="text" name="name" required="required">
+                                            <input class="form-control" placeholder="Digite o nome da criança" type="text" name="name">
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="form-group">
                                             <label>Data de Nascimento</label>
-                                            <input class="form-control" placeholder="Digite o nome da criança" type="date" name="dateBirth" required="required">
+                                            <input class="form-control" placeholder="Digite o nome da criança" type="text" name="dateBirth">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
@@ -210,7 +224,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Alimentação</label>
-                                            <input class="form-control" placeholder="Tipo de Alimentação" type="text" name="food" required="required">
+                                            <input class="form-control" placeholder="Tipo de Alimentação" type="text" name="food">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
