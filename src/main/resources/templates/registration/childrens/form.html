@@ -217,8 +217,7 @@
 									<!-- Mensagem de sucesso -->
 									<div class="alert  alert-success"
 										th:if="${!#strings.isEmpty(mensagem)}" )>
-										<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem
-											sucesso!</span>
+										<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem sucesso!</span>
 									</div>
 									
                                 	<div class="col-lg-12">
@@ -241,7 +240,7 @@
                                     <div class="col-lg-3">
                                         <div class="form-group">
                                             <label>Data de Nascimento</label>
-                                            <input class="form-control" id="dateBirth" placeholder="Data de nascimento" type="text" th:field="*{dateBirth}">
+                                            <input class="form-control dateBirth" id="dateBirth" placeholder="Data de nascimento" type="text" th:field="*{dateBirth}">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">

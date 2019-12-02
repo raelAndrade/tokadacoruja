@@ -20,14 +20,26 @@ $(document).ready(function() {
 //        todayHighlight: true
 //    });
 	
-	$("#dateBirth").mask("99/99/9999");
+	$('.dateBirth').datepicker({
+	    format: 'dd/mm/yyyy',
+	    language: "pt-BR",
+	    clearBtn: true,
+	    todayHighlight: true
+	});
+	
+	$("#dateBirth").mask("00/00/0000");
 	
 	jQuery( function($){
 	    $(".telephone").mask("(99) 9999-9999?9");
 	});
 	
-	var $seuCampoCpf = $("#CPF");
-    $seuCampoCpf.mask('000.000.000-00', {reverse: true});
+	jQuery( function($){
+		$('.time').mask('00:00:00');
+	});
+	
+	jQuery( function($){
+		$('.cpf').mask('000.000.000-00', {reverse: true});
+	});
 	
 	$(".resposibleOption").click(function(){
 		if($(this).val() === 'sim'){
