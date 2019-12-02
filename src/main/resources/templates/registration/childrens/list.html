@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -159,26 +161,19 @@
 					<table class="table">
 						<thead class="thead-light">
 							<tr>
-								<th scope="col">#</th>
+								<th scope="col">Código</th>
 								<th scope="col">Nome</th>
 								<th scope="col">Ações</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<th scope="row">1</th>
-								<td>Mark</td>
-								<td>@mdo</td>
-							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>Jacob</td>
-								<td>@fat</td>
-								</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>Larry</td>
-								<td>@twitter</td>
+							<tr th:each="c : ${childrens}">
+								<th scope="row" th:text="${c.id}"></th>
+								<td th:text="${c.name}"></td>
+								<td>
+									<a href="/criancas"><i class="fa fa-pencil fa-fw"></i></a>
+									<a href="#"><i class="fa fa-close fa-fw"></i></a>
+								</td>
 							</tr>
 						</tbody>
 					</table>

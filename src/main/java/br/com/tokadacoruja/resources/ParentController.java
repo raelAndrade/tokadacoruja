@@ -29,7 +29,7 @@ public class ParentController {
 	@GetMapping("/pais/listar")
 	public ModelAndView listAll() {
 		ModelAndView mv = new ModelAndView("registration/parents/list");
-		mv.addObject("pais", parentRepository.findAll());
+		mv.addObject("parents", parentRepository.findAll());
 		return mv;
 	}
 	
@@ -40,7 +40,7 @@ public class ParentController {
 		}
 		parent.setStatus(true);
 		parentRepository.save(parent);		
-		return new ModelAndView("redirect:registration/parents/sucesso"); 
+		return new ModelAndView("redirect:/pais/listar"); 
 	}
 	
 	/*@DeleteMapping("/{id}")

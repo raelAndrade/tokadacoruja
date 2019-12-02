@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,8 +35,6 @@
 
     <!-- DataTables Responsive CSS -->
     <link href="/css/dataTables/dataTables.responsive.css" rel="stylesheet">
-	
-	<!-- Custom Fonts -->
 	
 	<link href="/css/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 	
@@ -165,7 +165,7 @@
             
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">Cadastro de Pais</h3>
+                    <!-- <h3 class="page-header">Cadastro de Pais</h3> -->
                 </div>
             </div>
 
@@ -178,35 +178,57 @@
                         
                         <div class="panel-body">
                             <div class="row">
-                                <form role="form" action="/pais/salvar" method="POST">
+                                <form role="form" th:action="@{/pais/salvar}" method="POST" th:object="${parent}" autocomplete="on">
+                                
+	                                <!-- Mensagens de erros -->
+									<div class="alert  alert-danger  alert-dismissible" role="alert"
+										th:if="${#fields.hasAnyErrors()}">
+										<button type="button" class="close" data-dismiss="alert"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+					
+										<div th:each="erro : ${#fields.detailedErrors()}">
+											<i class="fa fa-exclamation-circle"></i> <span
+												th:text="${erro.message}">Mensagem erro.</span>
+										</div>
+									</div>
+					
+									<!-- Mensagem de sucesso -->
+									<div class="alert  alert-success"
+										th:if="${!#strings.isEmpty(mensagem)}" )>
+										<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem
+											sucesso!</span>
+									</div>
+									
                                 	<div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Nome do Responsável</label>
-                                            <input class="form-control" placeholder="Digite o nome do Responsável" type="text" name="name" required="required">
+                                            <input class="form-control" placeholder="Digite o nome do Responsável" type="text" th:field="*{name}" required="required">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>CPF</label>
-                                            <input class="form-control" placeholder="Digite o CPF" type="text" name="cpf">
+                                            <input class="form-control" id="cpf" placeholder="Digite o CPF" type="text" th:field="*{cpf}" required="required">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>RG</label>
-                                            <input class="form-control" placeholder="Digite o RG" type="text" name="rg">
+                                            <input class="form-control" id="rg" placeholder="Digite o RG" type="text" th:field="*{rg}">
                                         </div>
                                     </div>
                                     <div class="col-lg-8">
                                         <div class="form-group">
                                             <label>Endereço</label>
-                                            <input class="form-control" placeholder="Rua Exemplo, 123" type="text" name="address" required="required">
+                                            <input class="form-control" placeholder="Rua Exemplo, 123" type="text" th:field="*{address}" required="required">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label>Cidade</label>
-                                            <input class="form-control" placeholder="Digite a cidade" type="text" name="city" required="required">
+                                            <input class="form-control" placeholder="Digite a cidade" type="text" th:field="*{city}" required="required">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
@@ -218,13 +240,13 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>Telefone</label>
-                                            <input class="form-control" placeholder="Digite o telefone" type="text" name="telephones" required="required">
+                                            <input class="form-control telephone" id="telephone" placeholder="Digite o telefone" type="text" th:field="*{telephones}" required="required">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>Telefone de Emergência</label>
-                                            <input class="form-control" placeholder="Digite o telefone de emergência" type="text" name="telephonesContact">
+                                            <input class="form-control telephone" id="telephoneContact" placeholder="Digite o telefone de emergência" type="text" th:field="*{telephonesContact}">
                                         </div>
                                     </div>
                                     
@@ -232,17 +254,17 @@
                                         <div class="form-group">
                                             <label>Responsável Autorizado</label>
                                             <label class="radio-inline">
-                                                <input class="resposibleOption" type="radio" name="statusResponsible" id="optionsRadiosInline1" value="sim">Sim
+                                                <input class="resposibleOption" type="radio" th:field="*{statusResponsible}" id="optionsRadiosInline1" value="sim">Sim
                                             </label>
                                             <label class="radio-inline">
-                                                <input class="resposibleOption" type="radio" name="statusResponsible" id="optionsRadiosInline2" value="nao">Não
+                                                <input class="resposibleOption" type="radio" th:field="*{statusResponsible}" id="optionsRadiosInline2" value="nao">Não
                                             </label>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Nome do responsável</label>
-                                            <input class="form-control" placeholder="Digite o nome do responsável" id="responsible" type="text" name="responsible" disabled="disabled">
+                                            <input class="form-control" placeholder="Digite o nome do responsável" id="responsible" type="text" th:field="*{responsible}" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="col-lg-12 text-right">
@@ -256,39 +278,21 @@
                 </div>
             </div>
             
-            <!-- Sticky Footer -->
-	      	<!-- <footer class="sticky-footer">
-	        	<div class="container my-auto">
-	          		<div class="copyright text-center my-auto">
-	            		<span>Copyright © Your Website 2019</span>
-	          		</div>
-	        	</div>
-	      	</footer> -->
         </div><!-- Fim do conteudo -->
 	
 		<div class="clearfix"></div>
-		
-		<!-- Footer -->
-		<!-- <footer class="footer">
-			<div class="footer-copyright text-center">
-				© 2019 Copyright: <a href="#">Demo.com</a>
-			</div>
-		</footer> -->
-		<!-- Fim do Footer -->
 		
 	</div>
 
 	<!-- jQuery -->
 	<script type="text/javascript" src="/js/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
-
+	
 	<!-- Bootstrap Core JavaScript -->
 	<script src="/js/bootstrap.min.js"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
 	<script src="/js/metisMenu.min.js"></script>
-	
 
 	<!-- Morris Charts JavaScript -->
 	<script src="/js/raphael.min.js"></script>
@@ -296,8 +300,8 @@
 	<script src="/js/morris-data.js"></script>
 
 	<!-- Data Tables -->
-	<script type="text/javascript" src="/js/dataTables/dataTables.bootstrap.min.js"></script>
-	<script type="text/javascript" src="/js/dataTables/jquery.dataTables.min.js"></script>
+	<!-- <script type="text/javascript" src="/js/dataTables/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/dataTables/jquery.dataTables.min.js"></script> -->
 
 	<!-- Flot Charts JavaScript -->
 	<script src="/js/flot/excanvas.min.js"></script>
@@ -308,8 +312,10 @@
 	<script src="/js/flot/jquery.flot.tooltip.min.js"></script>
 	
 	<!-- DataTables JavaScript -->
-    <script src="/js/dataTables/jquery.dataTables.min.js"></script>
-    <script src="/js/dataTables/dataTables.bootstrap.min.js"></script>
+    <!-- <script src="/js/dataTables/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables/dataTables.bootstrap.min.js"></script> -->
+
+	<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
 
 	<!-- Custom Theme JavaScript -->
 	<script src="/js/startmin.js"></script>

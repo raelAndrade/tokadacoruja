@@ -2,8 +2,11 @@ package br.com.tokadacoruja.resources;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,7 +34,7 @@ public class ChildrenController {
 	public ModelAndView getForm(Children children) {
 		ModelAndView mv = new ModelAndView("registration/childrens/form");
 		List<Parent> parents = parentRepository.findAll();
-		
+
 		System.out.println("Pais: " + parents);
 		mv.addObject("parents", parents);
 		mv.addObject(children);
@@ -41,16 +44,19 @@ public class ChildrenController {
 	
 	@GetMapping("/criancas/listar")
 	public ModelAndView listAll() {
-		ModelAndView mv = new ModelAndView("registration/criancas/list");
-		mv.addObject("crianca", childrenRepository.findAll());
+		ModelAndView mv = new ModelAndView("registration/childrens/list");
+		mv.addObject("childrens", childrenRepository.findAll());
 		return mv;
 	}
 	
 	@PostMapping("/criancas/salvar")
-	public ModelAndView save(Children children) {
+	public ModelAndView save(@Valid Children children, BindingResult result) {
+		if(result.hasErrors()) {
+			return getForm(children);
+		}
 		children.setStatus(true);
 		childrenRepository.save(children);
-		return new ModelAndView("redirect:registration/childrens/sucesso"); 
+		return new ModelAndView("redirect:/criancas/listar"); 
 	}
 	
 	/*@DeleteMapping("/{id}")
