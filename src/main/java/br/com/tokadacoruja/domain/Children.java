@@ -220,5 +220,5 @@ public class Children implements Serializable {
 				.append(publicity).append(", create=").append(create).append(", parent=").append(parent).append("]");
 		return builder.toString();
 	}
-	
+
 }

@@ -69,8 +69,9 @@ public class Parent implements Serializable{
 	@Column(name = "par_date_register")
 	private LocalDateTime create;
 
-	public Parent() { }
-	
+	public Parent() {
+		this.create = LocalDateTime.now();
+	}
 
 	public Parent(final Long id, final String name, final String cpf, final String rg, final String address, final String city, final String email,
 			final String statusResponsible, final String responsible, final Boolean status, final Set<String> telephones,
@@ -90,7 +91,6 @@ public class Parent implements Serializable{
 		this.childrens = childrens;
 		this.create = LocalDateTime.now();
 	}
-
 
 	public Long getId() {
 		return id;

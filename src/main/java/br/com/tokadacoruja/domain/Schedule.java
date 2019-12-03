@@ -3,6 +3,7 @@ package br.com.tokadacoruja.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +28,7 @@ public class Schedule implements Serializable {
 	private Long id;
 	
 	@Column(name = "sch_children_id")
-	private Children children;
+	private List<Children> children;
 	
 	@Column(name = "sch_date")
 	private LocalDateTime date;
@@ -53,11 +54,11 @@ public class Schedule implements Serializable {
 		this.id = id;
 	}
 
-	public Children getChildren() {
+	public List<Children> getChildren() {
 		return children;
 	}
-
-	public void setChildren(Children children) {
+	
+	public void setChildren(List<Children> children) {
 		this.children = children;
 	}
 
@@ -125,6 +126,28 @@ public class Schedule implements Serializable {
 			return false;
 		return true;
 	}
+	
+	public Schedule() { }
+ 
+	public Schedule(final Long id, final List<Children> children, final LocalDateTime date, final LocalDateTime hourInitial,
+			final LocalDateTime hourFinale, final Payment payment, final BigDecimal amount) {
+		this.id = id;
+		this.children = children;
+		this.date = date;
+		this.hourInitial = hourInitial;
+		this.hourFinale = hourFinale;
+		this.payment = payment;
+		this.amount = amount;
+	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Schedule [id=").append(id).append(", children=").append(children).append(", date=").append(date)
+				.append(", hourInitial=").append(hourInitial).append(", hourFinale=").append(hourFinale)
+				.append(", payment=").append(payment).append(", amount=").append(amount).append("]");
+		return builder.toString();
+	}
 	
 }
+

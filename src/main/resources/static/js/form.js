@@ -49,7 +49,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$(".allergy").click(function(){
+	$(".allergy").change(function(){
 		if($(this).val() === 'sim'){
 			$("#allergyDescription").prop('disabled', false);
 		}else if($(this).val() === 'nao'){
@@ -57,7 +57,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$(".foodRestriction").click(function(){
+	$(".foodRestriction").change(function(){
 		if($(this).val() === 'sim'){
 			$("#foodRestriction").prop('disabled', false);
 		}else if($(this).val() === 'nao'){

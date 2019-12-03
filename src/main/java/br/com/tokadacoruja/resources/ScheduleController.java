@@ -12,31 +12,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.tokadacoruja.domain.Children;
-import br.com.tokadacoruja.domain.Parent;
+import br.com.tokadacoruja.domain.Schedule;
 import br.com.tokadacoruja.repositories.ChildrenRepository;
-import br.com.tokadacoruja.repositories.ParentRepository;
+import br.com.tokadacoruja.repositories.ScheduleRepository;
 
 @Controller
-public class ChildrenController {
+public class ScheduleController {
 
 	@Autowired
-	private ChildrenRepository childrenRepository;
+	private ScheduleRepository scheduleRepository;
 	
 	@Autowired
-	private ParentRepository parentRepository;
+	private ChildrenRepository childrenRepository;
 	
 	/*@GetMapping("/criancas")
 	public String form() {
 		return "registration/childrens/form";
 	}*/
 	
-	@GetMapping("/criancas")
-	public ModelAndView getForm(Children children) {
-		ModelAndView mv = new ModelAndView("registration/childrens/form");
-		List<Parent> parents = parentRepository.findAll();
+	@GetMapping("/agendas")
+	public ModelAndView getForm(Schedule schedule) {
+		ModelAndView mv = new ModelAndView("registration/schedule/form");
+		List<Children> children = childrenRepository.findAll();
 
-		System.out.println("Pais: " + parents);
-		mv.addObject("parents", parents);
+		mv.addObject("schedule", schedule);
 		mv.addObject(children);
 		return mv;
 	}
@@ -49,12 +48,11 @@ public class ChildrenController {
 	}
 	
 	@PostMapping("/criancas/salvar")
-	public ModelAndView save(@Valid Children children, BindingResult result) {
+	public ModelAndView save(@Valid Schedule schedule, BindingResult result) {
 		if(result.hasErrors()) {
-			return getForm(children);
+			return getForm(schedule);
 		}
-		children.setStatus(true);
-		childrenRepository.save(children);
+		scheduleRepository.save(schedule);
 		return new ModelAndView("redirect:/criancas/listar"); 
 	}
 	
