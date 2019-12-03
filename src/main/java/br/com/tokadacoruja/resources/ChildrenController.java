@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,11 +27,11 @@ public class ChildrenController {
 	private ParentRepository parentRepository;
 	
 	@GetMapping("/criancas")
-	public ModelAndView getForm(Children children) {
+	public ModelAndView form(Children children) {
 		ModelAndView mv = new ModelAndView("registration/childrens/form");
 		List<Parent> parents = parentRepository.findAll();
 		mv.addObject("parents", parents);
-		mv.addObject("children", children);
+		mv.addObject("children",children);
 		return mv;
 	}
 	
@@ -44,7 +45,7 @@ public class ChildrenController {
 	@PostMapping("/criancas/salvar")
 	public ModelAndView save(@Valid Children children, BindingResult result) {
 		if(result.hasErrors()) {
-			return getForm(children);
+			return form(children);
 		}
 		children.setStatus(true);
 		childrenRepository.save(children);
@@ -57,8 +58,8 @@ public class ChildrenController {
 		return "redirect:/registration/criancas/listar";
 	}*/
 	
-	/*@GetMapping("/{id}")
-	public ModelAndView edit(@PathVariable Long id) {
-		return getForm(childrenRepository.getOne(id));
-	}*/
+	@GetMapping("/editar/{id}")
+	public ModelAndView edit(@PathVariable("id") Long id) {
+		return form(childrenRepository.getOne(id));
+	}
 }

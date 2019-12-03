@@ -26,7 +26,9 @@
 						<tr th:each="c : ${childrens}">
 							<th scope="row" th:text="${c.id}"></th>
 							<td th:text="${c.name}"></td>
-							<td><a th:href="@{/criancas}"><i class="fa fa-pencil fa-fw"></i></a> <a href="#"><i class="fa fa-close fa-fw"></i></a></td>
+							<td>
+								<a th:href="@{/criancas/editar/{id}(id=${c.id})}"><i class="fa fa-pencil fa-fw"></i></a>
+								<a href="#"><i class="fa fa-close fa-fw"></i></a></td>
 						</tr>
 					</tbody>
 				</table>

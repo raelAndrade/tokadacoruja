@@ -31,120 +31,101 @@
 
 					<div class="panel-body">
 						<div class="row">
-							<form role="form" th:action="@{/criancas/salvar}"
-								th:object="${children}" method="POST">
+							<form role="form" th:action="@{/criancas/salvar}" th:object="${children}" method="POST">
 
 								<!-- Mensagens de erros -->
-								<div class="alert  alert-danger  alert-dismissible" role="alert"
-									th:if="${#fields.hasAnyErrors()}">
-									<button type="button" class="close" data-dismiss="alert"
-										aria-label="Close">
+								<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
 
 									<div th:each="erro : ${#fields.detailedErrors()}">
-										<i class="fa fa-exclamation-circle"></i> <span
-											th:text="${erro.message}">Mensagem erro.</span>
+										<i class="fa fa-exclamation-circle"></i>
+										<span th:text="${erro.message}">Mensagem erro.</span>
 									</div>
 								</div>
 
 								<!-- Mensagem de sucesso -->
-								<div class="alert  alert-success"
-									th:if="${!#strings.isEmpty(mensagem)}" )>
-									<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem
-										sucesso!</span>
+								<div class="alert  alert-success" th:if="${!#strings.isEmpty(mensagem)}" )>
+									<i class="fa fa-check-circle"></i>
+									<span th:text="${mensagem}">Mensagem sucesso!</span>
 								</div>
 
 								<div class="col-lg-12">
 									<div class="form-group">
-										<label>Nome do Responsável</label> <select
-											th:field="*{parent.id}"
-											class="form-control ui-autocomplete-input"
-											id="autocompletePais" style="display: inline;">
+										<label>Nome do Responsável</label>
+										<select th:field="*{parent.id}" class="form-control ui-autocomplete-input" id="autocompletePais" style="display: inline;">
 											<option value="">-- Selecione o nome --</option>
-											<option th:each="p : ${parents}" th:value="${p.id}"
-												th:text="${p.name}"></option>
-										</select> <input class="form-control"
-											placeholder="Digite o nome do Responsável" type="search"
-											id="autocompletePais" name="parent.id" required="required">
+											<option th:each="p : ${parents}" th:value="${p.id}" th:text="${p.name}"></option>
+										</select> 
+										<!-- <input class="form-control" placeholder="Digite o nome do Responsável" type="search" id="autocompletePais" name="parent.id" required="required"> -->
 									</div>
 								</div>
 								<div class="col-lg-9">
 									<div class="form-group">
-										<label>Nome da criança</label> <input class="form-control"
-											placeholder="Digite o nome da criança" type="text"
-											th:field="*{name}">
+										<label>Nome da criança</label>
+										<input class="form-control" placeholder="Digite o nome da criança" type="text" th:field="*{name}">
 									</div>
 								</div>
 								<div class="col-lg-3">
 									<div class="form-group">
-										<label>Data de Nascimento</label> <input
-											class="form-control dateBirth" id="dateBirth"
-											placeholder="Data de nascimento" type="text"
-											th:field="*{dateBirth}">
+										<label>Data de Nascimento</label>
+										<input class="form-control dateBirth" id="dateBirth" placeholder="Data de nascimento" type="text" th:field="*{dateBirth}">
 									</div>
 								</div>
 								<div class="col-lg-12">
 									<div class="form-group">
-										<label>Tem Alergia?</label> <label class="radio-inline">
-											<input type="radio" class="allergy" th:field="*{allergy}"
-											id="optionsAllergy1" value="sim">Sim
-										</label> <label class="radio-inline"> <input type="radio"
-											class="allergy" th:field="*{allergy}" id="optionsAllergy2"
-											value="não">Não
+										<label>Tem Alergia?</label>
+										<label class="radio-inline">
+											<input type="radio" class="allergy" th:field="*{allergy}" id="optionsAllergy1" value="sim">Sim
+										</label>
+										<label class="radio-inline">
+											<input type="radio" class="allergy" th:field="*{allergy}" id="optionsAllergy2" value="não">Não
 										</label>
 									</div>
 								</div>
 								<div class="col-lg-12">
 									<div class="form-group">
-										<input class="form-control" id="allergyDescription"
-											placeholder="Qual o tipo de alergia?" type="text"
-											th:field="*{allergyDescription}" disabled="disabled">
+										<input class="form-control" id="allergyDescription" placeholder="Qual o tipo de alergia?" type="text" th:field="*{allergyDescription}" disabled="disabled">
 									</div>
 								</div>
 								<div class="col-lg-12">
 									<div class="form-group">
-										<label>Alimentação</label> <input class="form-control"
-											placeholder="Tipo de Alimentação" type="text"
-											th:field="*{food}">
+										<label>Alimentação</label>
+										<input class="form-control" placeholder="Tipo de Alimentação" type="text" th:field="*{food}">
 									</div>
 								</div>
 								<div class="col-lg-12">
 									<div class="form-group">
-										<label>Restrição Alimentar?</label> <label
-											class="radio-inline"> <input type="radio"
-											class="foodRestriction" th:field="*{foodRestriction}"
-											id="optionsFoodRestriction1" value="sim">Sim
-										</label> <label class="radio-inline"> <input type="radio"
-											class="foodRestriction" th:field="*{foodRestriction}"
-											id="optionsFoodRestriction2" value="não">Não
+										<label>Restrição Alimentar?</label>
+										<label class="radio-inline">
+											<input type="radio" class="foodRestriction" th:field="*{foodRestriction}" id="optionsFoodRestriction1" value="sim">Sim
+										</label>
+										<label class="radio-inline">
+											<input type="radio" class="foodRestriction" th:field="*{foodRestriction}" id="optionsFoodRestriction2" value="não">Não
 										</label>
 									</div>
 								</div>
 								<div class="col-lg-12">
 									<div class="form-group">
-										<input class="form-control" id="foodRestriction"
-											placeholder="Qual o tipo de restrição?" type="text"
-											th:field="*{foodRestrictionDescription}" disabled="disabled">
+										<input class="form-control" id="foodRestriction" placeholder="Qual o tipo de restrição?" type="text" th:field="*{foodRestrictionDescription}" disabled="disabled">
 									</div>
 								</div>
 								<div class="col-lg-12">
 									<div class="form-group">
-										<label>Observação:</label> <input class="form-control"
-											placeholder="Observação" type="text"
-											th:field="*{observation}">
+										<label>Observação:</label>
+										<input class="form-control" placeholder="Observação" type="text" th:field="*{observation}">
 									</div>
 								</div>
 
 								<div class="col-lg-12">
 									<div class="form-group">
-										<label>Permitir uso da imagem para divulgação e
-											propagandas da Toka da Coruja?</label> <label class="radio-inline">
-											<input type="radio" th:field="*{publicity}"
-											id="optionsRadiosInline1" value="true">Sim
-										</label> <label class="radio-inline"> <input type="radio"
-											th:field="*{publicity}" id="optionsRadiosInline2"
-											value="false">Não
+										<label>Permitir uso da imagem para divulgação e propagandas da Toka da Coruja?</label>
+										<label class="radio-inline">
+											<input type="radio" th:field="*{publicity}" id="optionsRadiosInline1" value="true">Sim
+										</label>
+										<label class="radio-inline">
+											<input type="radio" th:field="*{publicity}" id="optionsRadiosInline2" value="false">Não
 										</label>
 									</div>
 								</div>

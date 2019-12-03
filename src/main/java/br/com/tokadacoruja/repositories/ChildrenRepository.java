@@ -7,5 +7,5 @@ import br.com.tokadacoruja.domain.Children;
 
 @Repository
 public interface ChildrenRepository extends JpaRepository<Children, Long> {
-
+	
 }
