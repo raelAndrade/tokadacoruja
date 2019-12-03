@@ -1,4 +1,3 @@
-//Page-Level Demo Scripts - Tables - Use for reference
 
 $(document).ready(function() {
 	
@@ -27,21 +26,15 @@ $(document).ready(function() {
 	    todayHighlight: true
 	});
 	
-	$("#dateBirth").mask("00/00/0000");
+	$(".dateBirth").mask('00/00/0000');
 	
-	jQuery( function($){
-	    $(".telephone").mask("(99) 9999-9999?9");
-	});
+    $(".telephone").mask('(00) 0000-0000');
 	
-	jQuery( function($){
-		$('.time').mask('00:00:00');
-	});
+	$('.time').mask('00:00:00');
 	
-	jQuery( function($){
-		$('.cpf').mask('000.000.000-00', {reverse: true});
-	});
+	$('.cpf').mask('000.000.000-00', {reverse: true});
 	
-	$(".resposibleOption").click(function(){
+	$(".resposibleOption").change(function(){
 		if($(this).val() === 'sim'){
 			$("#responsible").prop('disabled', false);
 		}else if($(this).val() === 'nao'){
@@ -65,9 +58,9 @@ $(document).ready(function() {
 		}
 	});
 	
-//	$("#autocompletePais").autocomplete({
-//		source: parents
-//	});
+	//	$("#autocompletePais").autocomplete({
+	//		source: parents
+	//	});
 	
 });
 
