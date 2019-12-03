@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.tokadacoruja.domain.Children;
 import br.com.tokadacoruja.domain.Schedule;
+import br.com.tokadacoruja.domain.enums.Payment;
 import br.com.tokadacoruja.repositories.ChildrenRepository;
 import br.com.tokadacoruja.repositories.ScheduleRepository;
 
@@ -25,35 +26,31 @@ public class ScheduleController {
 	@Autowired
 	private ChildrenRepository childrenRepository;
 	
-	/*@GetMapping("/criancas")
-	public String form() {
-		return "registration/childrens/form";
-	}*/
-	
 	@GetMapping("/agendas")
 	public ModelAndView getForm(Schedule schedule) {
 		ModelAndView mv = new ModelAndView("registration/schedule/form");
 		List<Children> children = childrenRepository.findAll();
 
+		mv.addObject("payments", Payment.values());
+		mv.addObject("children", children);
 		mv.addObject("schedule", schedule);
-		mv.addObject(children);
 		return mv;
 	}
 	
-	@GetMapping("/criancas/listar")
+	@GetMapping("/agendas/listar")
 	public ModelAndView listAll() {
-		ModelAndView mv = new ModelAndView("registration/childrens/list");
-		mv.addObject("childrens", childrenRepository.findAll());
+		ModelAndView mv = new ModelAndView("registration/schedule/list");
+		mv.addObject("schedule", scheduleRepository.findAll());
 		return mv;
 	}
 	
-	@PostMapping("/criancas/salvar")
+	@PostMapping("/agendas/salvar")
 	public ModelAndView save(@Valid Schedule schedule, BindingResult result) {
 		if(result.hasErrors()) {
 			return getForm(schedule);
 		}
 		scheduleRepository.save(schedule);
-		return new ModelAndView("redirect:/criancas/listar"); 
+		return new ModelAndView("redirect:/agendas/listar"); 
 	}
 	
 	/*@DeleteMapping("/{id}")

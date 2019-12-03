@@ -101,3 +101,7 @@ a:focus, a:hover {
     transform: rotate(-90deg);
 }
 
+
+.modal-header .close {
+    margin-top: -25px;
+}

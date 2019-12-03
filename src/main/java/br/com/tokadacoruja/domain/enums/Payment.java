@@ -7,7 +7,6 @@ public enum Payment {
 	WEEKLY(3, "Semanal");
 	
 	private Integer id;
-	
 	private String description;
 
 	private Payment(Integer id) {

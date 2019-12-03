@@ -21,8 +21,7 @@ public class ParentController {
 	@GetMapping("/pais")
 	public ModelAndView getForm(Parent parent) {
 		ModelAndView mv = new ModelAndView("registration/parents/form");
-		mv.addObject(parent);
-		//modelAndView.addObject("tipos", TipoVinho.values());
+		mv.addObject("parent", parent);
 		return mv;
 	}
 	

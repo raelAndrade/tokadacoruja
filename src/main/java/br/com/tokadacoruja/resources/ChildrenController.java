@@ -25,19 +25,12 @@ public class ChildrenController {
 	@Autowired
 	private ParentRepository parentRepository;
 	
-	/*@GetMapping("/criancas")
-	public String form() {
-		return "registration/childrens/form";
-	}*/
-	
 	@GetMapping("/criancas")
 	public ModelAndView getForm(Children children) {
 		ModelAndView mv = new ModelAndView("registration/childrens/form");
 		List<Parent> parents = parentRepository.findAll();
-
-		System.out.println("Pais: " + parents);
 		mv.addObject("parents", parents);
-		mv.addObject(children);
+		mv.addObject("children", children);
 		return mv;
 	}
 	

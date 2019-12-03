@@ -3,7 +3,6 @@ package br.com.tokadacoruja.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.com.tokadacoruja.domain.enums.Payment;
@@ -27,8 +28,9 @@ public class Schedule implements Serializable {
 	@Column(name = "sch_id")
 	private Long id;
 	
-	@Column(name = "sch_children_id")
-	private List<Children> children;
+	@ManyToOne
+	@JoinColumn(name = "sch_children_id")
+	private Children children;
 	
 	@Column(name = "sch_date")
 	private LocalDateTime date;
@@ -45,7 +47,26 @@ public class Schedule implements Serializable {
 	
 	@Column(name = "sch_amount")
 	private BigDecimal amount;
+	
+	@Column(name = "sch_date_create")
+	private LocalDateTime create;
 
+	public Schedule() {
+		this.create = LocalDateTime.now();
+	}
+	 
+	public Schedule(final Long id, final Children children, final LocalDateTime date, final LocalDateTime hourInitial,
+			final LocalDateTime hourFinale, final Payment payment, final BigDecimal amount) {
+		this.id = id;
+		this.children = children;
+		this.date = date;
+		this.hourInitial = hourInitial;
+		this.hourFinale = hourFinale;
+		this.payment = payment;
+		this.amount = amount;
+		this.create = LocalDateTime.now();
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -54,11 +75,11 @@ public class Schedule implements Serializable {
 		this.id = id;
 	}
 
-	public List<Children> getChildren() {
+	public Children getChildren() {
 		return children;
 	}
 	
-	public void setChildren(List<Children> children) {
+	public void setChildren(Children children) {
 		this.children = children;
 	}
 
@@ -127,19 +148,6 @@ public class Schedule implements Serializable {
 		return true;
 	}
 	
-	public Schedule() { }
- 
-	public Schedule(final Long id, final List<Children> children, final LocalDateTime date, final LocalDateTime hourInitial,
-			final LocalDateTime hourFinale, final Payment payment, final BigDecimal amount) {
-		this.id = id;
-		this.children = children;
-		this.date = date;
-		this.hourInitial = hourInitial;
-		this.hourFinale = hourFinale;
-		this.payment = payment;
-		this.amount = amount;
-	}
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

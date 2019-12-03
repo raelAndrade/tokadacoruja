@@ -60,7 +60,9 @@ public class Children implements Serializable {
 	@JoinColumn(name = "par_id")
 	private Parent parent;
 	
-	public Children() { }
+	public Children() {
+		this.create = LocalDateTime.now();
+	}
 
 	public Children(final Long id, final String name, final String dateBirth, final Boolean status, final String allergy, final String allergyDescription,
 			final String food, final String foodRestriction, final String foodRestrictionDescription, final String observation,
@@ -76,8 +78,8 @@ public class Children implements Serializable {
 		this.foodRestrictionDescription = foodRestrictionDescription;
 		this.observation = observation;
 		this.publicity = publicity;
-		this.create = LocalDateTime.now();
 		this.parent = parent;
+		this.create = LocalDateTime.now();
 	}
 
 	public Long getId() {
