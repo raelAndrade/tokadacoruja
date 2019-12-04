@@ -1,7 +1,9 @@
 package br.com.tokadacoruja.domain;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,13 +29,13 @@ public class Children implements Serializable {
 	private String name;
 	
 	@Column(name = "chi_date_birth")
-	private String dateBirth;
+	private Date dateBirth;
 	
 	@Column(name = "chi_status")
 	private Boolean status;
 	
 	@Column(name = "chi_allergy")
-	private String allergy;
+	private Boolean allergy;
 	
 	@Column(name = "chi_allergy_description")
 	private String allergyDescription;
@@ -42,7 +44,7 @@ public class Children implements Serializable {
 	private String food;
 	
 	@Column(name = "chi_food_restriction")
-	private String foodRestriction;
+	private Boolean foodRestriction;
 	
 	@Column(name = "chi_food_restriction_description")
 	private String foodRestrictionDescription;
@@ -64,8 +66,8 @@ public class Children implements Serializable {
 		this.create = LocalDateTime.now();
 	}
 
-	public Children(final Long id, final String name, final String dateBirth, final Boolean status, final String allergy, final String allergyDescription,
-			final String food, final String foodRestriction, final String foodRestrictionDescription, final String observation,
+	public Children(final Long id, final String name, final Date dateBirth, final Boolean status, final Boolean allergy, final String allergyDescription,
+			final String food, final Boolean foodRestriction, final String foodRestrictionDescription, final String observation,
 			final String publicity, final Parent parent) {
 		this.id = id;
 		this.name = name;
@@ -97,12 +99,16 @@ public class Children implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public String getDateBirth() {
+	
+	public Date getDateBirth() {
 		return dateBirth;
 	}
-
-	public void setDateBirth(String dateBirth) {
+	
+	public String getDateBirthString() { 
+		return new SimpleDateFormat("dd/MM/yyyy").format(dateBirth);
+	}
+	
+	public void setDateBirth(Date dateBirth) {
 		this.dateBirth = dateBirth;
 	}
 
@@ -114,11 +120,11 @@ public class Children implements Serializable {
 		this.status = status;
 	}
 
-	public String getAllergy() {
+	public Boolean getAllergy() {
 		return allergy;
 	}
-
-	public void setAllergy(String allergy) {
+	
+	public void setAllergy(Boolean allergy) {
 		this.allergy = allergy;
 	}
 
@@ -138,11 +144,11 @@ public class Children implements Serializable {
 		this.food = food;
 	}
 
-	public String getFoodRestriction() {
+	public Boolean getFoodRestriction() {
 		return foodRestriction;
 	}
-
-	public void setFoodRestriction(String foodRestriction) {
+	
+	public void setFoodRestriction(Boolean foodRestriction) {
 		this.foodRestriction = foodRestriction;
 	}
 

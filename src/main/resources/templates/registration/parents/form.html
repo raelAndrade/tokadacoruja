@@ -12,139 +12,129 @@
 
 		<br /><br />
 
-		<!-- Breadcrumbs-->
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="index.html">Pais</a></li>
+			<li class="breadcrumb-item"><a href="#">Pais</a></li>
 			<li class="breadcrumb-item active">Cadastro</li>
 		</ol>
 
 		<div class="row">
-			<div class="col-lg-12">
-				<!-- <h3 class="page-header">Cadastro de Pais</h3> -->
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Dados Pessoais</div>
-
+					<div class="panel-heading">Cadastro</div>
 					<div class="panel-body">
-						<div class="row">
-							<form role="form" th:action="@{/pais/salvar}" method="POST"
-								th:object="${parent}">
-
-								<!-- Mensagens de erros -->
-								<div class="alert  alert-danger  alert-dismissible" role="alert"
-									th:if="${#fields.hasAnyErrors()}">
-									<button type="button" class="close" data-dismiss="alert"
-										aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-
-									<div th:each="erro : ${#fields.detailedErrors()}">
-										<i class="fa fa-exclamation-circle"></i> <span
-											th:text="${erro.message}">Mensagem erro.</span>
-									</div>
-								</div>
-
-								<!-- Mensagem de sucesso -->
-								<div class="alert  alert-success"
-									th:if="${!#strings.isEmpty(mensagem)}" )>
-									<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem
-										sucesso!</span>
-								</div>
-
-								<div class="col-lg-12">
-									<div class="form-group">
-										<label>Nome do Responsável</label> <input class="form-control"
-											placeholder="Digite o nome do Responsável" type="text"
-											th:field="*{name}" required="required">
-									</div>
-								</div>
-								<div class="col-lg-6">
-									<div class="form-group">
-										<label>CPF</label> <input class="form-control cpf" id="cpf"
-											placeholder="Digite o CPF" type="text" th:field="*{cpf}"
-											required="required">
-									</div>
-								</div>
-								<div class="col-lg-6">
-									<div class="form-group">
-										<label>RG</label> <input class="form-control" id="rg"
-											placeholder="Digite o RG" type="text" th:field="*{rg}">
-									</div>
-								</div>
-								<div class="col-lg-8">
-									<div class="form-group">
-										<label>Endereço</label> <input class="form-control"
-											placeholder="Rua Exemplo, 123" type="text"
-											th:field="*{address}" required="required">
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="form-group">
-										<label>Cidade</label> <input class="form-control"
-											placeholder="Digite a cidade" type="text" th:field="*{city}"
-											required="required">
-									</div>
-								</div>
-								<div class="col-lg-12">
-									<div class="form-group">
-										<label>E-mail</label> <input class="form-control"
-											placeholder="email@exemple.com" type="email" name="email"
-											required="required">
-									</div>
-								</div>
-								<div class="col-lg-6">
-									<div class="form-group">
-										<label>Telefone</label> <input class="form-control telephone"
-											id="telephone" placeholder="Digite o telefone" type="text"
-											th:field="*{telephones}" required="required">
-									</div>
-								</div>
-								<div class="col-lg-6">
-									<div class="form-group">
-										<label>Telefone de Emergência</label> <input
-											class="form-control telephone" id="telephoneContact"
-											placeholder="Digite o telefone de emergência" type="text"
-											th:field="*{telephonesContact}">
-									</div>
-								</div>
-
-								<div class="col-lg-12">
-									<div class="form-group">
-										<label>Responsável Autorizado</label> <label
-											class="radio-inline"> <input class="resposibleOption"
-											type="radio" th:field="*{statusResponsible}"
-											id="optionsRadiosInline1" value="sim">Sim
-										</label> <label class="radio-inline"> <input
-											class="resposibleOption" type="radio"
-											th:field="*{statusResponsible}" id="optionsRadiosInline2"
-											value="não">Não
-										</label>
-									</div>
-								</div>
-								<div class="col-lg-12">
-									<div class="form-group">
-										<label>Nome do responsável</label> <input class="form-control"
-											placeholder="Digite o nome do responsável" id="responsible"
-											type="text" th:field="*{responsible}" disabled="disabled">
-									</div>
-								</div>
-								<div class="col-lg-12 text-right">
-									<button type="submit" class="btn btn-primary">Cadastrar</button>
-									<button type="reset" class="btn btn-danger">Cancelar</button>
-								</div>
-							</form>
-						</div>
+						<!-- Button trigger modal -->
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#paisModal">Cadastrar pais</button>
 					</div>
 				</div>
 			</div>
 		</div>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="paisModal" tabindex="-1" role="dialog" aria-labelledby="paisModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+	
+					<!-- MODAL HEADER -->
+					<div class="modal-header">
+						<h3 class="modal-title">Cadastro</h3>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					
+					<!-- MODAL BODY -->
+					<form role="form" th:action="@{/pais/salvar}" method="POST" th:object="${parent}">
+						<div class="modal-body">
+							
+							<!-- Mensagens de erros -->
+							<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
 
+								<div th:each="erro : ${#fields.detailedErrors()}">
+									<i class="fa fa-exclamation-circle"></i>
+									<span th:text="${erro.message}">Mensagem erro.</span>
+								</div>
+							</div>
+							
+							<!-- Mensagem de sucesso -->
+							<div class="alert  alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+								<i class="fa fa-check-circle"></i>
+								<span th:text="${mensagem}">Mensagem sucesso!</span>
+							</div>
+
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Nome do Responsável</label>
+									<input class="form-control" placeholder="Digite o nome do Responsável" type="text" th:field="*{name}" required="required">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>CPF</label>
+									<input class="form-control cpf" id="cpf" placeholder="Digite o CPF" type="text" th:field="*{cpf}" required="required">
+								</div>
+							</div>
+							<div class="col-md-8">
+								<div class="form-group">
+									<label>Endereço</label>
+									<input class="form-control" placeholder="Rua Exemplo, 123" type="text" th:field="*{address}" required="required">
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Cidade</label>
+									<input class="form-control" placeholder="Digite a cidade" type="text" th:field="*{city}" required="required">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>E-mail</label>
+									<input class="form-control" placeholder="email@exemple.com" type="email" name="email" required="required">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Telefone</label>
+									<input class="form-control telephone" id="telephone" placeholder="Digite o telefone" type="text" th:field="*{telephones}" required="required">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Telefone de Emergência</label>
+									<input class="form-control telephone" id="telephoneContact" placeholder="Digite o telefone de emergência" type="text" th:field="*{telephonesContact}">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Responsável Autorizado</label>
+									<label class="radio-inline">
+										<input class="resposibleOption" type="radio" th:field="*{statusResponsible}" id="optionsRadiosInline1" value="TRUE">Sim
+									</label>
+									<label class="radio-inline">
+										<input class="resposibleOption" type="radio" th:field="*{statusResponsible}" id="optionsRadiosInline2" value="FALSE">Não
+									</label>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Nome do responsável</label>
+									<input class="form-control" placeholder="Digite o nome do responsável" id="responsible" type="text" th:field="*{responsible}" disabled="disabled">
+								</div>
+							</div>
+						</div>
+						
+						<!-- MODAL FOOTER -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+							<button type="submit" class="btn btn-primary">Salvar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
-	<!-- Fim do conteudo -->
 
 </body>
 </html>

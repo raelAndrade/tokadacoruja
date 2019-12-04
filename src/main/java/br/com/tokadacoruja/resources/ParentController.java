@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,7 +19,7 @@ public class ParentController {
 	private ParentRepository parentRepository;
 	
 	@GetMapping("/pais")
-	public ModelAndView getForm(Parent parent) {
+	public ModelAndView form(Parent parent) {
 		ModelAndView mv = new ModelAndView("registration/parents/form");
 		mv.addObject("parent", parent);
 		return mv;
@@ -36,7 +35,7 @@ public class ParentController {
 	@PostMapping("/pais/salvar")
 	public ModelAndView save(@Valid Parent parent, BindingResult result) {
 		if(result.hasErrors()) {
-			return getForm(parent);
+			return form(parent);
 		}
 		parent.setStatus(true);
 		parentRepository.save(parent);		
@@ -49,9 +48,9 @@ public class ParentController {
 		return "redirect:/registration/parents/listar";
 	}*/
 	
-	@GetMapping("/{id}")
+	/*@GetMapping("/{id}")
 	public ModelAndView edit(@PathVariable Long id) {
-		return getForm(parentRepository.getOne(id));
-	}
+		return form(parentRepository.getOne(id));
+	}*/
 	
 }

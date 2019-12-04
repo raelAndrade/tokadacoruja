@@ -34,9 +34,6 @@ public class Parent implements Serializable{
 	@Column(name = "par_cpf")
 	private String cpf;
 	
-	@Column(name = "par_rg")
-	private String rg;
-	
 	@Column(name = "par_address")
 	private String address;
 	
@@ -47,7 +44,7 @@ public class Parent implements Serializable{
 	private String email;
 	
 	@Column(name = "par_status_responsible")
-	private String statusResponsible;
+	private Boolean statusResponsible;
 	
 	@Column(name = "par_responsible")
 	private String responsible;
@@ -73,13 +70,12 @@ public class Parent implements Serializable{
 		this.create = LocalDateTime.now();
 	}
 
-	public Parent(final Long id, final String name, final String cpf, final String rg, final String address, final String city, final String email,
-			final String statusResponsible, final String responsible, final Boolean status, final Set<String> telephones,
+	public Parent(final Long id, final String name, final String cpf, final String address, final String city, final String email,
+			final Boolean statusResponsible, final String responsible, final Boolean status, final Set<String> telephones,
 			final Set<String> telephonesContact, final List<Children> childrens) {
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
-		this.rg = rg;
 		this.address = address;
 		this.city = city;
 		this.email = email;
@@ -116,14 +112,6 @@ public class Parent implements Serializable{
 		this.cpf = cpf;
 	}
 
-	public String getRg() {
-		return rg;
-	}
-
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
-
 	public String getAddress() {
 		return address;
 	}
@@ -156,11 +144,11 @@ public class Parent implements Serializable{
 		this.telephones = telephones;
 	}
 	
-	public String getStatusResponsible() {
+	public Boolean getStatusResponsible() {
 		return statusResponsible;
 	}
 	
-	public void setStatusResponsible(String statusResponsible) {
+	public void setStatusResponsible(Boolean statusResponsible) {
 		this.statusResponsible = statusResponsible;
 	}
 	
@@ -225,7 +213,7 @@ public class Parent implements Serializable{
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Parent [id=").append(id).append(", name=").append(name).append(", cpf=").append(cpf)
-				.append(", rg=").append(rg).append(", address=").append(address).append(", city=").append(city)
+				.append(", address=").append(address).append(", city=").append(city)
 				.append(", email=").append(email).append(", statusResponsible=").append(statusResponsible)
 				.append(", responsible=").append(responsible).append(", status=").append(status).append(", telephones=")
 				.append(telephones).append(", telephonesContact=").append(telephonesContact).append(", childrens=")

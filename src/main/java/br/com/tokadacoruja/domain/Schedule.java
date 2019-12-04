@@ -2,7 +2,9 @@ package br.com.tokadacoruja.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.com.tokadacoruja.domain.enums.Payment;
@@ -28,18 +29,17 @@ public class Schedule implements Serializable {
 	@Column(name = "sch_id")
 	private Long id;
 	
-	@ManyToOne
 	@JoinColumn(name = "sch_children_id")
 	private Children children;
 	
 	@Column(name = "sch_date")
-	private LocalDateTime date;
+	private LocalDate date;
 	
 	@Column(name = "sch_hour_initial")
-	private LocalDateTime hourInitial;
+	private LocalTime hourInitial;
 	
 	@Column(name = "sch_hour_finale")
-	private LocalDateTime hourFinale;
+	private LocalTime hourFinale;
 	
 	@Column(name = "sch_payment")
 	@Enumerated(EnumType.STRING)
@@ -48,6 +48,9 @@ public class Schedule implements Serializable {
 	@Column(name = "sch_amount")
 	private BigDecimal amount;
 	
+	@Column(name = "sch_total_hours")
+	private Long totalHours;
+	
 	@Column(name = "sch_date_create")
 	private LocalDateTime create;
 
@@ -55,8 +58,8 @@ public class Schedule implements Serializable {
 		this.create = LocalDateTime.now();
 	}
 	 
-	public Schedule(final Long id, final Children children, final LocalDateTime date, final LocalDateTime hourInitial,
-			final LocalDateTime hourFinale, final Payment payment, final BigDecimal amount) {
+	public Schedule(final Long id, final Children children, final LocalDate date, final LocalTime hourInitial,
+			final LocalTime hourFinale, final Payment payment, final BigDecimal amount, final Long totalHours) {
 		this.id = id;
 		this.children = children;
 		this.date = date;
@@ -64,6 +67,7 @@ public class Schedule implements Serializable {
 		this.hourFinale = hourFinale;
 		this.payment = payment;
 		this.amount = amount;
+		this.totalHours = totalHours;
 		this.create = LocalDateTime.now();
 	}
 	
@@ -83,27 +87,27 @@ public class Schedule implements Serializable {
 		this.children = children;
 	}
 
-	public LocalDateTime getHourInitial() {
+	public LocalTime getHourInitial() {
 		return hourInitial;
 	}
 
-	public void setHourInitial(LocalDateTime hourInitial) {
+	public void setHourInitial(LocalTime hourInitial) {
 		this.hourInitial = hourInitial;
 	}
 
-	public LocalDateTime getHourFinale() {
+	public LocalTime getHourFinale() {
 		return hourFinale;
 	}
 
-	public void setHourFinale(LocalDateTime hourFinale) {
+	public void setHourFinale(LocalTime hourFinale) {
 		this.hourFinale = hourFinale;
 	}
 	
-	public LocalDateTime getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -122,7 +126,30 @@ public class Schedule implements Serializable {
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
+	
+	public Long getTotalHours() {
+		return totalHours;
+	}
+	
+	public void setTotalHours(Long totalHours) {
+		this.totalHours = totalHours;
+	}
+	
+	/*private void calcularDiferencaHoras(String hourInitial, String hourFinale){
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        try {
+            Date horaIni = sdf.parse(hourInitial);
+            Date horaFim = sdf.parse(hourFinale);
+            Long horaI = horaIni.getTime();
+            Long horaF = horaFim.getTime(); 
+            Long diferencaHoras = horaF - horaI;
+            System.out.println("Diferença de horas" + diferencaHoras);
 
+        } catch(Exception e) {
+           e.printStackTrace();
+        }
+    }*/
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -151,11 +178,12 @@ public class Schedule implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Schedule [id=").append(id).append(", children=").append(children).append(", date=").append(date)
-				.append(", hourInitial=").append(hourInitial).append(", hourFinale=").append(hourFinale)
-				.append(", payment=").append(payment).append(", amount=").append(amount).append("]");
+		builder.append("Schedule [id=").append(id).append(", criança=").append(children).append(", data=").append(date)
+				.append(", hora inicial=").append(hourInitial).append(", hora final=").append(hourFinale)
+				.append(", forma de pagamento=").append(payment).append(", valor=").append(amount).append(", Total de horas=").append(totalHours).append("]");
 		return builder.toString();
 	}
-	
+
+		
 }
 

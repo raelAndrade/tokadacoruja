@@ -9,11 +9,32 @@
 <body>
 
 	<div id="page-wrapper" layout:fragment="content">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-12">
-					<h3 class="page-header">Lista de crianças</h3>
+		<div class="page-header">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-8">
+						<h3>Lista de crianças</h3>
+					</div>
+					<div class="col-md-4">
+						<div class="page-header-controls">
+							<a class="btn btn-primary" th:href="@{/criancas}">
+								<i class="fa fa-plus-square"></i>
+								<span class="hidden-xs hidden-sm">Cadastro criança</span>
+							</a>
+						</div>
+					</div>
 				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<!-- Mensagem de sucesso -->
+			<div class="alert  alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+				<i class="fa fa-check-circle"></i>
+				<span th:text="${mensagem}">Mensagem sucesso!</span>
+			</div>
+			
+			<div class="table-responsive">
 				<table class="table">
 					<thead class="thead-light">
 						<tr>

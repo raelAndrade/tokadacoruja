@@ -14,9 +14,9 @@
 
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="#">Crianças</a></li>
-			<li class="breadcrumb-item active">Cadastro</li>
+			<li class="breadcrumb-item active">Editar</li>
 		</ol>
-		
+					
 		<form role="form" th:action="@{/criancas/salvar}" th:object="${children}" method="POST">
 			<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">

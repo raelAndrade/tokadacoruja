@@ -11,28 +11,26 @@ $(document).ready(function() {
 //		responsive: true
 //    });
 	
-	 // ================ Calendário ==================
-//    $('.date').datepicker({
-//        format: "dd/mm/yyyy",
-//        language: "pt-BR",
-//        clearBtn: true,
-//        todayHighlight: true
-//    });
-	
-	$('.dateBirth').datepicker({
+	// ================== Calendário ================== //
+	$('.date').datepicker({
 	    format: 'dd/mm/yyyy',
 	    language: "pt-BR",
 	    clearBtn: true,
 	    todayHighlight: true
 	});
+	// =============================================== //
 	
-	$(".dateBirth").mask('00/00/0000');
+	// ================== Máscara ================== //
+	$('.date').mask('99/99/9999');
 	
-    $(".telephone").mask('(00) 0000-0000');
+    $('.telephone').mask('(00) 0000-0000');
 	
-	$('.time').mask('00:00:00');
+	$('.time').mask('00:00');
 	
-	$('.cpf').mask('000.000.000-00', {reverse: true});
+	$('.cpf').mask('000.000.000-00', { reverse: true });
+	
+	$('.amount').mask("#.##0,00", { reverse: true });
+	// ============================================= //
 	
 	$(".resposibleOption").change(function(){
 		if($(this).val() === 'sim'){

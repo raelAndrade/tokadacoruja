@@ -105,3 +105,10 @@ a:focus, a:hover {
 .modal-header .close {
     margin-top: -25px;
 }
+
+.page-header-controls {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	height: 80px;
+}
