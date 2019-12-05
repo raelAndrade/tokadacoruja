@@ -32,29 +32,36 @@
 				<i class="fa fa-check-circle"></i>
 				<span th:text="${mensagem}">Mensagem sucesso!</span>
 			</div>
-							
-			<div class="col-lg-12">
+			
+			<div class="col-md-2">
+				<div class="form-group">
+					<label>Código</label>
+					<input class="form-control" name="id" th:field="*{id}" readonly="readonly"/>
+				</div>
+			</div>
+				
+			<div class="col-md-12">
 				<div class="form-group">
 					<label>Nome do Responsável</label>
-					<select th:field="*{parent.id}" class="form-control ui-autocomplete-input" id="autocompletePais" style="display: inline;">
+					<select th:field="*{parent.id}" class="form-control ui-autocomplete-input" id="autocompletePais" style="display: inline;" name="parent.name">
 						<option value="">-- Selecione o nome --</option>
 						<option th:each="p : ${parents}" th:value="${p.id}" th:text="${p.name}"></option>
 					</select> 
 				</div>
 			</div>
-			<div class="col-lg-9">
+			<div class="col-md-9">
 				<div class="form-group">
 					<label>Nome da criança</label>
-					<input class="form-control" placeholder="Digite o nome da criança" type="text" th:field="*{name}">
+					<input class="form-control" placeholder="Digite o nome da criança" name="name" type="text" th:field="*{name}">
 				</div>
 			</div>
-			<div class="col-lg-3">
+			<div class="col-md-3">
 				<div class="form-group">
 					<label>Data de Nascimento</label>
-					<input class="form-control date" id="date" placeholder="Data de nascimento" type="text" th:field="*{dateBirth}">
+					<input class="form-control date" id="date" placeholder="Data de nascimento" name="dateBirth" type="text" th:field="*{dateBirth}">
 				</div>
 			</div>
-			<div class="col-lg-12">
+			<div class="col-md-12">
 				<div class="form-group">
 					<label>Tem Alergia?</label>
 					<label class="radio-inline">
@@ -65,18 +72,18 @@
 					</label>
 				</div>
 			</div>
-			<div class="col-lg-12">
+			<div class="col-md-12">
 				<div class="form-group">
-					<input class="form-control" id="allergyDescription" placeholder="Qual o tipo de alergia?" type="text" th:field="*{allergyDescription}" disabled="disabled">
+					<input class="form-control" id="allergyDescription" placeholder="Qual o tipo de alergia?" name="allergyDescription" type="text" th:field="*{allergyDescription}" disabled="disabled">
 				</div>
 			</div>
-			<div class="col-lg-12">
+			<div class="col-md-12">
 				<div class="form-group">
 					<label>Alimentação</label>
-					<input class="form-control" placeholder="Tipo de Alimentação" type="text" th:field="*{food}">
+					<input class="form-control" placeholder="Tipo de Alimentação" type="text" name="food" th:field="*{food}">
 				</div>
 			</div>
-			<div class="col-lg-12">
+			<div class="col-md-12">
 				<div class="form-group">
 					<label>Restrição Alimentar?</label>
 					<label class="radio-inline">
@@ -87,18 +94,18 @@
 					</label>
 				</div>
 			</div>
-			<div class="col-lg-12">
+			<div class="col-md-12">
 				<div class="form-group">
-					<input class="form-control" id="foodRestriction" placeholder="Qual o tipo de restrição?" type="text" th:field="*{foodRestrictionDescription}" disabled="disabled">
+					<input class="form-control" id="foodRestriction" placeholder="Qual o tipo de restrição?" name="foodRestrictionDescription" type="text" th:field="*{foodRestrictionDescription}" disabled="disabled">
 				</div>
 			</div>
-			<div class="col-lg-12">
+			<div class="col-md-12">
 				<div class="form-group">
 					<label>Observação:</label>
-					<input class="form-control" placeholder="Observação" type="text" th:field="*{observation}">
+					<input class="form-control" placeholder="Observação" name="observation" type="text" th:field="*{observation}">
 				</div>
 			</div>
-			<div class="col-lg-12">
+			<div class="col-md-12">
 				<div class="form-group">
 					<label>Permitir uso da imagem para divulgação e propagandas da Toka da Coruja?</label>
 					<label class="radio-inline">
@@ -110,8 +117,8 @@
 				</div>
 			</div>
 			
-			<div class="col-lg-12 text-right">
-	        	<button type="submit" class="btn btn-primary">Atualizar</button>
+			<div class="col-md-12 text-right">
+	        	<button type="submit" class="btn btn-primary">Salvar</button>
     	        <button type="reset" class="btn btn-danger">Cancelar</button>
             </div>
 		</form>

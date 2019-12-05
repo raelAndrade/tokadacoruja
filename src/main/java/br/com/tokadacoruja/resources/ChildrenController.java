@@ -18,13 +18,9 @@ import br.com.tokadacoruja.domain.Children;
 import br.com.tokadacoruja.domain.Parent;
 import br.com.tokadacoruja.repositories.ChildrenRepository;
 import br.com.tokadacoruja.repositories.ParentRepository;
-import br.com.tokadacoruja.service.ChildrenService;
 
 @Controller
 public class ChildrenController {
-
-	@Autowired
-	private ChildrenService childrenService;
 	
 	@Autowired
 	private ChildrenRepository childrenRepository;
@@ -33,63 +29,44 @@ public class ChildrenController {
 	private ParentRepository parentRepository;
 	
 	@GetMapping("/criancas")
-	public ModelAndView form(Optional<Children> children) {
+	public ModelAndView form() {
 		ModelAndView mv = new ModelAndView("registration/childrens/form");
 		List<Parent> parents = parentRepository.findAll();
 		mv.addObject("parents", parents);
-		mv.addObject("children",children);
+		mv.addObject("children", new Children());
 		return mv;
 	}
 	
 	@GetMapping("/criancas/listar")
 	public ModelAndView findAll() {
 		ModelAndView mv = new ModelAndView("registration/childrens/list");
-		mv.addObject("childrens", childrenService.findAll());
-		return mv;
-	}
-	
-	@GetMapping("/crianca/adicionar")
-	public ModelAndView add(Children children) {
-		
-		ModelAndView mv = new ModelAndView("registration/childrens/form");
-		mv.addObject("children", children);
-		
+		mv.addObject("childrens", childrenRepository.findAll());
 		return mv;
 	}
 	
 	@PostMapping("/criancas/salvar")
 	public ModelAndView save(@Valid Children children, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
-			return add(children);
+			return form();
 		}
 		children.setStatus(true);
-		childrenService.save(children);
+		childrenRepository.save(children);
 		attributes.addFlashAttribute("mensagem", "Salvo com sucesso!");
 		return new ModelAndView("redirect:/criancas/listar"); 
 	}
 	
-
 	@GetMapping("/criancas/editar/{id}")
 	public ModelAndView edit(@PathVariable("id") Long id) {
-		ModelAndView mv = new ModelAndView();
-		Children children = childrenRepository.getOne(id);
-		mv.addObject("children", children);
-		mv.setViewName("/criancas/editar");
+		Optional<Children> children = childrenRepository.findById(id);
+		ModelAndView mv = new ModelAndView("registration/childrens/form");
+		List<Parent> parents = parentRepository.findAll();
+		mv.addObject("parents", parents);
+		mv.addObject("children", children.get());
 		return mv;
 	}
 	
-	@PostMapping("/criancas/editar")
-	public ModelAndView edit(@Valid Children children, BindingResult result) {
-		ModelAndView mv = new ModelAndView();
-		if(result.hasErrors()) {
-			mv.setViewName("/criancas/editar");
-			mv.addObject(children);
-		}else {
-			mv.setViewName("redirect:/registration/childrens/list");
-			childrenService.save(children);
-		}
-		return mv;
-	}
+	
+	
 	
 	
 	
