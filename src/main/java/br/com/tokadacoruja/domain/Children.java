@@ -62,6 +62,10 @@ public class Children implements Serializable {
 	@JoinColumn(name = "par_id")
 	private Parent parent;
 	
+	@ManyToOne
+	@JoinColumn(name = "sch_id")
+	private Schedule schedule;
+	
 	public Children() {
 		this.create = LocalDateTime.now();
 	}

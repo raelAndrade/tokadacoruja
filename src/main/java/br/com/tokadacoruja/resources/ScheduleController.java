@@ -50,7 +50,8 @@ public class ScheduleController {
 	public ModelAndView save(@Valid Schedule schedule, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
 			return form(schedule);
-		}		
+		}
+		schedule.setStatus(true);
 		scheduleRepository.save(schedule);
 		attributes.addFlashAttribute("mensagem", "Salvo com sucesso!");
 		return new ModelAndView("redirect:/agendas/listar"); 
@@ -59,17 +60,12 @@ public class ScheduleController {
 	@GetMapping("/schedule/editar/{id}")
 	public ModelAndView edit(@PathVariable("id") Long id) {
 		Optional<Schedule> schedule = scheduleRepository.findById(id);
-		ModelAndView mv = new ModelAndView("registration/schedule/form");
+		ModelAndView mv = new ModelAndView("registration/schedule/edit");
 		List<Children> childrens = childrenRepository.findAll();
 		mv.addObject("children", childrens);
 		mv.addObject("schedule", schedule.get());
 		return mv;
 	}
 	
-	/*@DeleteMapping("/{id}")
-	public String remove(@PathVariable Long id) {
-		childrenRepository.deleteById(id);		
-		return "redirect:/registration/criancas/listar";
-	}*/
 	
 }

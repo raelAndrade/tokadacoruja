@@ -5,18 +5,19 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.MapKey;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.com.tokadacoruja.domain.enums.Payment;
@@ -32,9 +33,9 @@ public class Schedule implements Serializable {
 	@Column(name = "sch_id")
 	private Long id;
 	
-	@ManyToOne
-	@JoinColumn(name = "children_id")
-	private Children children;
+	@OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL)
+	@MapKey(name = "chi_id")
+	private List<Children> childrens = new ArrayList<Children>();
 	
 	@Column(name = "sch_date")
 	private LocalDate date;
@@ -57,15 +58,18 @@ public class Schedule implements Serializable {
 	
 	@Column(name = "sch_date_create")
 	private LocalDateTime create;
+	
+	@Column(name = "sch_status")
+	private Boolean status;
 
 	public Schedule() {
 		this.create = LocalDateTime.now();
 	}
 	 
-	public Schedule(final Long id, final Children children, final LocalDate date, final LocalTime hourInitial,
-			final LocalTime hourFinale, final Payment payment, final BigDecimal amount, final Long totalHours) {
+	public Schedule(final Long id, final List<Children> childrens, final LocalDate date, final LocalTime hourInitial,
+			final LocalTime hourFinale, final Payment payment, final BigDecimal amount, final Long totalHours, final Boolean status) {
 		this.id = id;
-		this.children = children;
+		this.childrens = childrens;
 		this.date = date;
 		this.hourInitial = hourInitial;
 		this.hourFinale = hourFinale;
@@ -73,6 +77,7 @@ public class Schedule implements Serializable {
 		this.amount = amount;
 		this.totalHours = totalHours;
 		this.create = LocalDateTime.now();
+		this.status = status;
 	}
 	
 	public Long getId() {
@@ -83,13 +88,7 @@ public class Schedule implements Serializable {
 		this.id = id;
 	}
 
-	public Children getChildren() {
-		return children;
-	}
 	
-	public void setChildren(Children children) {
-		this.children = children;
-	}
 
 	public LocalTime getHourInitial() {
 		return hourInitial;
@@ -139,6 +138,14 @@ public class Schedule implements Serializable {
 		this.totalHours = totalHours;
 	}
 	
+	public Boolean getStatus() {
+		return status;
+	}
+	
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -167,9 +174,9 @@ public class Schedule implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Schedule [id=").append(id).append(", criança=").append(children).append(", data=").append(date).append(", hora inicial=")
+		builder.append("Schedule [id=").append(id).append(", crianças=").append(childrens).append(", data=").append(date).append(", hora inicial=")
 			.append(hourInitial).append(", hora final=").append(hourFinale).append(", forma de pagamento=").append(payment).append(", valor=")
-			.append(amount).append(", Total de horas=").append(totalHours).append("]");
+			.append(amount).append(", Total de horas=").append(totalHours).append(", status=").append(status).append("]");
 		return builder.toString();
 	}
 

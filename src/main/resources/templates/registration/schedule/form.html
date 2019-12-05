@@ -16,6 +16,22 @@
 			<li class="breadcrumb-item"><a href="#">Crianças</a></li>
 			<li class="breadcrumb-item active">Agendamento</li>
 		</ol>
+		
+		<div class="page-header">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-8"></div>
+					<div class="col-md-4">
+						<div class="page-header-controls">
+							<a class="btn btn-primary" th:href="@{/agendas/listar}">
+								<i class="fa fa-plus-square"></i>
+								<span class="hidden-xs hidden-sm">Listar agendamentos</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<div class="row">
 			<div class="col-md-12">
@@ -69,7 +85,7 @@
 							<div class="form-group">
 								<label for="children" class="col-md-2">Nome da criança</label>
 								<div class="col-md-10">
-									<select th:field="*{children.id}" class="form-control ui-autocomplete-input" id="children" style="display: inline;">
+									<select class="form-control ui-autocomplete-input" id="children" style="display: inline;">
 										<option value="">-- Selecione o nome da criança--</option>
 										<option th:each="c : ${children}" th:value="${c.id}" th:text="${c.name}"></option>
 									</select>

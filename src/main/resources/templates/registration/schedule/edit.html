@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout-padrao}">
+
+<head></head>
+
+<body>
+
+	<div id="page-wrapper" layout:fragment="content">
+
+		<br /><br /> 
+
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Crianças</a></li>
+			<li class="breadcrumb-item active">Editar</li>
+		</ol>
+					
+		<form class="form-horizontal" role="form" th:action="@{/agendas/salvar}" th:object="${schedule}" method="POST">
+			<!-- Mensagens de erros -->
+			<div class="alert  alert-danger alert-dismissible" role="alert"
+				th:if="${#fields.hasAnyErrors()}">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+
+				<div th:each="erro : ${#fields.detailedErrors()}">
+					<i class="fa fa-exclamation-circle"></i> <span
+						th:text="${erro.message}">Mensagem erro.</span>
+				</div>
+			</div>
+			<!-- Mensagem de sucesso -->
+			<div class="alert  alert-success"
+				th:if="${!#strings.isEmpty(mensagem)}">
+				<i class="fa fa-check-circle"></i> <span th:text="${mensagem}">Mensagem
+					sucesso!</span>
+			</div>
+			
+			<div class="col-md-2">
+				<div class="form-group">
+					<label>Código</label>
+					<input class="form-control" name="id" th:field="*{id}" readonly="readonly"/>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="children" class="col-md-2">Nome da criança</label>
+				<div class="col-md-10">
+					<select class="form-control ui-autocomplete-input" id="children"
+						style="display: inline;">
+						<option value="">-- Selecione o nome da criança--</option>
+						<option th:each="c : ${children}" th:value="${c.id}"
+							th:text="${c.name}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="data" class="col-md-1">Data: </label>
+				<div class="col-md-3">
+					<input class="form-control date" id="date" type="text"
+						th:field="*{date}" placeholder="dd/MM/yyyy" />
+				</div>
+
+				<label for="hourInitial" class="col-md-1">Hora Início: </label>
+				<div class="col-md-3">
+					<input class="form-control time" id="hourInitial" type="text"
+						th:field="*{hourInitial}" placeholder="HH:mm" />
+				</div>
+
+				<label for="hourFinale" class="col-md-1">Hora Fim: </label>
+				<div class="col-md-3">
+					<input class="form-control time" id="hourFinale" type="text"
+						th:field="*{hourFinale}" placeholder="HH:mm" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="payment" class="col-md-2">Forma de Pagamento:</label>
+				<div class="col-md-4">
+					<select class="form-control ui-autocomplete-input" id="payment"
+						style="display: inline;" th:field="*{payment}">
+						<option value="">-- Selecione a forma de pagamento --</option>
+						<option th:each="payment : ${payments}" th:value="${payment}"
+							th:text="${payment}"></option>
+					</select>
+				</div>
+				<label for="amount" class="col-md-2">Valor:</label>
+				<div class="col-md-4">
+					<input class="form-control amount" id="amount" type="text"
+						th:field="*{amount}" />
+				</div>
+			</div>
+
+			<div class="col-md-12 text-right">
+	        	<button type="submit" class="btn btn-primary">Salvar</button>
+    	        <button type="reset" class="btn btn-danger">Cancelar</button>
+            </div>
+		</form>
+	</div>
+</body>
+</html>
