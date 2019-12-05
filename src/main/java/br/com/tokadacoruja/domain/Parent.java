@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -14,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -60,7 +62,8 @@ public class Parent implements Serializable{
 	@CollectionTable(name = "par_telephone_contact")
 	private Set<String> telephonesContact = new HashSet<>();
 	
-	@OneToMany(mappedBy = "parent")
+	@OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+	@MapKey(name = "chi_id")
 	private List<Children> childrens = new ArrayList<Children>();
 	
 	@Column(name = "par_date_register")

@@ -29,11 +29,11 @@ public class ChildrenController {
 	private ParentRepository parentRepository;
 	
 	@GetMapping("/criancas")
-	public ModelAndView form() {
+	public ModelAndView form(Children children) {
 		ModelAndView mv = new ModelAndView("registration/childrens/form");
 		List<Parent> parents = parentRepository.findAll();
 		mv.addObject("parents", parents);
-		mv.addObject("children", new Children());
+		mv.addObject("children", children);
 		return mv;
 	}
 	
@@ -47,7 +47,7 @@ public class ChildrenController {
 	@PostMapping("/criancas/salvar")
 	public ModelAndView save(@Valid Children children, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
-			return form();
+			return form(children);
 		}
 		children.setStatus(true);
 		childrenRepository.save(children);
@@ -65,25 +65,16 @@ public class ChildrenController {
 		return mv;
 	}
 	
-	
-	
-	
-	
-	
-	
-	/*@GetMapping("/criancas/editar")
-	public ModelAndView editForm(Optional<Children> children) {
-		ModelAndView mv = new ModelAndView("registration/childrens/edit");
-		List<Parent> parents = parentRepository.findAll();
-		mv.addObject("parents", parents);
-		mv.addObject("children",children);
+	@GetMapping("/criancas/remover/{id}")
+	public ModelAndView remove(@PathVariable Long id){
+		Children children = childrenRepository.getOne(id);
+		children.setStatus(false);
+		childrenRepository.save(children);
+		
+		ModelAndView mv = new ModelAndView("registration/childrens/list");
+		mv.addObject("childrens", childrenRepository.findAll());
+		mv.addObject("children", new Children());
 		return mv;
-	}*/
-	
-	/*@DeleteMapping("/{id}")
-	public String remove(@PathVariable Long id) {
-		childrenRepository.deleteById(id);		
-		return "redirect:/registration/criancas/listar";
-	}*/
+	}
 	
 }

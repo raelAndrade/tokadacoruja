@@ -11,34 +11,36 @@
 	<title>Toka da Coruja - Cadastro de pais</title>
 	
 	<!-- Ícone na barra de navegação -->
-	<link rel="sortcut icon" href="/img/logo/logotipo-toka-da-coruja-min.png" type="image/x-icon" />
+	<link rel="sortcut icon" th:href="@{/img/logo/logotipo-toka-da-coruja-min.png}" type="image/x-icon" />
 	
 	<!-- Bootstrap Core CSS -->
-	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+	
+	<link th:href="@{/js/bootstrap-datepicker-1.9.0/css/bootstrap-datepicker3.min.css}" type="text/css" />
 		
 	<!-- MetisMenu CSS -->
-	<link href="/css/metisMenu.min.css" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/metisMenu.min.css}" rel="stylesheet" type="text/css" />
 	
 	<!-- Timeline CSS -->
-	<link href="/css/timeline.css" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/timeline.css}" rel="stylesheet" type="text/css" />
 	
 	<!-- Custom CSS -->
-	<link href="/css/startmin.css" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/startmin.css}" rel="stylesheet" type="text/css" />
 	
 	<!-- Morris Charts CSS -->
-	<link href="/css/morris.css" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/morris.css}" rel="stylesheet" type="text/css" />
 	
-	<link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css" />
 	
 	<!-- DataTables CSS -->
-    <link href="/css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link th:href="@{/css/dataTables/dataTables.bootstrap.css}" rel="stylesheet">
 
     <!-- DataTables Responsive CSS -->
-    <link href="/css/dataTables/dataTables.responsive.css" rel="stylesheet">
+    <link th:href="@{/css/dataTables/dataTables.responsive.css}" rel="stylesheet">
 	
-	<link href="/css/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/jquery-ui.min.css}" rel="stylesheet" type="text/css" />
 	
-	<link rel="stylesheet" href="/css/style.css"  type="text/css" />
+	<link rel="stylesheet" th:href="@{/css/style.css}"  type="text/css" />
 	
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -165,6 +167,10 @@
 	
 	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{/js/bootstrap.min.js}"></script>
+	
+	<!-- Datepicker -->
+	<script type="text/javascript" th:src="@{/js/bootstrap-datepicker-1.9.0/js/bootstrap-datepicker.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap-datepicker-1.9.0/locales/bootstrap-datepicker.pt-BR.min.js}"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
 	<script th:src="@{/js/metisMenu.min.js}"></script>

@@ -6,14 +6,17 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.com.tokadacoruja.domain.enums.Payment;
@@ -29,7 +32,8 @@ public class Schedule implements Serializable {
 	@Column(name = "sch_id")
 	private Long id;
 	
-	@JoinColumn(name = "sch_children_id")
+	@ManyToOne
+	@JoinColumn(name = "children_id")
 	private Children children;
 	
 	@Column(name = "sch_date")
@@ -135,21 +139,6 @@ public class Schedule implements Serializable {
 		this.totalHours = totalHours;
 	}
 	
-	/*private void calcularDiferencaHoras(String hourInitial, String hourFinale){
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        try {
-            Date horaIni = sdf.parse(hourInitial);
-            Date horaFim = sdf.parse(hourFinale);
-            Long horaI = horaIni.getTime();
-            Long horaF = horaFim.getTime(); 
-            Long diferencaHoras = horaF - horaI;
-            System.out.println("Diferença de horas" + diferencaHoras);
-
-        } catch(Exception e) {
-           e.printStackTrace();
-        }
-    }*/
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -178,9 +167,9 @@ public class Schedule implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Schedule [id=").append(id).append(", criança=").append(children).append(", data=").append(date)
-				.append(", hora inicial=").append(hourInitial).append(", hora final=").append(hourFinale)
-				.append(", forma de pagamento=").append(payment).append(", valor=").append(amount).append(", Total de horas=").append(totalHours).append("]");
+		builder.append("Schedule [id=").append(id).append(", criança=").append(children).append(", data=").append(date).append(", hora inicial=")
+			.append(hourInitial).append(", hora final=").append(hourFinale).append(", forma de pagamento=").append(payment).append(", valor=")
+			.append(amount).append(", Total de horas=").append(totalHours).append("]");
 		return builder.toString();
 	}
 
