@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -173,16 +172,16 @@ public class Schedule implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Schedule [id=").append(id).append(", crianças=").append(children).append(", data=").append(date).append(", hora inicial=")
-			.append(hourInitial).append(", hora final=").append(hourFinale).append(", forma de pagamento=").append(payment).append(", valor=")
-			.append(amount).append(", Total de horas=").append(totalHours).append(", status=").append(status).append("]");
+		builder.append("Schedule [id=").append(id).append(", children=").append(children).append(", date=").append(date)
+				.append(", hourInitial=").append(hourInitial).append(", hourFinale=").append(hourFinale)
+				.append(", payment=").append(payment).append(", amount=").append(amount).append(", totalHours=")
+				.append(totalHours).append(", create=").append(create).append(", status=").append(status).append("]");
 		return builder.toString();
 	}
-
-		
+	
 }
 
