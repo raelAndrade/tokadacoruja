@@ -39,34 +39,31 @@
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-md-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">Agendamentos</div>
-					<div class="panel-body">
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agendaModal">Agendar</button>
-					</div>
-				</div>
-			</div>
-		</div>
+<!-- 		<div class="row"> -->
+<!-- 			<div class="col-md-12"> -->
+<!-- 				<div class="panel panel-default"> -->
+<!-- 					<div class="panel-heading">Agendamentos</div> -->
+<!-- 					<div class="panel-body"> -->
+<!-- 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agendaModal">Agendar</button> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 		
 		<!-- Modal -->
-		<div class="modal fade" id="agendaModal" tabindex="-1" role="dialog" aria-labelledby="agendaModalLabel" aria-hidden="true">
+		<form class="form-horizontal" role="form" th:action="@{/agendas/salvar}" th:object="${schedule}" method="POST">
+		<!-- <div class="modal fade" id="agendaModal" tabindex="-1" role="dialog" aria-labelledby="agendaModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
-	
-					<!-- MODAL HEADER -->
+
 					<div class="modal-header">
 						<h3 class="modal-title">Agendamentos</h3>
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">&times;</span>
 						</button>
-					</div>
+					</div> -->
 					
-					<!-- MODAL BODY -->
-					<form class="form-horizontal" role="form" th:action="@{/agendas/salvar}" th:object="${schedule}" method="POST">
-						<div class="modal-body">
-							<!-- Mensagens de erros -->
+						<!-- <div class="modal-body"> -->
 							<div class="alert  alert-danger alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
 								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
@@ -77,17 +74,23 @@
 									<span th:text="${erro.message}">Mensagem erro.</span>
 								</div>
 							</div>
-							<!-- Mensagem de sucesso -->
 							<div class="alert  alert-success" th:if="${!#strings.isEmpty(mensagem)}">
 								<i class="fa fa-check-circle"></i>
 								<span th:text="${mensagem}">Mensagem sucesso!</span>
 							</div>
-							<div class="form-group">
-								<label for="children" class="col-md-2">Nome da criança</label>
-								<div class="col-md-10">
-									<select class="form-control ui-autocomplete-input" id="children" style="display: inline;">
-										<option value="">-- Selecione o nome da criança--</option>
-										<option th:each="c : ${children}" th:value="${c.id}" th:text="${c.name}"></option>
+							
+							<div class="col-md-2">
+								<div class="form-group">
+									<label>Código</label>
+									<input class="form-control" name="id" th:field="*{id}" readonly="readonly"/>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<label for="children">Nome da criança</label>
+									<select class="form-control ui-autocomplete-input" id="autocompleteChildren" style="display: inline;" name="children.name">
+										<option value="">-- Selecione o nome da criança --</option>
+										<option th:each="c : ${childrens}" th:value="${c.id}" th:text="${c.name}"></option>
 									</select>
 								</div>
 							</div>
@@ -120,17 +123,22 @@
 									<input class="form-control amount" id="amount" type="text" th:field="*{amount}" />
 								</div>
 							</div>
-						</div>
+<!-- 						</div> -->
 						
 						<!-- MODAL FOOTER -->
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-							<button type="submit" class="btn btn-primary">Agendar</button>
+<!-- 						<div class="modal-footer"> -->
+<!-- 							<button type="submit" class="btn btn-primary">Salvar</button> -->
+<!--     	        			<button type="reset" class="btn btn-danger">Cancelar</button> -->
+<!-- 						</div> -->
+						
+						<div class="col-md-12 text-right">
+							<button type="submit" class="btn btn-primary">Salvar</button>
+							<button type="reset" class="btn btn-danger">Cancelar</button>
 						</div>
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 					</form>
-				</div>
-			</div>
-		</div>
 	</div>
 </body>
 </html>

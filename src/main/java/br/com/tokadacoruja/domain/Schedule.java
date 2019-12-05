@@ -2,11 +2,8 @@ package br.com.tokadacoruja.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,9 +13,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapKey;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 import br.com.tokadacoruja.domain.enums.Payment;
 
@@ -33,24 +35,27 @@ public class Schedule implements Serializable {
 	@Column(name = "sch_id")
 	private Long id;
 	
-	@OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL)
-	@MapKey(name = "chi_id")
-	private List<Children> childrens = new ArrayList<Children>();
+	@OneToOne
+	@JoinColumn(name = "sch_children_id", referencedColumnName = "chi_id")
+	private Children children;
 	
 	@Column(name = "sch_date")
-	private LocalDate date;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date date;
 	
 	@Column(name = "sch_hour_initial")
-	private LocalTime hourInitial;
+	private String hourInitial;
 	
 	@Column(name = "sch_hour_finale")
-	private LocalTime hourFinale;
+	private String hourFinale;
 	
 	@Column(name = "sch_payment")
 	@Enumerated(EnumType.STRING)
 	private Payment payment;
 	
 	@Column(name = "sch_amount")
+	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal amount;
 	
 	@Column(name = "sch_total_hours")
@@ -66,10 +71,10 @@ public class Schedule implements Serializable {
 		this.create = LocalDateTime.now();
 	}
 	 
-	public Schedule(final Long id, final List<Children> childrens, final LocalDate date, final LocalTime hourInitial,
-			final LocalTime hourFinale, final Payment payment, final BigDecimal amount, final Long totalHours, final Boolean status) {
+	public Schedule(final Long id, final Children children, final Date date, final String hourInitial,
+			final String hourFinale, final Payment payment, final BigDecimal amount, final Long totalHours, final Boolean status) {
 		this.id = id;
-		this.childrens = childrens;
+		this.children = children;
 		this.date = date;
 		this.hourInitial = hourInitial;
 		this.hourFinale = hourFinale;
@@ -88,29 +93,27 @@ public class Schedule implements Serializable {
 		this.id = id;
 	}
 
-	
-
-	public LocalTime getHourInitial() {
+	public String getHourInitial() {
 		return hourInitial;
 	}
 
-	public void setHourInitial(LocalTime hourInitial) {
+	public void setHourInitial(String hourInitial) {
 		this.hourInitial = hourInitial;
 	}
 
-	public LocalTime getHourFinale() {
+	public String getHourFinale() {
 		return hourFinale;
 	}
 
-	public void setHourFinale(LocalTime hourFinale) {
+	public void setHourFinale(String hourFinale) {
 		this.hourFinale = hourFinale;
 	}
 	
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -174,7 +177,7 @@ public class Schedule implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Schedule [id=").append(id).append(", crianças=").append(childrens).append(", data=").append(date).append(", hora inicial=")
+		builder.append("Schedule [id=").append(id).append(", crianças=").append(children).append(", data=").append(date).append(", hora inicial=")
 			.append(hourInitial).append(", hora final=").append(hourFinale).append(", forma de pagamento=").append(payment).append(", valor=")
 			.append(amount).append(", Total de horas=").append(totalHours).append(", status=").append(status).append("]");
 		return builder.toString();

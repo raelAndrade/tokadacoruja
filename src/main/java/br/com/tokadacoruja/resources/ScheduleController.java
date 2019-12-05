@@ -32,10 +32,10 @@ public class ScheduleController {
 	@GetMapping("/agendas")
 	public ModelAndView form(Schedule schedule) {
 		ModelAndView mv = new ModelAndView("registration/schedule/form");
-		List<Children> children = childrenRepository.findAll();
+		List<Children> childrens = childrenRepository.findAll();
 		mv.addObject("payments", Payment.values());
-		mv.addObject("children", children);
-		mv.addObject(schedule);
+		mv.addObject("childrens", childrens);
+		mv.addObject("schedule", schedule);
 		return mv;
 	}
 	
@@ -53,6 +53,7 @@ public class ScheduleController {
 		}
 		schedule.setStatus(true);
 		scheduleRepository.save(schedule);
+		System.out.println("Agendas: " + schedule);
 		attributes.addFlashAttribute("mensagem", "Salvo com sucesso!");
 		return new ModelAndView("redirect:/agendas/listar"); 
 	}

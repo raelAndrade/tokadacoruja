@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -62,8 +63,7 @@ public class Children implements Serializable {
 	@JoinColumn(name = "par_id")
 	private Parent parent;
 	
-	@ManyToOne
-	@JoinColumn(name = "sch_id")
+	@OneToOne(mappedBy = "children")
 	private Schedule schedule;
 	
 	public Children() {

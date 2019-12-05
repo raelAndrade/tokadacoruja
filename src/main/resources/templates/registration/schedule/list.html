@@ -51,7 +51,7 @@
 					<tbody>
 						<tr th:each="s : ${shedule}" th:if="${s.status != FALSE}">
 							<th scope="row" th:text="${s.id}"></th>
-							<td th:text="${s.childrens.name}"></td>
+							<td th:text="${s.name}"></td>
 							<td th:text="${s.date}"></td>
 							<td th:text="${s.hourInitial}"></td>
 							<td th:text="${s.hourFinale}"></td>
