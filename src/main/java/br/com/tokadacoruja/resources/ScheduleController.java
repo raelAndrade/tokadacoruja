@@ -19,6 +19,7 @@ import br.com.tokadacoruja.domain.Schedule;
 import br.com.tokadacoruja.domain.enums.Payment;
 import br.com.tokadacoruja.repositories.ChildrenRepository;
 import br.com.tokadacoruja.repositories.ScheduleRepository;
+import br.com.tokadacoruja.services.ScheduleService;
 
 @Controller
 public class ScheduleController {
@@ -28,6 +29,9 @@ public class ScheduleController {
 	
 	@Autowired
 	private ChildrenRepository childrenRepository;
+	
+	@Autowired
+	private ScheduleService scheduleService;
 	
 	@GetMapping("/agendas")
 	public ModelAndView form(Schedule schedule) {
@@ -42,7 +46,7 @@ public class ScheduleController {
 	@GetMapping("/agendas/listar")
 	public ModelAndView findAll() {
 		ModelAndView mv = new ModelAndView("registration/schedule/list");
-		mv.addObject("schedule", scheduleRepository.findAll());
+		mv.addObject("schedules", scheduleRepository.findAll());
 		return mv;
 	}
 	
@@ -50,11 +54,10 @@ public class ScheduleController {
 	public ModelAndView save(@Valid Schedule schedule, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
 			return form(schedule);
-		}
+		}		
 		schedule.setStatus(true);
-		scheduleRepository.save(schedule);
-		System.out.println("Agendas: " + schedule);
-		attributes.addFlashAttribute("mensagem", "Salvo com sucesso!");
+		scheduleService.save(schedule);
+		attributes.addFlashAttribute("mensagem", "Salvo com sucesso!");		
 		return new ModelAndView("redirect:/agendas/listar"); 
 	}
 	

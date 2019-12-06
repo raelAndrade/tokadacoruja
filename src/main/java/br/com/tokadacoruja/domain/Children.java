@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -63,8 +64,8 @@ public class Children implements Serializable {
 	@JoinColumn(name = "par_id")
 	private Parent parent;
 	
-	@OneToOne(mappedBy = "children")
-	private Schedule schedule;
+	@OneToMany(mappedBy = "children")
+	private List<Schedule> schedule;
 	
 	public Children() {
 		this.create = LocalDateTime.now();

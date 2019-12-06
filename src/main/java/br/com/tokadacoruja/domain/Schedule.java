@@ -13,7 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,7 +34,7 @@ public class Schedule implements Serializable {
 	@Column(name = "sch_id")
 	private Long id;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "sch_children_id", referencedColumnName = "chi_id")
 	private Children children;
 	
@@ -148,6 +148,14 @@ public class Schedule implements Serializable {
 		this.status = status;
 	}
 	
+	public Children getChildren() {
+		return children;
+	}
+	
+	public void setChildren(Children children) {
+		this.children = children;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -182,6 +190,6 @@ public class Schedule implements Serializable {
 				.append(totalHours).append(", create=").append(create).append(", status=").append(status).append("]");
 		return builder.toString();
 	}
-	
+
 }
 
