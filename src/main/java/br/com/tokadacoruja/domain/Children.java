@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "children")
@@ -31,6 +36,8 @@ public class Children implements Serializable {
 	private String name;
 	
 	@Column(name = "chi_date_birth")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date dateBirth;
 	
 	@Column(name = "chi_status")
@@ -64,7 +71,7 @@ public class Children implements Serializable {
 	@JoinColumn(name = "par_id")
 	private Parent parent;
 	
-	@OneToMany(mappedBy = "children")
+	@OneToMany(mappedBy = "children", cascade = CascadeType.ALL)
 	private List<Schedule> schedule;
 	
 	public Children() {
@@ -196,7 +203,7 @@ public class Children implements Serializable {
 	public void setParent(Parent parent) {
 		this.parent = parent;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -230,7 +237,7 @@ public class Children implements Serializable {
 				.append(", allergyDescription=").append(allergyDescription).append(", food=").append(food)
 				.append(", foodRestriction=").append(foodRestriction).append(", foodRestrictionDescription=")
 				.append(foodRestrictionDescription).append(", observation=").append(observation).append(", publicity=")
-				.append(publicity).append(", create=").append(create).append(", parent=").append(parent).append("]");
+				.append(publicity).append(", create=").append(create).append("]");
 		return builder.toString();
 	}
 

@@ -61,15 +61,34 @@ public class ScheduleController {
 		return new ModelAndView("redirect:/agendas/listar"); 
 	}
 	
-	@GetMapping("/schedule/editar/{id}")
+	@GetMapping("/agendas/editar/{id}")
 	public ModelAndView edit(@PathVariable("id") Long id) {
 		Optional<Schedule> schedule = scheduleRepository.findById(id);
-		ModelAndView mv = new ModelAndView("registration/schedule/edit");
+		ModelAndView mv = new ModelAndView("registration/schedule/form");
 		List<Children> childrens = childrenRepository.findAll();
 		mv.addObject("children", childrens);
 		mv.addObject("schedule", schedule.get());
 		return mv;
 	}
 	
+	@GetMapping("/agendas/remover/{id}")
+	public ModelAndView remove(@PathVariable Long id){
+		Schedule schedule = scheduleRepository.getOne(id);
+		schedule.setStatus(false);
+		scheduleRepository.save(schedule);
+		
+		ModelAndView mv = new ModelAndView("registration/schedule/list");
+		mv.addObject("schedules", childrenRepository.findAll());
+		mv.addObject("schedule", new Schedule());
+		return mv;
+	}
+	
+	@GetMapping("/agendas/calendar")
+	public ModelAndView calendar(Schedule schedule) {
+		ModelAndView mv = new ModelAndView("registration/schedule/calendar1");
+		mv.addObject("schedules", scheduleRepository.findAll());
+		mv.addObject("schedule", schedule);
+		return mv;
+	}
 	
 }

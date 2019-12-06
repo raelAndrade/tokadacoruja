@@ -16,7 +16,7 @@
 	<!-- Bootstrap Core CSS -->
 	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
 	
-	<link th:href="@{/js/bootstrap-datepicker-1.9.0/css/bootstrap-datepicker3.min.css}" type="text/css" />
+	<link th:href="@{/js/bootstrap-datepicker-1.9.0/css/bootstrap-datepicker.min.css}" type="text/css" />
 		
 	<!-- MetisMenu CSS -->
 	<link th:href="@{/css/metisMenu.min.css}" rel="stylesheet" type="text/css" />
@@ -38,7 +38,7 @@
     <!-- DataTables Responsive CSS -->
     <link th:href="@{/css/dataTables/dataTables.responsive.css}" rel="stylesheet">
 	
-	<link th:href="@{/css/jquery-ui.min.css}" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/jquery-ui.css}" rel="stylesheet" type="text/css" />
 	
 	<link rel="stylesheet" th:href="@{/css/style.css}"  type="text/css" />
 	
@@ -58,7 +58,7 @@
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" th:fragment="cabecalho">
 			<div class="navbar-header">
 				<a class="navbar-brand" th:href="@{/}"><img alt="Logotipo da toka da coruja" th:src="@{/img/logo/logotipo-toka-da-coruja-min.png}" width="35px" /></a>
-				<span id="tk">Toka da Coruja</span>
+				<!-- <span id="tk">Toka da Coruja</span> -->
 			</div>
 
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -163,13 +163,14 @@
 	<!-- jQuery -->
 	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+
 	<script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
 	
 	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	
 	<!-- Datepicker -->
-	<script type="text/javascript" th:src="@{/js/bootstrap-datepicker-1.9.0/js/bootstrap-datepicker.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap-datepicker-1.9.0/js/bootstrap-datepicker.js}"></script>
 	<script type="text/javascript" th:src="@{/js/bootstrap-datepicker-1.9.0/locales/bootstrap-datepicker.pt-BR.min.js}"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->

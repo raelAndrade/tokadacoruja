@@ -17,6 +17,22 @@
 			<li class="breadcrumb-item active">Cadastro</li>
 		</ol>
 		
+		<div class="page-header">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-8"></div>
+					<div class="col-md-4">
+						<div class="page-header-controls">
+							<a class="btn btn-primary" th:href="@{/criancas/listar}">
+								<i class="fa fa-plus-square"></i>
+								<span class="hidden-xs hidden-sm">Listar crianças</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		<form role="form" th:action="@{/criancas/salvar}" th:object="${children}" method="POST">
 			<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -58,7 +74,7 @@
 			<div class="col-md-3">
 				<div class="form-group">
 					<label>Data de Nascimento</label>
-					<input class="form-control date" id="date" placeholder="Data de nascimento" name="dateBirth" type="text" th:field="*{dateBirth}">
+					<input class="date form-control" id="date" placeholder="Data de nascimento" name="dateBirth" type="text" th:field="*{dateBirth}">
 				</div>
 			</div>
 			<div class="col-md-12">

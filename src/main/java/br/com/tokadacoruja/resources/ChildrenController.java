@@ -1,5 +1,6 @@
 package br.com.tokadacoruja.resources;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,12 +19,17 @@ import br.com.tokadacoruja.domain.Children;
 import br.com.tokadacoruja.domain.Parent;
 import br.com.tokadacoruja.repositories.ChildrenRepository;
 import br.com.tokadacoruja.repositories.ParentRepository;
+import br.com.tokadacoruja.services.ChildrenService;
 
 @Controller
 public class ChildrenController {
 	
 	@Autowired
 	private ChildrenRepository childrenRepository;
+
+	@SuppressWarnings("unused")
+	@Autowired
+	private ChildrenService childrenService;
 	
 	@Autowired
 	private ParentRepository parentRepository;
@@ -45,12 +51,12 @@ public class ChildrenController {
 	}
 	
 	@PostMapping("/criancas/salvar")
-	public ModelAndView save(@Valid Children children, BindingResult result, RedirectAttributes attributes) {
+	public ModelAndView save(@Valid Children children, BindingResult result, RedirectAttributes attributes) throws ParseException {
 		if(result.hasErrors()) {
 			return form(children);
 		}
 		children.setStatus(true);
-		childrenRepository.save(children);
+		childrenService.save(children);
 		attributes.addFlashAttribute("mensagem", "Salvo com sucesso!");
 		return new ModelAndView("redirect:/criancas/listar"); 
 	}

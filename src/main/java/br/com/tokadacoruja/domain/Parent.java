@@ -2,7 +2,6 @@ package br.com.tokadacoruja.domain;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -64,7 +63,7 @@ public class Parent implements Serializable{
 	
 	@OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
 	@MapKey(name = "chi_id")
-	private List<Children> childrens = new ArrayList<Children>();
+	private List<Children> childrens;
 	
 	@Column(name = "par_date_register")
 	private LocalDateTime create;
@@ -212,15 +211,16 @@ public class Parent implements Serializable{
 		return true;
 	}
 
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Parent [id=").append(id).append(", name=").append(name).append(", cpf=").append(cpf)
-				.append(", address=").append(address).append(", city=").append(city)
-				.append(", email=").append(email).append(", statusResponsible=").append(statusResponsible)
-				.append(", responsible=").append(responsible).append(", status=").append(status).append(", telephones=")
-				.append(telephones).append(", telephonesContact=").append(telephonesContact).append(", childrens=")
-				.append(childrens).append(", create=").append(create).append("]");
+				.append(", address=").append(address).append(", city=").append(city).append(", email=").append(email)
+				.append(", statusResponsible=").append(statusResponsible).append(", responsible=").append(responsible)
+				.append(", status=").append(status).append(", telephones=").append(telephones)
+				.append(", telephonesContact=").append(telephonesContact)
+				.append(", create=").append(create).append("]");
 		return builder.toString();
 	}
 	

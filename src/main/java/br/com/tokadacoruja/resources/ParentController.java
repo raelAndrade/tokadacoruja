@@ -44,9 +44,6 @@ public class ParentController {
 		}
 		parent.setStatus(true);
 		parentRepository.save(parent);
-		
-		System.out.println("PAIS: " + parent);
-		
 		attributes.addFlashAttribute("mensagem", "Salvo com sucesso!");
 		return new ModelAndView("redirect:/pais/listar"); 
 	}
