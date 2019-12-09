@@ -21,6 +21,8 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.tokadacoruja.domain.enums.Payment;
 
 @Entity
@@ -34,6 +36,7 @@ public class Schedule implements Serializable {
 	@Column(name = "sch_id")
 	private Long id;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "sch_children_id", referencedColumnName = "chi_id")
 	private Children children;
@@ -57,9 +60,6 @@ public class Schedule implements Serializable {
 	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal amount;
 	
-	@Column(name = "sch_total_hours")
-	private Long totalHours;
-	
 	@Column(name = "sch_date_create")
 	private LocalDateTime create;
 	
@@ -71,7 +71,7 @@ public class Schedule implements Serializable {
 	}
 	 
 	public Schedule(final Long id, final Children children, final Date date, final String hourInitial,
-			final String hourFinale, final Payment payment, final BigDecimal amount, final Long totalHours, final Boolean status) {
+			final String hourFinale, final Payment payment, final BigDecimal amount, final Boolean status) {
 		this.id = id;
 		this.children = children;
 		this.date = date;
@@ -79,7 +79,6 @@ public class Schedule implements Serializable {
 		this.hourFinale = hourFinale;
 		this.payment = payment;
 		this.amount = amount;
-		this.totalHours = totalHours;
 		this.create = LocalDateTime.now();
 		this.status = status;
 	}
@@ -132,14 +131,6 @@ public class Schedule implements Serializable {
 		this.amount = amount;
 	}
 	
-	public Long getTotalHours() {
-		return totalHours;
-	}
-	
-	public void setTotalHours(Long totalHours) {
-		this.totalHours = totalHours;
-	}
-	
 	public Boolean getStatus() {
 		return status;
 	}
@@ -185,9 +176,8 @@ public class Schedule implements Serializable {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Schedule [id=").append(id).append(", children=").append(children).append(", date=").append(date)
-				.append(", hourInitial=").append(hourInitial).append(", hourFinale=").append(hourFinale)
-				.append(", payment=").append(payment).append(", amount=").append(amount).append(", totalHours=")
-				.append(totalHours).append(", create=").append(create).append(", status=").append(status).append("]");
+				.append(", hourInitial=").append(hourInitial).append(", hourFinale=").append(hourFinale).append(", payment=")
+				.append(payment).append(", amount=").append(amount).append(", create=").append(create).append(", status=").append(status).append("]");
 		return builder.toString();
 	}
 
