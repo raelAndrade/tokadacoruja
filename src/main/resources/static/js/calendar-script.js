@@ -76,7 +76,7 @@ $(document).ready(function() {
 	        },
 			allDaySlot: false,
 			selectHelper: true,
-			select: function(start, end, allDay) {
+			/*select: function(start, end, allDay) {
 				var title = prompt('Event Title:');
 				if (title) {
 					calendar.fullCalendar('renderEvent',
@@ -90,7 +90,7 @@ $(document).ready(function() {
 					);
 				}
 				calendar.fullCalendar('unselect');
-			},
+			},*/
 			droppable: true, // this allows things to be dropped onto the
 							// calendar !!!
 			drop: function(date, allDay) { // this function is called when
