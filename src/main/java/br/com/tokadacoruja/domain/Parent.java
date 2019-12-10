@@ -18,8 +18,11 @@ import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "parent")
+@JsonIgnoreProperties
 public class Parent implements Serializable{
 
 	private static final long serialVersionUID = 1L;

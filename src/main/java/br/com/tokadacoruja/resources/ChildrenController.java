@@ -27,7 +27,6 @@ public class ChildrenController {
 	@Autowired
 	private ChildrenRepository childrenRepository;
 
-	@SuppressWarnings("unused")
 	@Autowired
 	private ChildrenService childrenService;
 	

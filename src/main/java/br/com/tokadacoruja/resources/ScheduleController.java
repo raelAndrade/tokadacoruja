@@ -38,7 +38,7 @@ public class ScheduleController {
 	
 	@GetMapping("/agendas")
 	public ModelAndView form(Schedule schedule) {
-		ModelAndView mv = new ModelAndView("registration/schedule/form");
+		ModelAndView mv = new ModelAndView("schedule/form");
 		List<Children> childrens = childrenRepository.findAll();
 		mv.addObject("payments", Payment.values());
 		mv.addObject("childrens", childrens);
@@ -48,7 +48,7 @@ public class ScheduleController {
 	
 	@GetMapping("/agendas/listar")
 	public ModelAndView findAll() {
-		ModelAndView mv = new ModelAndView("registration/schedule/list");
+		ModelAndView mv = new ModelAndView("schedule/list");
 		mv.addObject("schedules", scheduleRepository.findAll());
 		return mv;
 	}
@@ -67,9 +67,9 @@ public class ScheduleController {
 	@GetMapping("/agendas/editar/{id}")
 	public ModelAndView edit(@PathVariable("id") Long id) {
 		Optional<Schedule> schedule = scheduleRepository.findById(id);
-		ModelAndView mv = new ModelAndView("registration/schedule/form");
+		ModelAndView mv = new ModelAndView("schedule/form");
 		List<Children> childrens = childrenRepository.findAll();
-		mv.addObject("children", childrens);
+		mv.addObject("childrens", childrens);
 		mv.addObject("schedule", schedule.get());
 		return mv;
 	}
@@ -80,14 +80,14 @@ public class ScheduleController {
 		schedule.setStatus(false);
 		scheduleRepository.save(schedule);
 		
-		ModelAndView mv = new ModelAndView("registration/schedule/list");
+		ModelAndView mv = new ModelAndView("schedule/list");
 		mv.addObject("schedules", childrenRepository.findAll());
 		mv.addObject("schedule", new Schedule());
 		return mv;
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/agendas/full-calendar", method = RequestMethod.GET)
+	@RequestMapping(value = "/agendas/list-calendar", method = RequestMethod.GET)
 	public List<Schedule> fullCalendar(Schedule schedule) {
 		List<Schedule> schedules = scheduleRepository.findAll();
 		return schedules;
@@ -95,7 +95,7 @@ public class ScheduleController {
 	
 	@GetMapping("/agendas/calendario")
 	public ModelAndView getCalendar() {
-		ModelAndView mv = new ModelAndView("registration/schedule/calendar");
+		ModelAndView mv = new ModelAndView("schedule/calendar");
 		return mv;
 		
 	}

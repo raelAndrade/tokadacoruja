@@ -1,7 +1,6 @@
 package br.com.tokadacoruja.domain;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -118,10 +117,6 @@ public class Children implements Serializable {
 	public Date getDateBirth() {
 		return dateBirth;
 	}
-	
-//	public String getDateBirthString() { 
-//		return new SimpleDateFormat("dd/MM/yyyy").format(dateBirth);
-//	}
 	
 	public void setDateBirth(Date dateBirth) {
 		this.dateBirth = dateBirth;

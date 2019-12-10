@@ -112,3 +112,44 @@ a:focus, a:hover {
 	align-items: center;
 	height: 80px;
 }
+
+.fc-state-default {
+    border-color: #79a020;
+    color: #79a020;
+}
+
+.fc-state-disabled {
+    cursor: default;
+    background-image: none;
+    background-color: #e5f1cb;
+    filter: alpha(opacity=65);
+    box-shadow: none;
+    border: 1px solid #e5f1cb;
+    color: #79a020;
+}
+
+.fc-state-down, .fc-state-active {
+    background-color: #79a020;
+    background-image: none;
+    outline: 0;
+    color: #ffffff;
+}
+
+.fc-state-highlight > div > div.fc-day-number {
+    background-color: #ad7fa8;
+    color: #FFFFFF;
+    border-radius: 50%;
+    margin: 4px;
+}
+
+.fc-week .fc-day.fc-state-highlight:hover .fc-day-number {
+	background-color: #79a020;
+}
+
+.fc-week .fc-day > div .fc-day-number {
+    font-size: 15px;
+    margin: 2px;
+    min-width: 32px;
+    padding: 6px;
+    text-align: center;
+}
