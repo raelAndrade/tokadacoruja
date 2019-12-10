@@ -98,7 +98,7 @@
 				<div class="col-md-4">
 					<select th:field="*{payment}" class="form-control ui-autocomplete-input" id="payment" style="display: inline;" name="payment">
 						<option value="">-- Selecione a forma de pagamento --</option>
-						<option th:each="payment : ${payments}" th:value="${payment}" th:text="${payment}"></option>
+						<option th:each="payment : ${T(br.com.tokadacoruja.domain.enums.Payment).values()}" th:value="${payment}" th:text="${payment}"></option>
 					</select>
 				</div>
 				<label for="amount" class="col-md-2">Valor:</label>
