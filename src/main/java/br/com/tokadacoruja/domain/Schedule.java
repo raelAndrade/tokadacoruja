@@ -21,12 +21,13 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.tokadacoruja.domain.enums.Payment;
 
 @Entity
 @Table(name = "schedule")
+@JsonIgnoreProperties
 public class Schedule implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -36,7 +37,7 @@ public class Schedule implements Serializable {
 	@Column(name = "sch_id")
 	private Long id;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties
 	@ManyToOne
 	@JoinColumn(name = "sch_children_id", referencedColumnName = "chi_id")
 	private Children children;

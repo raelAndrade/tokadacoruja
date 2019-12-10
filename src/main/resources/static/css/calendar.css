@@ -17,22 +17,22 @@ td.fc-today {
 	position: relative;
 }
 
-.fc-first th {
-	font-family: 'Roboto', sans-serif;
-	background: #9675ce !important;
-	color: #FFF;
-	font-size: 14px !important;
-	font-weight: 500 !important;
-}
+/* .fc-first th { */
+/* 	font-family: 'Roboto', sans-serif; */
+/* 	background: #9675ce !important; */
+/* 	color: #FFF; */
+/* 	font-size: 14px !important; */
+/* 	font-weight: 500 !important; */
+/* } */
 
-.fc-event-inner {
-	font-family: 'Roboto', sans-serif;
-	background: #03a9f3 !important;
-	color: #FFF !important;
-	font-size: 12px !important;
-	font-weight: 500 !important;
-	padding: 5px 0px !important;
-}
+/* .fc-event-inner { */
+/* 	font-family: 'Roboto', sans-serif; */
+/* 	background: #03a9f3 !important; */
+/* 	color: #FFF !important; */
+/* 	font-size: 12px !important; */
+/* 	font-weight: 500 !important; */
+/* 	padding: 5px 0px !important; */
+/* } */
 
 .fc {
 	direction: ltr;
@@ -90,16 +90,16 @@ html .fc, .fc table {
 	font-family: 'Roboto', sans-serif;
 }
 
-span.fc-button {
-	font-family: 'Roboto', sans-serif;
-	border-color: #9675ce;
-	color: #9675ce;
-}
+/* span.fc-button { */
+/* 	font-family: 'Roboto', sans-serif; */
+/* 	border-color: #9675ce; */
+/* 	color: #9675ce; */
+/* } */
 
-.fc-state-down, .fc-state-active {
-	background-color: #9675ce !important;
-	color: #FFF !important;
-}
+/* .fc-state-down, .fc-state-active { */
+/* 	background-color: #9675ce !important; */
+/* 	color: #FFF !important; */
+/* } */
 
 .fc .fc-header-space {
 	padding-left: 10px;
@@ -164,12 +164,12 @@ span.fc-button {
 	
 }
 
-.fc-state-highlight>div>div.fc-day-number {
-	background-color: #ff3b30;
-	color: #FFFFFF;
-	border-radius: 50%;
-	margin: 4px;
-}
+/* .fc-state-highlight>div>div.fc-day-number { */
+/* 	background-color: #ff3b30; */
+/* 	color: #FFFFFF; */
+/* 	border-radius: 50%; */
+/* 	margin: 4px; */
+/* } */
 
 .fc-cell-overlay { /* semi-transparent rectangle while dragging */
 	background: #bce8f1;
@@ -205,7 +205,7 @@ span.fc-button {
 }
 
 /*
-	Our default prev/next buttons use HTML entities like ‹ › « »
+	Our default prev/next buttons use HTML entities like ï¿½ ï¿½ ï¿½ ï¿½
 	and we'll try to make them look good cross-browser.
 */
 .fc-text-arrow {
@@ -216,7 +216,7 @@ span.fc-button {
 }
 
 .fc-button-prev .fc-text-arrow, .fc-button-next .fc-text-arrow {
-	/* for ‹ › */
+	/* for ï¿½ ï¿½ */
 	font-weight: bold;
 }
 
@@ -695,4 +695,39 @@ table.fc-header {
 
 .fc-event .ui-resizable-handle {
 	display: none !important;
+}
+
+.fc-first th {
+    font-family: 'Roboto', sans-serif;
+    background: #79a020 !important;
+    color: #FFF;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+}
+
+.fc-state-down, .fc-state-active {
+    background-color: #79a020 !important;
+    color: #FFF !important;
+}
+
+span.fc-button {
+    font-family: 'Roboto', sans-serif;
+    border-color: #79a020;
+    color: #79a020;
+}
+
+.fc-state-highlight>div>div.fc-day-number {
+    background-color: #ad7fa8;
+    color: #FFFFFF;
+    border-radius: 50%;
+    margin: 4px;
+}
+
+.fc-event-inner {
+    font-family: 'Roboto', sans-serif;
+    background: #ad7fa8 !important;
+    color: #FFF !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    padding: 5px 0px !important;
 }

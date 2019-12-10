@@ -21,8 +21,11 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "children")
+@JsonIgnoreProperties
 public class Children implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -116,9 +119,9 @@ public class Children implements Serializable {
 		return dateBirth;
 	}
 	
-	public String getDateBirthString() { 
-		return new SimpleDateFormat("dd/MM/yyyy").format(dateBirth);
-	}
+//	public String getDateBirthString() { 
+//		return new SimpleDateFormat("dd/MM/yyyy").format(dateBirth);
+//	}
 	
 	public void setDateBirth(Date dateBirth) {
 		this.dateBirth = dateBirth;

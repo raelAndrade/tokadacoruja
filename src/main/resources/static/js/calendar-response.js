@@ -31,7 +31,7 @@ $(document).ready(function() {
 		      console.log(datas);
 		      var schedule = data.map((item) => {
 		    	  return {
-		    		  title : item.payment,
+		    		  title : item.children.name,
 		    		  start : item.date
 		    	  }
 		      });
