@@ -16,6 +16,22 @@
 			<li class="breadcrumb-item"><a href="#">Pais</a></li>
 			<li class="breadcrumb-item active">Cadastro</li>
 		</ol>
+		
+		<div class="page-header">
+			<div class="container-fluid headerNav">
+				<div class="row">
+					<div class="col-md-10"></div>
+					<div class="col-md-2">						
+						<div class="page-header-controls">
+							<a class="btn btn-primary" th:href="@{/criancas/listar}">
+								<i class="fa fa-plus-square"></i>
+								<span class="hidden-xs hidden-sm"> Listar agendamentos</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<form role="form" th:action="@{/pais/salvar}" method="POST" th:object="${parent}">
 			<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">

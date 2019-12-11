@@ -159,9 +159,24 @@ a:focus, a:hover {
     left: 115px;
 }
 
+#calendar
+{
+    width: 700px;
+    margin: auto;
+}
 
+.breadcrumb {
+    padding: 8px 15px;
+    /* margin-bottom: 20px; */
+    list-style: none;
+    background-color: #f0f9dc;
+    border-radius: 4px;
+}
 
-
+.headerNav{
+	padding: 0 35px 0 0;
+	margin: auto;
+}
 
 
 
