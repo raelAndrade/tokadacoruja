@@ -8,26 +8,121 @@
 </head>
 <body>
 	<div id="page-wrapper" layout:fragment="content">
+		
+		<div class="container-fluid">
 		<div class="page-header">
 			<div class="row">
-				<div class="col-md-8"></div>
+				<div class="col-md-4">				
+					<div class="page-header-controls">
+						<a class="btn btn-primary" th:href="@{/agendas/listar}">
+							<i class="fa fa-list-alt"></i>
+							<span class="hidden-xs hidden-sm"> Listar agendamentos</span>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<div class="page-header-controls">
-						<a class="btn btn-primary" th:href="@{/agendas}">
+<!-- 						<a class="btn btn-primary" th:href="@{/agendas}" data-toggle="modal" data-target=".bd-example-modal-lg"> -->
+							<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#modal-agenda">
 							<i class="fa fa-plus-square"></i>
-							<span class="hidden-xs hidden-sm"> Listar crianças</span>
+							<span class="hidden-xs hidden-sm"> Agendar crianças</span>
 						</a>
 					</div>
 				</div>
 			</div>
 		</div>
+		</div>
 		
 		<div id='wrap'>
+		
 			<div id='calendar'></div>
+			
 		</div>
 		
 		<div class="clearfix"></div>
-		
+
+		<div class="modal fade" id="modal-agenda" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Agendar criança</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form class="form-horizontal" role="form" th:action="@{/agendas/salvar}" th:object="${schedule}" method="POST">
+						<div class="modal-body">
+							<div class="alert alert-danger alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<div th:each="erro : ${#fields.detailedErrors()}">
+									<i class="fa fa-exclamation-circle"></i>
+									<span th:text="${erro.message}">Mensagem erro.</span>
+								</div>
+							</div>
+							<div class="alert  alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+								<i class="fa fa-check-circle"></i>
+								<span th:text="${mensagem}">Mensagem sucesso!</span>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
+									<label>Código</label>
+									<input class="form-control" name="id" th:field="*{id}" readonly="readonly"/>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<label for="children">Nome da criança</label>
+									<select th:field="*{children.id}" class="form-control ui-autocomplete-input" id="autocompleteChildren" style="display: inline;" name="children.name">
+										<option value="">-- Selecione o nome da criança --</option>
+										<option th:each="c : ${childrens}" th:value="${c.id}" th:text="${c.name}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="data" class="col-md-1">Data: </label>
+								<div class="col-md-3">
+									<input class="form-control date" id="date" type="text" th:field="*{date}" placeholder="dd/MM/yyyy" />
+								</div>
+					
+								<label for="hourInitial" class="col-md-1">Hora Início: </label>
+								<div class="col-md-3">
+									<input class="form-control time" id="hourInitial" type="text" th:field="*{hourInitial}" placeholder="HH:mm" />
+								</div>
+					
+								<label for="hourFinale" class="col-md-1">Hora Fim: </label>
+								<div class="col-md-3">
+									<input class="form-control time" id="hourFinale" type="text" th:field="*{hourFinale}" placeholder="HH:mm" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="payment" class="col-md-2">Forma de Pagamento:</label>
+								<div class="col-md-4">
+									<select th:field="*{payment}" class="form-control ui-autocomplete-input" id="payment" style="display: inline;" name="payment">
+										<option value="">-- Selecione a forma de pagamento --</option>
+										<option th:each="payment : ${T(br.com.tokadacoruja.domain.enums.Payment).values()}" th:value="${payment}" th:text="${payment}"></option>
+									</select>
+								</div>
+								<label for="amount" class="col-md-2">Valor:</label>
+								<div class="col-md-4">
+									<input class="form-control amount" id="amount" type="text" th:field="*{amount}" />
+								</div>
+							</div>
+							<!-- <div class="col-md-12 text-right">
+								<button type="submit" class="btn btn-primary">Salvar</button>
+								<button type="reset" class="btn btn-danger">Cancelar</button>
+							</div> -->
+						</div>
+						<div class="modal-footer">
+							<button type="reset" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+							<button type="submit" class="btn btn-primary">Salvar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

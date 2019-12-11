@@ -61,7 +61,7 @@ public class ScheduleController {
 		schedule.setStatus(true);
 		scheduleService.save(schedule);
 		attributes.addFlashAttribute("mensagem", "Salvo com sucesso!");		
-		return new ModelAndView("redirect:/agendas/listar"); 
+		return new ModelAndView("redirect:/agendas/calendario"); 
 	}
 	
 	@GetMapping("/agendas/editar/{id}")
@@ -94,8 +94,12 @@ public class ScheduleController {
 	}
 	
 	@GetMapping("/agendas/calendario")
-	public ModelAndView getCalendar() {
+	public ModelAndView getCalendar(Schedule schedule) {
 		ModelAndView mv = new ModelAndView("schedule/calendar");
+		List<Children> childrens = childrenRepository.findAll();
+		mv.addObject("payments", Payment.values());
+		mv.addObject("childrens", childrens);
+		mv.addObject("schedule", schedule);
 		return mv;
 		
 	}

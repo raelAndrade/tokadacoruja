@@ -54,12 +54,13 @@ $(document).ready(function() {
 		var calendar =  $('#calendar').fullCalendar({
 			header: {
 				left: 'title',
-				center: 'agendaDay,agendaWeek,month',
+				//center: 'agendaDay,agendaWeek,month',
+				center: 'agendaDay,month',
 				right: 'prev,next today'
 			},
 			height: 420, // size calendar
 			editable: false,
-			firstDay: 1, // 1(Monday) this can be changed to 0(Sunday)
+			firstDay: 0, // 1(Monday) this can be changed to 0(Sunday)
 							// for the USA system
 			selectable: true,
 			defaultView: 'month',	
@@ -73,7 +74,7 @@ $(document).ready(function() {
 	        titleFormat: {
 	            month: 'MMMM yyyy', // September 2009
 	            week: "MMMM yyyy", // September 2009
-	            day: 'MMMM yyyy'                  // Tuesday, Sep 8, 2009
+	            day: 'MMMM yyyy' // Tuesday, Sep 8, 2009
 	        },
 			allDaySlot: false,
 			selectHelper: true,
@@ -97,20 +98,20 @@ $(document).ready(function() {
 			drop: function(date, allDay) { // this function is called when
 										// something is dropped
 				// retrieve the dropped element's stored Event Object
-				//var originalEventObject = $(this).data('eventObject');
+				var originalEventObject = $(this).data('eventObject');
 		
 				// we need to copy it, so that multiple events don't have a
 				// reference to the same object
-				//var copiedEventObject = $.extend({}, originalEventObject);
+				var copiedEventObject = $.extend({}, originalEventObject);
 		
 				// assign it the date that was reported
-				//copiedEventObject.start = date;
-				//copiedEventObject.allDay = allDay;
+				copiedEventObject.start = date;
+				copiedEventObject.allDay = allDay;
 		
 				// render the event on the calendar
 				// the last `true` argument determines if the event "sticks"
 				// (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-				//$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+				$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
 		
 				// is the "remove after drop" checkbox checked?
 				/*if ($('#drop-remove').is(':checked')) {
