@@ -2,10 +2,6 @@ body {
 	color: #606060;
 }
 
-#page-wrapper {
-	min-height: 888px;
-}
-
 .text-center {
    text-align: center;
    top: 15px;
@@ -179,8 +175,7 @@ a:focus, a:hover {
 }
 
 #page-wrapper {
-    padding: 0 0 0 0;
-    min-height: 568px;
+    min-height: 888px;
     background-color: #fff;
 }
 

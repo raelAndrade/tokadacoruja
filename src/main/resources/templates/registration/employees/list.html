@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout-padrao}">
+
+<head></head>
+
+<body>
+
+	<div id="page-wrapper" layout:fragment="content">
+		
+		<br /><br />
+
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Crianças</a></li>
+			<li class="breadcrumb-item active">Lista</li>
+		
+		</ol>
+		
+		<div class="page-header">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-10"></div>
+					<div class="col-md-2">
+						<div class="page-header-controls">
+							<a class="btn btn-primary" th:href="@{/criancas}">
+								<i class="fa fa-plus-square"></i>
+								<span class="hidden-xs hidden-sm">Cadastro criança</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<!-- Mensagem de sucesso -->
+			<div class="alert  alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+				<i class="fa fa-check-circle"></i>
+				<span th:text="${mensagem}">Mensagem sucesso!</span>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				    <span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			
+			<div class="table-responsive">
+				<table class="table">
+					<thead class="thead-light">
+						<tr>
+							<th scope="col">Código</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Data de Nascimento</th>
+							<th scope="col">Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="c : ${childrens}" th:if="${c.status != FALSE}">
+							<th scope="row" th:text="${c.id}"></th>
+							<td th:text="${c.name}"></td>
+							<td th:text="${#dates.format(c.dateBirth, 'dd/MM/yyyy')}"></td>
+							<td>
+								<a th:href="@{/criancas/editar/{id}(id=${c.id})}"><i class="fa fa-pencil fa-fw"></i></a>
+								<a th:href="@{/criancas/remover/{id} (id=${c.id})}"><i class="fa fa-close fa-fw"></i></a></td>
+						</tr>
+						<tr th:if="${childrens.empty}">
+							<td colspan="5">Nenhuma criança cadastrada</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<div class="clearfix"></div>
+	</div>
+
+</body>
+</html>
+        
