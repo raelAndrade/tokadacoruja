@@ -13,7 +13,7 @@
 		<br /><br />
 
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="#">Crianças</a></li>
+			<li class="breadcrumb-item"><a href="#">Funcionários</a></li>
 			<li class="breadcrumb-item active">Lista</li>
 		
 		</ol>
@@ -24,9 +24,9 @@
 					<div class="col-md-10"></div>
 					<div class="col-md-2">
 						<div class="page-header-controls">
-							<a class="btn btn-primary" th:href="@{/criancas}">
+							<a class="btn btn-primary" th:href="@{/funcionarios}">
 								<i class="fa fa-plus-square"></i>
-								<span class="hidden-xs hidden-sm">Cadastro criança</span>
+								<span class="hidden-xs hidden-sm">Cadastro funcionários</span>
 							</a>
 						</div>
 					</div>
@@ -55,16 +55,16 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="c : ${childrens}" th:if="${c.status != FALSE}">
-							<th scope="row" th:text="${c.id}"></th>
-							<td th:text="${c.name}"></td>
-							<td th:text="${#dates.format(c.dateBirth, 'dd/MM/yyyy')}"></td>
+						<tr th:each="e : ${employees}" th:if="${e.status != FALSE}">
+							<th scope="row" th:text="${e.id}"></th>
+							<td th:text="${e.name}"></td>
+							<td th:text="${#dates.format(e.date, 'dd/MM/yyyy')}"></td>
 							<td>
-								<a th:href="@{/criancas/editar/{id}(id=${c.id})}"><i class="fa fa-pencil fa-fw"></i></a>
-								<a th:href="@{/criancas/remover/{id} (id=${c.id})}"><i class="fa fa-close fa-fw"></i></a></td>
+								<a th:href="@{/funcionarios/editar/{id}(id=${c.id})}"><i class="fa fa-pencil fa-fw"></i></a>
+								<a th:href="@{/funcionarios/remover/{id} (id=${c.id})}"><i class="fa fa-close fa-fw"></i></a></td>
 						</tr>
-						<tr th:if="${childrens.empty}">
-							<td colspan="5">Nenhuma criança cadastrada</td>
+						<tr th:if="${employees.empty}">
+							<td colspan="5">Nenhum funcionário cadastrado</td>
 						</tr>
 					</tbody>
 				</table>

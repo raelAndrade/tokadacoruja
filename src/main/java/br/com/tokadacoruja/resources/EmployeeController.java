@@ -21,12 +21,12 @@ public class EmployeeController {
 		return mv;
 	}
 	
-//	@GetMapping("/criancas/listar")
-//	public ModelAndView findAll() {
-//		ModelAndView mv = new ModelAndView("registration/childrens/list");
-//		mv.addObject("childrens", childrenRepository.findAll());
-//		return mv;
-//	}
+	@GetMapping("/funcionarios/listar")
+	public ModelAndView findAll() {
+		ModelAndView mv = new ModelAndView("registration/employees/list");
+		mv.addObject("employees", employeeRepository.findAll());
+		return mv;
+	}
 	
 //	@PostMapping("/criancas/salvar")
 //	public ModelAndView save(@Valid Children children, BindingResult result, RedirectAttributes attributes) throws ParseException {

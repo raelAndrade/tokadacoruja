@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "employee")
-public class Employee implements Serializable {
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -36,11 +36,11 @@ public class Employee implements Serializable {
 	@Column(name = "chi_date_create")
 	private LocalDateTime create;
 	
-	public Employee() {
+	public User() {
 		this.create = LocalDateTime.now();
 	}
 
-	public Employee(final Long id, final String name, final String telephone, final String celular, final Boolean status) {
+	public User(final Long id, final String name, final String telephone, final String celular, final Boolean status) {
 		this.id = id;
 		this.name = name;
 		this.telephone = telephone;
@@ -113,7 +113,7 @@ public class Employee implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Employee other = (Employee) obj;
+		User other = (User) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
