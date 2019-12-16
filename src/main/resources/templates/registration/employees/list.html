@@ -50,7 +50,8 @@
 						<tr>
 							<th scope="col">Código</th>
 							<th scope="col">Nome</th>
-							<th scope="col">Data de Nascimento</th>
+							<th scope="col">Telefone</th>
+							<th scope="col">Celular</th>
 							<th scope="col">Ações</th>
 						</tr>
 					</thead>
@@ -58,10 +59,11 @@
 						<tr th:each="e : ${employees}" th:if="${e.status != FALSE}">
 							<th scope="row" th:text="${e.id}"></th>
 							<td th:text="${e.name}"></td>
-							<td th:text="${#dates.format(e.date, 'dd/MM/yyyy')}"></td>
+							<td th:text="${e.telephone}"></td>
+							<td th:text="${e.celular}"></td>
 							<td>
-								<a th:href="@{/funcionarios/editar/{id}(id=${c.id})}"><i class="fa fa-pencil fa-fw"></i></a>
-								<a th:href="@{/funcionarios/remover/{id} (id=${c.id})}"><i class="fa fa-close fa-fw"></i></a></td>
+								<a th:href="@{/funcionarios/editar/{id}(id=${e.id})}"><i class="fa fa-pencil fa-fw"></i></a>
+								<a th:href="@{/funcionarios/remover/{id} (id=${e.id})}"><i class="fa fa-close fa-fw"></i></a></td>
 						</tr>
 						<tr th:if="${employees.empty}">
 							<td colspan="5">Nenhum funcionário cadastrado</td>

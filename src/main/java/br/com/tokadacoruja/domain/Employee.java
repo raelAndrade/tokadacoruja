@@ -24,6 +24,9 @@ public class Employee implements Serializable {
 	@Column(name = "emp_name")
 	private String name;
 	
+	@Column(name = "emp_email")
+	private String email;
+	
 	@Column(name = "emp_telephone")
 	private String telephone;
 
@@ -33,16 +36,17 @@ public class Employee implements Serializable {
 	@Column(name = "emp_status")
 	private Boolean status;
 	
-	@Column(name = "chi_date_create")
+	@Column(name = "emp_date_create")
 	private LocalDateTime create;
 	
 	public Employee() {
 		this.create = LocalDateTime.now();
 	}
 
-	public Employee(final Long id, final String name, final String telephone, final String celular, final Boolean status) {
+	public Employee(final Long id, final String name, final String email, final String telephone, final String celular, final Boolean status) {
 		this.id = id;
 		this.name = name;
+		this.email = email;
 		this.telephone = telephone;
 		this.celular = celular;
 		this.status = status;
@@ -63,6 +67,14 @@ public class Employee implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	public String getTelephone() {
@@ -124,11 +136,8 @@ public class Employee implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Employee [id=").append(id).append(", name=").append(name).append(", telephone=")
-				.append(telephone).append(", celular=").append(celular).append(", status=").append(status)
-				.append(", create=").append(create).append("]");
-		return builder.toString();
+		return "Employee [id=" + id + ", name=" + name + ", email=" + email + ", telephone=" + telephone + ", celular="
+				+ celular + ", status=" + status + ", create=" + create + "]";
 	}
 
 }
