@@ -11,40 +11,32 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "user")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "emp_id")
+	@Column(name = "user_id")
 	private Long id;
 	
-	@Column(name = "emp_name")
+	@Column(name = "user_name")
 	private String name;
 	
-	@Column(name = "emp_telephone")
-	private String telephone;
-
-	@Column(name = "emp_celular")
-	private String celular;
-	
-	@Column(name = "emp_status")
+	@Column(name = "user_status")
 	private Boolean status;
 	
-	@Column(name = "chi_date_create")
+	@Column(name = "user_date_create")
 	private LocalDateTime create;
 	
 	public User() {
 		this.create = LocalDateTime.now();
 	}
 
-	public User(final Long id, final String name, final String telephone, final String celular, final Boolean status) {
+	public User(final Long id, final String name, final Boolean status) {
 		this.id = id;
 		this.name = name;
-		this.telephone = telephone;
-		this.celular = celular;
 		this.status = status;
 		this.create = LocalDateTime.now();
 	}
@@ -63,22 +55,6 @@ public class User implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	public String getTelephone() {
-		return telephone;
-	}
-	
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-	
-	public String getCelular() {
-		return celular;
-	}
-	
-	public void setCelular(String celular) {
-		this.celular = celular;
 	}
 	
 	public Boolean getStatus() {
@@ -125,8 +101,7 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Employee [id=").append(id).append(", name=").append(name).append(", telephone=")
-				.append(telephone).append(", celular=").append(celular).append(", status=").append(status)
+		builder.append("Employee [id=").append(id).append(", name=").append(name).append(", status=").append(status)
 				.append(", create=").append(create).append("]");
 		return builder.toString();
 	}

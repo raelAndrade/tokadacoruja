@@ -63,7 +63,7 @@
 							<td th:text="${e.celular}"></td>
 							<td>
 								<a th:href="@{/funcionarios/editar/{id}(id=${e.id})}"><i class="fa fa-pencil fa-fw"></i></a>
-								<a th:href="@{/funcionarios/remover/{id} (id=${e.id})}"><i class="fa fa-close fa-fw"></i></a></td>
+								<a th:href="@{/funcionarios/remover/{id}(id=${e.id})}"><i class="fa fa-close fa-fw"></i></a></td>
 						</tr>
 						<tr th:if="${employees.empty}">
 							<td colspan="5">Nenhum funcionário cadastrado</td>
