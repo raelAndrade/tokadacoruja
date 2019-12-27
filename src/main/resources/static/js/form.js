@@ -12,7 +12,7 @@ $(document).ready(function() {
 //    });
 	
 	// ================== Calendário ================== //
-	$(".date").datepicker({
+	$('.date').datepicker({
 	    format: 'dd/MM/yyyy',
 	    language: "pt-BR",
 	    clearBtn: true,
@@ -21,7 +21,7 @@ $(document).ready(function() {
 	// =============================================== //
 	
 	// ================== Máscara ================== //
-	$(".date").mask("99/99/9999");
+	$("#date").mask('99/99/9999');
 	
     $(".telephone").mask('(00) 0000-0000');
 	
