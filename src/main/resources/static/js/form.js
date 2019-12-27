@@ -23,7 +23,15 @@ $(document).ready(function() {
 	// ================== Máscara ================== //
 	$("#date").mask('99/99/9999');
 	
-    $(".telephone").mask('(00) 0000-0000');
+    //$(".telephone").mask('(00) 0000-0000?9');
+    $('.telephone').mask('(00) 0000-00009');
+    $('.telephone').blur(function(event) {
+    	if ($(this).val().length == 15) { // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
+			$(this).mask('(00) 00000-0009');
+		} else {
+			$(this).mask('(00) 0000-00009');
+		}
+    });
 	
 	$(".time").mask('00:00');
 	
@@ -33,34 +41,29 @@ $(document).ready(function() {
 	// ============================================= //
 	
 	$(".resposibleOption").change(function(){
-		if($(this).val() === 'sim'){
+		if($(this).val() === 'TRUE'){
 			$("#responsible").prop('disabled', false);
-		}else if($(this).val() === 'nao'){
+		}else if($(this).val() === 'FALSE'){
 			$("#responsible").prop('disabled', true);
 		}
 	});
 	
 	$(".allergy").change(function(){
-		if($(this).val() === 'sim'){
+		if($(this).val() === 'TRUE'){
 			$("#allergyDescription").prop('disabled', false);
-		}else if($(this).val() === 'nao'){
+		}else if($(this).val() === 'FALSE'){
 			$("#allergyDescription").prop('disabled', true);
 		}
 	});
 	
 	$(".foodRestriction").change(function(){
-		if($(this).val() === 'sim'){
+		if($(this).val() === 'TRUE'){
 			$("#foodRestriction").prop('disabled', false);
-		}else if($(this).val() === 'nao'){
+		}else if($(this).val() === 'FALSE'){
 			$("#foodRestriction").prop('disabled', true);
 		}
 	});
 	
-	//	$("#autocompletePais").autocomplete({
-	//		source: parents
-	//	});
-	
-
 	function valid_cpf(cpf) {
 	    cpf = replaceAll(replaceAll(cpf, ".", ""), "-", "");
 	    var numeros, digitos, soma, i, resultado, digitos_iguais;
