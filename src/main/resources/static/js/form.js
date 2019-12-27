@@ -1,11 +1,11 @@
 
 $(document).ready(function() {
 	
-	// Autocomplete
-//    $("#autocompletePais").combobox({
+// Autocomplete
+//  $("#autocompletePais").combobox({
 //    	idCombo: "autocompletePais",
-//        idInput: "autocompletePaisInput"
-//    });
+//      idInput: "autocompletePaisInput"
+//  });
 	
 //	$('#dataTables-example').DataTable({
 //		responsive: true
