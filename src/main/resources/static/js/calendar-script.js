@@ -12,29 +12,23 @@ $(document).ready(function() {
 	 * initialize the external events
 	 * -----------------------------------------------------------------
 	 */
-	$('#external-events div.external-event').each(function() {
-	
+	$('#external-events div.external-event').each(function() {	
 		// create an Event Object
 		// (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
 		// it doesn't need to have a start or end
 		var eventObject = {
-			title: $.trim($(this).text()) // use the element's text as
-											// the event title
+			title: $.trim($(this).text()) // use the element's text as the event title
 		};
 	
-		// store the Event Object in the DOM element so we can get to it
-		// later
+		// store the Event Object in the DOM element so we can get to it later
 		$(this).data('eventObject', eventObject);
 		// make the event draggable using jQuery UI
 		$(this).draggable({
 			zIndex: 999,
-			revert: true,      // will cause the event to go back to
-								// its
+			revert: true, // will cause the event to go back to its
 			revertDuration: 0  // original position after the drag
 		});
 	});
-	
-	
 	/*
 	 * initialize the calendar
 	 * -----------------------------------------------------------------
@@ -54,21 +48,19 @@ $(document).ready(function() {
 		var calendar =  $('#calendar').fullCalendar({
 			header: {
 				left: 'title',
-				//center: 'agendaDay,agendaWeek,month',
 				center: 'agendaDay,month',
 				right: 'prev,next today'
 			},
-			height: 420, // size calendar
+			height: 500, // size calendar
 			editable: false,
-			firstDay: 0, // 1(Monday) this can be changed to 0(Sunday)
-							// for the USA system
+			firstDay: 0, // 1(Monday) this can be changed to 0(Sunday) for the USA system
 			selectable: true,
 			defaultView: 'month',	
 			axisFormat: 'h:mm',
 			columnFormat: {
-				month: 'ddd',    // Mon
+				month: 'ddd', // Mon
 	            week: 'ddd d', // Mon 7
-	            day: 'dddd M/d',  // Monday 9/7
+	            day: 'dddd M/d', // Monday 9/7
 	            agendaDay: 'dddd d'
 	        },
 	        titleFormat: {
@@ -93,10 +85,8 @@ $(document).ready(function() {
 				}
 				calendar.fullCalendar('unselect');
 			},*/
-			droppable: true, // this allows things to be dropped onto the
-							// calendar !!!
-			drop: function(date, allDay) { // this function is called when
-										// something is dropped
+			droppable: true, // this allows things to be dropped onto the calendar !!!
+			drop: function(date, allDay) { // this function is called when something is dropped
 				// retrieve the dropped element's stored Event Object
 				var originalEventObject = $(this).data('eventObject');
 		
@@ -110,7 +100,6 @@ $(document).ready(function() {
 		
 				// render the event on the calendar
 				// the last `true` argument determines if the event "sticks"
-				// (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
 				$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
 		
 				// is the "remove after drop" checkbox checked?
@@ -123,10 +112,6 @@ $(document).ready(function() {
 			},
 			events: 
 				schedule
-			/*
-			 * [ { title: 'Lunch', start: new Date(y, m, d, 12, 0), end: new
-			 * Date(y, m, d, 14, 0), allDay: false, className: 'important' ]
-			 */
 		});
 	
 	});

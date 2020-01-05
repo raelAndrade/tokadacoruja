@@ -1,5 +1,8 @@
 package br.com.tokadacoruja.resources;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +29,13 @@ import br.com.tokadacoruja.services.ScheduleService;
 
 @Controller
 public class ScheduleController {
-
+	
+	private final DateTimeFormatter FORMAT_HOURS = DateTimeFormatter
+			.ofPattern("HH:mm")
+			.withResolverStyle(ResolverStyle.STRICT);
+	
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH.mm");
+	
 	@Autowired
 	private ScheduleRepository scheduleRepository;
 	
@@ -57,8 +66,32 @@ public class ScheduleController {
 	public ModelAndView save(@Valid Schedule schedule, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
 			return form(schedule);
-		}		
+		}	
 		schedule.setStatus(true);
+		schedule.setTotalHours(show(schedule.getHourInitial(), schedule.getHourFinale()));
+    	
+		String hour = schedule.getTotalHours().format(formatter);
+		String hours[] = hour.split("[.]");
+
+		Long h = Long.parseLong(hours[0]);
+		Long m = Long.parseLong(hours[1]);
+		
+		Double valuePerHours = 0.0;
+		Double valuePerMinutes = 0.0;
+		Double totalValuePerHours = 0.0;
+		
+    	if(h < 0 && m <= 59) {
+    		valuePerMinutes = schedule.getAmount();
+    		schedule.setAmount(valuePerMinutes);
+    	}else if(h >= 1 && m != 0) {
+    		valuePerHours = h * schedule.getAmount();
+    		valuePerMinutes = (schedule.getAmount() / 60.0) * m;
+    		totalValuePerHours = valuePerHours + valuePerMinutes;
+    		schedule.setAmount(totalValuePerHours);
+    	}else if(h >= 1 && m == 0){
+    		valuePerHours = h * schedule.getAmount();
+    		schedule.setAmount(valuePerHours);
+    	}
 		scheduleService.save(schedule);
 		attributes.addFlashAttribute("mensagem", "Salvo com sucesso!");		
 		return new ModelAndView("redirect:/agendas/calendario"); 
@@ -101,7 +134,16 @@ public class ScheduleController {
 		mv.addObject("childrens", childrens);
 		mv.addObject("schedule", schedule);
 		return mv;
-		
 	}
 	
+	private LocalTime missing(LocalTime now, LocalTime wish) {
+        return wish.minusHours(now.getHour()).minusMinutes(now.getMinute());
+    }
+
+    private LocalTime show(LocalTime schedule, String object) {
+        LocalTime wish = LocalTime.parse(object, FORMAT_HOURS);
+        LocalTime difference = missing(schedule, wish);
+        return difference;
+    }
+    
 }

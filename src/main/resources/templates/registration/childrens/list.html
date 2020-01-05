@@ -4,34 +4,37 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/layout-padrao}">
 
-<head></head>
+<head>
+	<!-- jQuery -->
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
 
 <body>
 
 	<div id="page-wrapper" layout:fragment="content">
 		
-		<br /><br />
+		<br />
 
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="#">Crianças</a></li>
 			<li class="breadcrumb-item active">Lista</li>
 		</ol>
 		
-		<div class="page-header">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-10"></div>
-					<div class="col-md-2">
-						<div class="page-header-controls">
-							<a class="btn btn-primary" th:href="@{/criancas}">
-								<i class="fa fa-plus-square"></i>
-								<span class="hidden-xs hidden-sm">Adicionar</span>
-							</a>
-						</div>
-					</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+				<div class="col-md-2">
+					<a th:href="@{/criancas}" class="btn btn-primary">
+						<i class="fa fa-plus-square"></i>
+						<span class="hidden-xs hidden-sm">Adicionar</span>
+					</a>
 				</div>
 			</div>
 		</div>
+		
+		<br />
 
 		<div class="container-fluid">
 			<!-- Mensagem de sucesso -->
@@ -43,36 +46,45 @@
 				</button>
 			</div>
 			
-			<div class="table-responsive">
-				<table class="table">
-					<thead class="thead-light">
-						<tr>
-							<th scope="col">Código</th>
-							<th scope="col">Nome</th>
-							<th scope="col">Data de Nascimento</th>
-							<th scope="col">Ações</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="c : ${childrens}" th:if="${c.status != FALSE}">
-							<th scope="row" th:text="${c.id}"></th>
-							<td th:text="${c.name}"></td>
-							<td th:text="${#dates.format(c.dateBirth, 'dd/MM/yyyy')}"></td>
-							<td>
-								<a th:href="@{/criancas/editar/{id}(id=${c.id})}"><i class="fa fa-pencil fa-fw"></i></a>
-								<a th:href="@{/criancas/remover/{id} (id=${c.id})}"><i class="fa fa-close fa-fw"></i></a></td>
-						</tr>
-						<tr th:if="${childrens.empty}">
-							<td colspan="5">Nenhuma criança cadastrada</td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">Lista de Crianças</div>
+						<div class="panel-body">
+							<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+								<thead>
+									<tr>
+										<th class="center-table">Código</th>
+										<th>Nome</th>
+										<th>Data de Nascimento</th>
+										<th class="center-table">Ações</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="odd gradeX" th:each="c : ${childrens}" th:if="${c.status != FALSE}">
+										<th class="center-table" th:text="${c.id}"></th>
+										<td th:text="${c.name}"></td>
+										<td th:text="${#dates.format(c.dateBirth, 'dd/MM/yyyy')}"></td>
+										<td class="center-table">
+											<a th:href="@{/criancas/editar/{id}(id=${c.id})}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Editar</a>
+											<a th:href="@{/criancas/remover/{id} (id=${c.id})}" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Remover</a>
+											<a th:href="@{#}" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Ativar</a>
+									</tr>
+									<tr th:if="${childrens.empty}">
+										<td colspan="5">Nenhuma criança cadastrada</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		
 		<div class="clearfix"></div>
+		
 	</div>
-
+	
 </body>
 </html>
         

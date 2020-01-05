@@ -1,8 +1,8 @@
 package br.com.tokadacoruja.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -31,7 +31,7 @@ import br.com.tokadacoruja.domain.enums.Payment;
 public class Schedule implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sch_id")
@@ -48,7 +48,7 @@ public class Schedule implements Serializable {
 	private Date date;
 	
 	@Column(name = "sch_hour_initial")
-	private String hourInitial;
+	private LocalTime hourInitial;
 	
 	@Column(name = "sch_hour_finale")
 	private String hourFinale;
@@ -59,20 +59,23 @@ public class Schedule implements Serializable {
 	
 	@Column(name = "sch_amount")
 	@NumberFormat(pattern = "#,##0.00")
-	private BigDecimal amount;
+	private Double amount;
 	
 	@Column(name = "sch_date_create")
 	private LocalDateTime create;
 	
 	@Column(name = "sch_status")
 	private Boolean status;
+	
+	@Column(name = "sch_total_hours")
+	private LocalTime totalHours;
 
 	public Schedule() {
 		this.create = LocalDateTime.now();
 	}
 	 
-	public Schedule(final Long id, final Children children, final Date date, final String hourInitial,
-			final String hourFinale, final Payment payment, final BigDecimal amount, final Boolean status) {
+	public Schedule(final Long id, final Children children, final Date date, final LocalTime hourInitial, final String hourFinale, 
+			final Payment payment, final Double amount, final Boolean status, final LocalTime totalHours) {
 		this.id = id;
 		this.children = children;
 		this.date = date;
@@ -82,6 +85,7 @@ public class Schedule implements Serializable {
 		this.amount = amount;
 		this.create = LocalDateTime.now();
 		this.status = status;
+		this.totalHours = totalHours;
 	}
 	
 	public Long getId() {
@@ -92,11 +96,11 @@ public class Schedule implements Serializable {
 		this.id = id;
 	}
 
-	public String getHourInitial() {
+	public LocalTime getHourInitial() {
 		return hourInitial;
 	}
 
-	public void setHourInitial(String hourInitial) {
+	public void setHourInitial(LocalTime hourInitial) {
 		this.hourInitial = hourInitial;
 	}
 
@@ -124,11 +128,11 @@ public class Schedule implements Serializable {
 		this.payment = payment;
 	}
 
-	public BigDecimal getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(BigDecimal amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 	
@@ -138,6 +142,14 @@ public class Schedule implements Serializable {
 	
 	public void setStatus(Boolean status) {
 		this.status = status;
+	}
+	
+	public LocalTime getTotalHours() {
+		return totalHours;
+	}
+	
+	public void setTotalHours(LocalTime localTime) {
+		this.totalHours = localTime;
 	}
 	
 	public Children getChildren() {

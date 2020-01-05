@@ -62,8 +62,8 @@ public class ChildrenController {
 	
 	@GetMapping("/criancas/editar/{id}")
 	public ModelAndView edit(@PathVariable("id") Long id) {
-		Optional<Children> children = childrenRepository.findById(id);
 		ModelAndView mv = new ModelAndView("registration/childrens/form");
+		Optional<Children> children = childrenRepository.findById(id);
 		List<Parent> parents = parentRepository.findAll();
 		mv.addObject("parents", parents);
 		mv.addObject("children", children.get());

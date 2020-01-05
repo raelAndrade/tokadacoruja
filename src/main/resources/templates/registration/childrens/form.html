@@ -10,25 +10,21 @@
 
 	<div id="page-wrapper" layout:fragment="content">
 
-		<br /><br /> 
+		<br />
 
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="#">Crianças</a></li>
 			<li class="breadcrumb-item active">Cadastro</li>
 		</ol>
 		
-		<div class="page-header">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-8"></div>
-					<div class="col-md-4">
-						<div class="page-header-controls">
-							<a class="btn btn-primary" th:href="@{/criancas/listar}">
-								<i class="fa fa-plus-square"></i>
-								<span class="hidden-xs hidden-sm">Listar</span>
-							</a>
-						</div>
-					</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+				<div class="col-md-2">
+					<a class="btn btn-primary" th:href="@{/criancas/listar}">
+						<i class="fa fa-list-alt"></i>
+						<span class="hidden-xs hidden-sm">Listar</span>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -74,7 +70,7 @@
 			<div class="col-md-3">
 				<div class="form-group">
 					<label>Data de Nascimento</label>
-					<input class="form-control date" id="date" placeholder="Data de nascimento" name="dateBirth" type="text" th:field="*{dateBirth}">
+					<input class="form-control date" id="date" name="dateBirth" type="text" th:field="*{dateBirth}">
 				</div>
 			</div>
 			<div class="col-md-12">
@@ -110,6 +106,7 @@
 					</label>
 				</div>
 			</div>
+			
 			<div class="col-md-12">
 				<div class="form-group">
 					<input class="form-control" id="foodRestriction" placeholder="Qual o tipo de restrição?" name="foodRestrictionDescription" type="text" th:field="*{foodRestrictionDescription}" disabled="disabled">
@@ -118,7 +115,7 @@
 			<div class="col-md-12">
 				<div class="form-group">
 					<label>Observação:</label>
-					<input class="form-control" placeholder="Observação" name="observation" type="text" th:field="*{observation}">
+					<input class="form-control" name="observation" type="text" th:field="*{observation}">
 				</div>
 			</div>
 			<div class="col-md-12">
@@ -137,10 +134,16 @@
 	        	<button type="submit" class="btn btn-primary">Salvar</button>
     	        <button type="reset" class="btn btn-danger">Cancelar</button>
             </div>
+            
+            <div class="clearfix"></div>
+            
 		</form>
-		<br /><br />
+		
 		<div class="clearfix"></div>
+		
 	</div>
-	<div class="clearfix"></div>
+	
 </body>
 </html>
+
+

@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="Israel Andrade" content="">
 	
-	<title>Toka da Coruja - Cadastro de pais</title>
+	<title>Toka da Coruja</title>
 	
 	<!-- Ícone na barra de navegação -->
 	<link rel="sortcut icon" th:href="@{/img/logo/logotipo-toka-da-coruja-min.png}" type="image/x-icon" />
@@ -24,18 +24,22 @@
 	<!-- Timeline CSS -->
 	<link th:href="@{/css/timeline.css}" rel="stylesheet" type="text/css" />
 	
+	<!-- DataTables CSS -->
+    <link th:href="@{/css/dataTables/dataTables.bootstrap.css}" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link th:href="@{/css/dataTables/dataTables.responsive.css}" rel="stylesheet">
+	
 	<!-- Custom CSS -->
 	<link th:href="@{/css/startmin.css}" rel="stylesheet" type="text/css" />
+	
+	<!-- Custom CSS -->
+    <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet" />
 	
 	<!-- Morris Charts CSS -->
 	<link th:href="@{/css/morris.css}" rel="stylesheet" type="text/css" />
 	
 	<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css" />
-	
-	<!-- <link th:href="@{/css/fontawesome.min.css}" rel="stylesheet" type="text/css" /> 
-	<link th:href="@{/css/brands.min.css}" rel="stylesheet" type="text/css" />
-	<link th:href="@{/css/solid.min.css}" rel="stylesheet" type="text/css" />
-	<link th:href="@{/css/all.min.css}" rel="stylesheet" type="text/css" /> -->
 	
 	<link th:href="@{/css/jquery-ui.css}" rel="stylesheet" type="text/css" />
 	
@@ -107,12 +111,12 @@
 						</li>
 						
 						<li>
-							<a th:href="@{/}" class="active"> 
+							<a th:href="@{/home}" class="active"> 
 								<i class="fa fa-dashboard fa-fw"></i> Toka da Coruja
 							</a>
 						</li>
 						<li>
-							<a th:href="@{/}">
+							<a th:href="@{/home}">
 								<i class="fa fa-list-alt fa-fw"></i> Cadastro
 							</a>
 						</li>
@@ -122,8 +126,13 @@
 							</a>
 						</li>
 						<li>
-							<a th:href="@{#}">
-								<i class="fa fa-money fa-fw"></i> Contas à Receber
+							<a th:href="@{/funcionarios}">
+								<i class="fa fa-arrow-circle-right fa-fw"></i> Funcionários
+							</a>
+						</li>
+						<li>
+							<a th:href="@{/agendas/listar}">
+								<i class="fa fa-money fa-fw"></i> Fechamento
 							</a>
 						</li>
 						<li>
@@ -140,11 +149,15 @@
 		</nav>
 		<!-- Fim do menu -->
 		
-		<!-- Conteúdo -->
-		<div id="page-wrapper" layout:fragment="content"></div>
-
-		<div class="clearfix"></div>
+		<br /><br />
 		
+		<!-- Conteúdo -->
+		<div id="page-wrapper" layout:fragment="content">
+		
+		
+		</div>
+		<!-- Fim do Conteúdo -->
+
 	</div>
 	
 	<!-- jQuery -->
@@ -166,14 +179,28 @@
     <script type="text/javascript" th:src="@{/js/calendar-script.js}"></script>
     <script type="text/javascript" th:src="@{/js/fullcalendar.js}"></script>
     <script type="text/javascript" th:src="@{/js/calendar.js}"></script>
+    
+    <!-- DataTables JavaScript -->
+    <script th:src="@{/js/dataTables/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/js/dataTables/dataTables.bootstrap.min.js}"></script>
+    <script th:src="@{/js/dataTables/dataTables.responsive.js}"></script>
 	
 	<!-- Custom Theme JavaScript -->
 	<script th:src="@{/js/startmin.js}"></script>
 	
+	<script th:src="@{/js/form.js}"></script>
+	
 	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{/js/bootstrap.min.js}"></script>
-	
-	<script th:src="@{/js/form.js}"></script>
+
+	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+	    $(document).ready(function() {
+	        $('#dataTables-example').DataTable({
+	            responsive: true
+	        });
+	    });
+    </script>
 
 </body>
 </html>

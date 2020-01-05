@@ -10,25 +10,21 @@
 
 	<div id="page-wrapper" layout:fragment="content">
 
-		<br /><br />
+		<br />
 
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="#">Pais</a></li>
 			<li class="breadcrumb-item active">Cadastro</li>
 		</ol>
 		
-		<div class="page-header">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-8"></div>
-					<div class="col-md-4">						
-						<div class="page-header-controls">
-							<a class="btn btn-primary" th:href="@{/pais/listar}">
-								<i class="fa fa-list-alt"></i>
-								<span class="hidden-xs hidden-sm"> Listar</span>
-							</a>
-						</div>
-					</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+				<div class="col-md-2">						
+					<a class="btn btn-primary" th:href="@{/pais/listar}">
+						<i class="fa fa-list-alt"></i>
+						<span class="hidden-xs hidden-sm"> Listar</span>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -59,37 +55,37 @@
 			<div class="col-md-12">
 				<div class="form-group">
 					<label>Nome do Responsável</label>
-					<input class="form-control" placeholder="Digite o nome do Responsável" type="text" name="name" th:field="*{name}" required="required">
+					<input class="form-control" placeholder="Digite o nome do Responsável" type="text" name="name" th:field="*{name}">
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label>CPF</label>
-					<input class="form-control cpf" id="cpf" placeholder="Digite o CPF" type="text" name="cpf" th:field="*{cpf}" required="required">
+					<input class="form-control cpf" id="cpf" placeholder="Digite o CPF" type="text" name="cpf" th:field="*{cpf}">
 				</div>
 			</div>
 			<div class="col-md-8">
 				<div class="form-group">
 					<label>Endereço</label>
-					<input class="form-control" placeholder="Rua Exemplo, 123" type="text" name="address" th:field="*{address}" required="required">
+					<input class="form-control" placeholder="Rua Exemplo, 123" type="text" name="address" th:field="*{address}">
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="form-group">
 					<label>Cidade</label>
-					<input class="form-control" placeholder="Digite a cidade" type="text" name="city" th:field="*{city}" required="required">
+					<input class="form-control" placeholder="Digite a cidade" type="text" name="city" th:field="*{city}">
 				</div>
 			</div>
 			<div class="col-md-12">
 				<div class="form-group">
 					<label>E-mail</label>
-					<input class="form-control" placeholder="email@exemple.com" type="email" name="email" th:field="*{email}" required="required">
+					<input class="form-control" placeholder="email@exemple.com" type="email" name="email" th:field="*{email}">
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label>Telefone</label>
-					<input class="form-control telephone" id="telephone" placeholder="Digite o telefone" type="text" name="telephones" th:field="*{telephones}" required="required">
+					<input class="form-control telephone" id="telephone" placeholder="Digite o telefone" type="text" name="telephones" th:field="*{telephones}">
 				</div>
 			</div>
 			<div class="col-md-6">
