@@ -46,7 +46,7 @@
 										<th>Total de Horas</th>
 										<th>Valor Total</th>
 										<th>Data</th>
-										<th>Ações</th>
+										<!-- <th>Ações</th> -->
 									</tr>
 								</thead>
 								<tbody>
@@ -57,10 +57,10 @@
 										<td th:text="${s.totalHours}"></td>
 										<td th:text="|R$ ${{s.amount}}"></td>
 										<td th:text="${#dates.format(s.date, 'dd/MM/yyyy')}"></td>
-										<td>
-											<a th:href="@{/agendas/editar/{id} (id=${s.id})}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Editar</a>
-											<a th:href="@{/agendas/remover/{id} (id=${s.id})}" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Remover</a>
-										</td>
+										<!-- <td> -->
+											<!-- <a th:href="@{/agendas/editar/{id} (id=${s.id})}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Fechar Faturamento</a> -->
+											<!-- <a th:href="@{/agendas/remover/{id} (id=${s.id})}" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Remover</a> -->
+										<!-- </td> -->
 									</tr>
 									
 									<tr th:if="${schedules.empty}">
