@@ -4,7 +4,25 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/layout-padrao}">
 
-<head></head>
+<head>
+	<!-- jQuery -->
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	
+	<script type="text/javascript" th:src="@{/js/jquery.dataTables.min.js}"></script>
+	
+	<!-- Bootstrap Core JavaScript -->
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('#dataTables-example').DataTable( {
+		        "paging": true,
+		        "ordering": true,
+		        "info": false
+		    } );
+		} );
+	</script>
+</head>
 
 <body>
 
@@ -16,23 +34,51 @@
 			<li class="breadcrumb-item"><a href="#">Faturamento</a></li>
 		</ol>
 
-		<form>
-			<div class="form-row">
-				<div class="col-md-4">
-					<label>Nome</label>
-					<input type="text" class="form-control" id="" placeholder="Nome da criança" />
-				</div>
-				<div class="col-md-4">
-					<label>Data</label>
-					<input type="text" class="form-control" id="" placeholder="Data" />
-				</div>
-				<div class="col-md-4">
-					<button type="submit" class="btn btn-primary">Faturar</button>
-				</div>
-			</div>
+		<form class="form-inline">
+			<label for="inlineFormInputName2">Nome</label>
+			<input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2">
+			<label for="inlineFormInputGroupUsername2">Data</label>
+			<input type="text" class="form-control" id="inlineFormInputGroupUsername2">
+			<button type="submit" class="btn btn-primary mb-2">Buscar</button>
 		</form>
-		
+
 		<div class="clearfix"></div>
+		
+		<br />
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">Faturamento da criança: ${}</div>
+					<div class="panel-body">
+						<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+							<thead class="thead-light">
+								<tr>
+									<th>Criança</th>
+									<th>Hora início</th>
+									<th>Hora Término</th>
+									<th>Total de Horas</th>
+									<th>Data</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="odd gradeX">
+									<td>Bianca</td>
+									<td>6:30</td>
+									<td>22:00</td>
+									<td>Não tem valor</td>
+									<td>16/05/2013</td>
+								</tr>
+								
+<!-- 								<tr th:if="${schedules.empty}"> -->
+<!-- 									<td colspan="6">Nenhum agendamento cadastrado</td> -->
+<!-- 								</tr> -->
+							</tbody>
+						</table>
+					</div>
+				</div>
+    		</div>
+    	</div>
 
 	</div>
 </body>
