@@ -22,7 +22,7 @@
 				<div class="row">
 					<div class="col-md-2">
 						<div class="page-header-controls">
-							<a class="btn btn-primary" th:href="@{/agendas/calendario}">
+							<a class="btn btn-primary" th:href="@{/agendamentos/calendario}">
 								<i class="fa fa-calendar"></i>
 								<span class="hidden-xs hidden-sm"> Calendário</span>
 							</a>
@@ -31,7 +31,7 @@
 					<div class="col-md-8"></div>
 					<div class="col-md-2">						
 						<div class="page-header-controls">
-							<a class="btn btn-primary" th:href="@{/agendas/listar}">
+							<a class="btn btn-primary" th:href="@{/agendamentos/listar}">
 								<i class="fa fa-plus-square"></i>
 								<span class="hidden-xs hidden-sm"> Listar agendamentos</span>
 							</a>
@@ -41,27 +41,14 @@
 			</div>
 		</div>
 
-		<!-- <div class="row">
-			<div class="col-md-12">
-				<h3 class="page-header">Cadastro de Crianças</h3>
-			</div>
-		</div> -->
-
-		<form class="form-horizontal" role="form" th:action="@{/agendas/salvar}" th:object="${schedule}" method="POST">
-			<div class="alert  alert-danger alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<div th:each="erro : ${#fields.detailedErrors()}">
-					<i class="fa fa-exclamation-circle"></i>
-					<span th:text="${erro.message}">Mensagem erro.</span>
-				</div>
-			</div>
-			<div class="alert  alert-success" th:if="${!#strings.isEmpty(mensagem)}">
-				<i class="fa fa-check-circle"></i>
-				<span th:text="${mensagem}">Mensagem sucesso!</span>
-			</div>
-						
+		<form class="form-horizontal" role="form" th:action="@{/agendamentos/salvar}" th:object="${schedule}" method="POST">
+		
+			<!-- Mensagem de sucesso -->
+			<div layout:include="success"></div>
+			
+			<!-- Mensagem de sucesso -->
+    		<div layout:include="error"></div>
+    		
 			<div class="col-md-2">
 				<div class="form-group">
 					<label>Código</label>

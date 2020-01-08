@@ -33,7 +33,7 @@ $(document).ready(function() {
 	 * initialize the calendar
 	 * -----------------------------------------------------------------
 	 */
-	$.get("http://localhost:8081/agendas/list-calendar", function(response) {
+	$.get("http://localhost:8081/agendamentos/list-calendar", function(response) {
 		var datas = JSON.stringify(response);
 		var data = $.parseJSON(datas);
 		

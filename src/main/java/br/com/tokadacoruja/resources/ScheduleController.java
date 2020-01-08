@@ -4,13 +4,12 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.List;
-import java.util.Optional;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,9 +44,9 @@ public class ScheduleController {
 	@Autowired
 	private ScheduleService scheduleService;
 	
-	@GetMapping("/agendas")
+	@GetMapping("/agendamentos/calendario")
 	public ModelAndView form(Schedule schedule) {
-		ModelAndView mv = new ModelAndView("schedule/form");
+		ModelAndView mv = new ModelAndView("schedule/calendar");
 		List<Children> childrens = childrenRepository.findAll();
 		mv.addObject("payments", Payment.values());
 		mv.addObject("childrens", childrens);
@@ -55,20 +54,36 @@ public class ScheduleController {
 		return mv;
 	}
 	
-	@GetMapping("/agendas/listar")
+	/*@GetMapping("/agendamentos/calendario")
+	public ModelAndView getCalendar(Schedule schedule) {
+		ModelAndView mv = new ModelAndView("schedule/calendar");
+		List<Children> childrens = childrenRepository.findAll();
+		mv.addObject("payments", Payment.values());
+		mv.addObject("childrens", childrens);
+		mv.addObject("schedule", schedule);
+		return mv;
+	}*/
+	
+	@GetMapping("/agendamentos/listar")
 	public ModelAndView findAll() {
 		ModelAndView mv = new ModelAndView("schedule/list");
 		mv.addObject("schedules", scheduleRepository.findAll());
 		return mv;
 	}
 	
-	@PostMapping("/agendas/salvar")
-	public ModelAndView save(@Valid Schedule schedule, BindingResult result, RedirectAttributes attributes) {
-		if(result.hasErrors()) {
+	@PostMapping("/agendamentos/salvar")
+	public ModelAndView save(@Validated Schedule schedule, BindingResult result, Errors errors, RedirectAttributes attributes) {
+		if(errors.hasErrors()) {
 			return form(schedule);
 		}	
 		schedule.setStatus(true);
-		schedule.setTotalHours(show(schedule.getHourInitial(), schedule.getHourFinale()));
+		//schedule.setTotalHours(show(schedule.getHourInitial(), schedule.getHourFinale()));
+		
+		/*LocalTime entry = schedule.getHourInitial();
+		LocalTime out = schedule.getHourFinale();
+		Duration duration = Duration.between(entry, out);
+		
+		schedule.setTotalHours(duration.toHours()+ ":" + duration.toMinutes());*/
     	
 		String hour = schedule.getTotalHours().format(formatter);
 		String hours[] = hour.split("[.]");
@@ -94,10 +109,10 @@ public class ScheduleController {
     	}
 		scheduleService.save(schedule);
 		attributes.addFlashAttribute("mensagem", "Salvo com sucesso!");		
-		return new ModelAndView("redirect:/agendas/calendario"); 
+		return new ModelAndView("redirect:/agendamentos/calendario");
 	}
 	
-	@GetMapping("/agendas/editar/{id}")
+	/*@GetMapping("/agendamentos/editar/{id}")
 	public ModelAndView edit(@PathVariable("id") Long id) {
 		Optional<Schedule> schedule = scheduleRepository.findById(id);
 		ModelAndView mv = new ModelAndView("schedule/form");
@@ -105,9 +120,9 @@ public class ScheduleController {
 		mv.addObject("childrens", childrens);
 		mv.addObject("schedule", schedule.get());
 		return mv;
-	}
+	}*/
 	
-	@GetMapping("/agendas/remover/{id}")
+	@GetMapping("/agendamentos/remover/{id}")
 	public ModelAndView remove(@PathVariable Long id){
 		Schedule schedule = scheduleRepository.getOne(id);
 		schedule.setStatus(false);
@@ -120,20 +135,10 @@ public class ScheduleController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/agendas/list-calendar", method = RequestMethod.GET)
+	@RequestMapping(value = "/agendamentos/list-calendar", method = RequestMethod.GET)
 	public List<Schedule> fullCalendar(Schedule schedule) {
 		List<Schedule> schedules = scheduleRepository.findAll();
 		return schedules;
-	}
-	
-	@GetMapping("/agendas/calendario")
-	public ModelAndView getCalendar(Schedule schedule) {
-		ModelAndView mv = new ModelAndView("schedule/calendar");
-		List<Children> childrens = childrenRepository.findAll();
-		mv.addObject("payments", Payment.values());
-		mv.addObject("childrens", childrens);
-		mv.addObject("schedule", schedule);
-		return mv;
 	}
 	
 	private LocalTime missing(LocalTime now, LocalTime wish) {

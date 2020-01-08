@@ -25,7 +25,7 @@ $(document).ready(function() {
 	
 		/* initialize the calendar
 		-----------------------------------------------------------------*/
-		$.get("http://localhost:8081/agendas/full-calendar", function(response) {
+		$.get("http://localhost:8081/agendamentos/full-calendar", function(response) {
 		      var datas = JSON.stringify(response);
 		      var data = $.parseJSON(datas);
 		      console.log(datas);

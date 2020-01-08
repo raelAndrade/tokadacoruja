@@ -10,10 +10,18 @@
 	<div id="page-wrapper" layout:fragment="content">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-10"></div>
 				<div class="col-md-2">
 					<div class="page-header-controls">
-							<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#modal-agenda">
+						<a class="btn btn-primary" th:href="@{/agendamentos/listar}">
+							<i class="fa fa-plus-square"></i>
+							<span class="hidden-xs hidden-sm"> Listar agendamentos</span>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-8"></div>
+				<div class="col-md-2">
+					<div class="page-header-controls">
+						<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#modal-agenda">
 							<i class="fa fa-plus-square"></i>
 							<span class="hidden-xs hidden-sm"> Agendar crianças</span>
 						</a>
@@ -21,6 +29,12 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- Mensagem de sucesso -->
+		<div layout:include="/schedule/success"></div>
+			
+		<!-- Mensagem de sucesso -->
+    	<div layout:include="/schedule/error"></div>
 		
 		<div id='wrap'>
 			<div id='calendar'></div>
@@ -32,12 +46,12 @@
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Agendar criança</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Agendamento</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<form class="form-horizontal" role="form" th:action="@{/agendas/salvar}" th:object="${schedule}" method="POST">
+					<form class="form-horizontal" role="form" th:action="@{/agendamentos/salvar}" th:object="${schedule}" method="POST">
 						<div class="modal-body">
 							<div class="alert alert-danger alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
 								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
