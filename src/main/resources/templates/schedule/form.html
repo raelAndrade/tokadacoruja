@@ -10,56 +10,49 @@
 
 	<div id="page-wrapper" layout:fragment="content">
 
-		<br /><br />
+		<br />
 
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="#">Crianças</a></li>
 			<li class="breadcrumb-item active">Agendamento</li>
 		</ol>
 		
-		<div class="page-header">
-			<div class="container-fluid headerNav">
-				<div class="row">
-					<div class="col-md-2">
-						<div class="page-header-controls">
-							<a class="btn btn-primary" th:href="@{/agendamentos/calendario}">
-								<i class="fa fa-calendar"></i>
-								<span class="hidden-xs hidden-sm"> Calendário</span>
-							</a>
-						</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-2">
+					<div class="page-header-controls">
+						<a class="btn btn-primary" th:href="@{/agendamentos/calendario}">
+							<i class="fa fa-calendar"></i>
+							<span class="hidden-xs hidden-sm"> Calendário</span>
+						</a>
 					</div>
-					<div class="col-md-8"></div>
-					<div class="col-md-2">						
-						<div class="page-header-controls">
-							<a class="btn btn-primary" th:href="@{/agendamentos/listar}">
-								<i class="fa fa-plus-square"></i>
-								<span class="hidden-xs hidden-sm"> Listar agendamentos</span>
-							</a>
-						</div>
+				</div>
+				<div class="col-md-8"></div>
+				<div class="col-md-2">						
+					<div class="page-header-controls">
+						<a class="btn btn-primary" th:href="@{/agendamentos/listar}">
+							<i class="fa fa-plus-square"></i>
+							<span class="hidden-xs hidden-sm"> Listar agendamentos</span>
+						</a>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<form class="form-horizontal" role="form" th:action="@{/agendamentos/salvar}" th:object="${schedule}" method="POST">
-		
-			<!-- Mensagem de sucesso -->
-			<div layout:include="success"></div>
-			
-			<!-- Mensagem de sucesso -->
-    		<div layout:include="error"></div>
     		
 			<div class="col-md-2">
 				<div class="form-group">
 					<label>Código</label>
-					<input class="form-control" name="id" th:field="*{id}" readonly="readonly"/>
+					<input class="form-control" name="id" th:field="*{id}" readonly="readonly" />
 				</div>
 			</div>
 			<div class="col-md-12">
 				<div class="form-group">
 					<label for="children">Nome da criança</label>
-					<select th:field="*{children.id}" class="form-control ui-autocomplete-input" id="autocompleteChildren" style="display: inline;" name="children.name">
-						<option value="">-- Selecione o nome da criança --</option>
+					
+					<select id="combobox" th:field="*{children.id}" name="children.name" class="form-control">
+						<option value=""></option>
 						<option th:each="c : ${childrens}" th:value="${c.id}" th:text="${c.name}"></option>
 					</select>
 				</div>
@@ -99,5 +92,6 @@
 			</div>
 		</form>
 	</div>
+	
 </body>
 </html>
