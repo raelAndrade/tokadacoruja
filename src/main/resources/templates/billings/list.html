@@ -4,12 +4,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/layout-padrao}">
 
-<head>
-<!-- 	<!-- jQuery --> -->
-<!-- 	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script> -->
-<!-- 	<!-- Bootstrap Core JavaScript --> -->
-<!-- 	<script th:src="@{/js/bootstrap.min.js}"></script> -->
-</head>
+<head></head>
 
 <body>
 
@@ -27,11 +22,12 @@
 			
 			<label for="">Data</label>
 			<div class="input-group input-daterange" data-date-format="dd/mm/yyyy">
-				<input  type="text" class="form-control dateFormat" placeholder="dd/mm/yyyy" >
+				<input  type="text" class="form-control dateFormat" placeholder="dd/mm/yyyy" name="dateInitial">
                 <div class="input-group-addon">a</div>
-				<input  type="text" class="form-control dateFormat" placeholder="dd/mm/yyyy">
+				<input  type="text" class="form-control dateFormat" placeholder="dd/mm/yyyy" name="dateFinal">
 			</div>
 			
+<!-- 			<a th:href="@{/faturamento/{id}/(id=${s.id})/{dateInitial}/{dateFinal}}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Editar</a> -->
 			<button type="submit" class="btn btn-primary mb-2">Buscar</button>
 		</form>
 
