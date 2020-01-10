@@ -1,11 +1,20 @@
 
 $(document).ready(function() {
 	
-// Autocomplete
-//  $("#autocompletePais").combobox({
-//    	idCombo: "autocompletePais",
-//      idInput: "autocompletePaisInput"
-//  });
+	// Autocomplete
+	$("#autocompletePais").combobox({
+		idCombo: "autocompletePais",
+		idInput: "autocompletePaisInput",
+		classe: "form-control",
+		placeholder: "Digite o nome do responsável"
+	});
+	  
+	$("#autocompleteCriancas").combobox({
+		idCombo: "autocompleteCriancas",
+	    idInput: "autocompleteCriancasInput",
+	    classe: "form-control",
+	    placeholder: "Digite o nome da criança"
+	});
 	
 	// ================== Calendário ================== //
 	$('.input-group.date').datepicker({

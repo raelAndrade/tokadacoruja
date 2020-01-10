@@ -32,14 +32,6 @@
 	
 	<!-- Custom CSS -->
 	<link th:href="@{/css/startmin.css}" rel="stylesheet" type="text/css" />
-
-	<!-- jQuery-UI -->
-	<link th:href="@{/js/jquery-ui-1.11.4/jquery-ui.min.css}" rel="stylesheet" type="text/css" />
-	
-	<!-- Autocomplete Chosen-->
-<!-- 	<link th:href="@{/css/autocomplete/combobox.css}" rel="stylesheet" type="text/css" /> -->
-	
-	<!-- Custom CSS -->
     <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet" />
 	
 	<!-- Morris Charts CSS -->
@@ -47,9 +39,11 @@
 	
 	<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css" />
 	
-	
 	<link th:href="@{/css/fullcalendar.css}" rel='stylesheet' />
 	<link th:href="@{/css/fullcalendar.print.css}" rel='stylesheet' media='print' />
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/js/ui-lightness/jquery-ui-1.8.16.custom.css}" />
+	<link rel="stylesheet" th:href="@{/js/tabs-1.10.4/css/jquery.ui.all.css}" />
 	
 	<link rel="stylesheet" th:href="@{/css/style.css}"  type="text/css" />
 	
@@ -166,8 +160,11 @@
 	</div>
 	
 	<!-- jQuery -->
-	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
-	<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery-1.9.1.js}"></script>
+	
+	<script th:src="@{/js/tabs-1.10.4/js/jquery.ui.core.js}"></script>
+	<script th:src="@{/js/tabs-1.10.4/js/jquery.ui.widget.js}"></script>
+	<script th:src="@{/js/tabs-1.10.4/js/jquery.ui.tabs.js}"></script>
 
 	<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{/js/bootstrap.min.js}"></script>
@@ -178,7 +175,7 @@
 	<script th:src="@{/js/metisMenu.min.js}"></script>
 	
 	<!-- jQuery-UI -->
-    <script type="text/javascript" th:src="@{/js/jquery-ui.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-ui.js}"></script>
     
     <!-- Full Calendar -->
     <script type="text/javascript" th:src="@{/js/calendar-script.js}"></script>
@@ -198,6 +195,9 @@
 	<script type="text/javascript" th:src="@{/js/bootstrap-datepicker-1.9.0/locales/bootstrap-datepicker.pt-BR.min.js}"></script>
 	<!-- <script type="text/javascript" th:src="@{/js/bootstrap-datepicker.min.js}"></script> -->
 	
+	<!-- Combobox -->
+	<script type="text/javascript" th:src="@{/js/combo.js}"></script>
+	
 	<script th:src="@{/js/form.js}"></script>
 	
 
@@ -209,6 +209,5 @@
 	        });
 	    });
     </script>
-
 </body>
 </html>
