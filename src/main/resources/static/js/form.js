@@ -15,6 +15,14 @@ $(document).ready(function() {
 	    todayHighlight: true,
 	    
 	});
+	
+	$('.input-daterange input').datepicker({
+	    format: "dd/mm/yyyy",
+	    language: "pt-BR",
+	    clearBtn: true,
+	    todayHighlight: true,
+	    
+	});
 	// =============================================== //
 	
 	// ================== Máscara ================== //
