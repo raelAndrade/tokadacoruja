@@ -16,9 +16,13 @@
 			<li class="breadcrumb-item"><a href="#">Faturamento</a></li>
 		</ol>
 
-		<form class="form-inline" th:action="@{/faturamento}" method="post">
+		<form class="form-inline" th:action="@{/search}" method="get" th:object="${schedule}">
+		
 			<label for="inlineFormInputName2">Nome</label>
-			<input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="name">
+			<select id="autocompleteCriancas" th:field="*{schedule.id}" class="form-control" style="display: none;">
+				<option value=""></option>
+				<option th:each="s, c : ${schedules}" th:value="${s.[c.id]}" th:text="${s.[c.name]}"></option>
+			</select>
 			
 			<label for="">Data</label>
 			<div class="input-group input-daterange" data-date-format="dd/mm/yyyy">

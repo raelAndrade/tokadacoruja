@@ -1,6 +1,5 @@
 package br.com.tokadacoruja.repositories;
 
-import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,7 +22,7 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 			+ "FROM Schedule "
 			+ "WHERE date >= ':dateInitial' AND date <= ':dateFinal' "
 			+ "AND children = :id")
-	List<Schedule> buscaCriancaPorDataInicialEDataFinal(@Param("dateInitial") LocalTime dateInitial, @Param("dateFinal") String dateFinal, @Param("id") Long id);
+	List<Schedule> buscaCriancaPorDataInicialEDataFinal(@Param("dateInitial") String dateInitial, @Param("dateFinal") String dateFinal, @Param("id") Long id);
 	
 	/*@Query("SELECT t FROM Todo t WHERE " +
             "LOWER(t.title) LIKE LOWER(CONCAT('%',:searchTerm, '%')) OR " +
