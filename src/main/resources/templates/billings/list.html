@@ -5,11 +5,10 @@
 	layout:decorate="~{layout/layout-padrao}">
 
 <head>
-	<!-- jQuery -->
-	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
-	<!-- Bootstrap Core JavaScript -->
-	<script th:src="@{/js/bootstrap.min.js}"></script>
-	
+<!-- 	<!-- jQuery --> -->
+<!-- 	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script> -->
+<!-- 	<!-- Bootstrap Core JavaScript --> -->
+<!-- 	<script th:src="@{/js/bootstrap.min.js}"></script> -->
 </head>
 
 <body>
@@ -22,11 +21,25 @@
 			<li class="breadcrumb-item"><a href="#">Faturamento</a></li>
 		</ol>
 
-		<form class="form-inline">
+		<form class="form-inline" th:action="@{/faturamento}" method="post">
 			<label for="inlineFormInputName2">Nome</label>
-			<input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2">
-			<label for="inlineFormInputGroupUsername2">Data</label>
-			<input type="text" class="form-control" id="inlineFormInputGroupUsername2">
+			<input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="name">
+			
+			<label for="">Data</label>
+			<div class="input-group date" data-date-format="dd/mm/yyyy">
+				<input  type="text" class="form-control dateFormat" placeholder="dd/mm/yyyy" >
+                <div class="input-group-addon" >
+                	<span class="glyphicon glyphicon-th"></span>
+                </div>
+			</div>
+			
+			<label for=""></label>
+			<div class="input-group date" data-date-format="dd/mm/yyyy">
+				<input  type="text" class="form-control dateFormat" placeholder="dd/mm/yyyy">
+                <div class="input-group-addon" >
+                	<span class="glyphicon glyphicon-th"></span>
+                </div>
+			</div>
 			<button type="submit" class="btn btn-primary mb-2">Buscar</button>
 		</form>
 

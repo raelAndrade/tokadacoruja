@@ -1,6 +1,5 @@
 package br.com.tokadacoruja.repositories;
 
-import java.sql.Date;
 import java.time.LocalTime;
 import java.util.List;
 

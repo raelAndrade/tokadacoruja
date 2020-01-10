@@ -39,7 +39,7 @@
 			</div>
 		</div>
 
-		<form class="form-horizontal" role="form" th:action="@{/agendamentos/salvar}" th:object="${schedule}" method="POST">
+		<form class="form-horizontal" role="form" th:action="@{/agendamentos/salvar}" th:object="${schedule}" method="POST" autocomplete="off">
     		
 			<div class="col-md-2">
 				<div class="form-group">
@@ -47,6 +47,7 @@
 					<input class="form-control" name="id" th:field="*{id}" readonly="readonly" />
 				</div>
 			</div>
+			
 			<div class="col-md-12">
 				<div class="form-group">
 					<label for="children">Nome da criança</label>
@@ -57,21 +58,35 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="date" class="col-md-1">Data: </label>
-				<div class="col-md-3">
-					<input class="form-control date" id="date" type="text" th:field="*{date}" placeholder="dd/MM/yyyy" />
+			
+			<label for="date" class="col-md-1">Data: </label>
+			<div class="col-md-3">
+				<div class="input-group date" data-date-format="dd/mm/yyyy">
+					<input type="text" class="form-control dateFormat" id="date" th:field="*{date}" placeholder="dd/mm/yyyy" />
+	                <div class="input-group-addon" >
+	                	<span class="glyphicon glyphicon-th"></span>
+	                </div>
 				</div>
+			</div>
 	
-				<label for="hourInitial" class="col-md-1">Hora Início: </label>
-				<div class="col-md-3">
-					<input class="form-control time" id="hourInitial" type="text" th:field="*{hourInitial}" placeholder="HH:mm" />
-				</div>
+			<label for="hourInitial" class="col-md-1">Hora Início: </label>
+			<div class="col-md-3">
+				<div class='input-group' id='hourFinale'>
+					<input class="form-control time" id="hourInitial" type="text" th:field="*{hourInitial}" placeholder="HH:mm" name="schedule.hourInitial" />
+					<span class="input-group-addon">
+	        	        <span class="glyphicon glyphicon-time"></span>
+	        	    </span>
+              	</div>
+			</div>
 	
-				<label for="hourFinale" class="col-md-1">Hora Fim: </label>
-				<div class="col-md-3">
-					<input class="form-control time" id="hourFinale" type="text" th:field="*{hourFinale}" placeholder="HH:mm" />
-				</div>
+			<label for="hourFinale" class="col-md-1">Hora Fim: </label>
+			<div class="col-md-3">
+				<div class='form-group input-group' id='hourFinale'>
+					<input class="form-control time" id="hourFinale" type="text" th:field="*{hourFinale}" placeholder="HH:mm" name="schedule.hourFinale" />
+                   	<span class="input-group-addon">
+                       	<span class="glyphicon glyphicon-time"></span>
+                   	</span>
+               	</div>
 			</div>
 			<div class="form-group">
 				<label for="payment" class="col-md-2">Forma de Pagamento:</label>
@@ -83,7 +98,7 @@
 				</div>
 				<label for="amount" class="col-md-2">Valor:</label>
 				<div class="col-md-4">
-					<input class="form-control amount" id="amount" type="text" th:field="*{amount}" />
+					<input class="form-control amount" id="amount" type="text" name="amount" />
 				</div>
 			</div>
 			<div class="col-md-12 text-right">
@@ -92,6 +107,5 @@
 			</div>
 		</form>
 	</div>
-	
 </body>
 </html>

@@ -81,6 +81,7 @@ public class ScheduleController {
 		schedule.setTotalHours(show(schedule.getHourInitial(), schedule.getHourFinale()));
 		
 		calculeOfHours(schedule);
+
 		scheduleService.save(schedule);
 		attributes.addFlashAttribute("mensagem", "Salvo com sucesso!");		
 		return new ModelAndView("redirect:/agendamentos/calendario");

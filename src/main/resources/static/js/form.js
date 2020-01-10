@@ -7,21 +7,18 @@ $(document).ready(function() {
 //      idInput: "autocompletePaisInput"
 //  });
 	
-//	$('#dataTables-example').DataTable({
-//		responsive: true
-//    });
-	
 	// ================== Calendário ================== //
-	$('.date').datepicker({
-	    format: 'dd/MM/yyyy',
+	$('.input-group.date').datepicker({
+	    format: "dd/mm/yyyy",
 	    language: "pt-BR",
 	    clearBtn: true,
 	    todayHighlight: true,
+	    
 	});
 	// =============================================== //
 	
 	// ================== Máscara ================== //
-	$("#date").mask('99/99/9999');
+	$(".dateFormat").mask('99/99/9999');
 	
     //$(".telephone").mask('(00) 0000-0000?9');
     $('.telephone').mask('(00) 0000-00009');
@@ -32,7 +29,7 @@ $(document).ready(function() {
 			$(this).mask('(00) 0000-00009');
 		}
     });
-	
+    
 	$(".time").mask('00:00');
 	
 	$(".cpf").mask('000.000.000-00', { reverse: true });
