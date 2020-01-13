@@ -1,11 +1,11 @@
 package br.com.tokadacoruja.resources;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +15,7 @@ import br.com.tokadacoruja.domain.Children;
 import br.com.tokadacoruja.domain.Schedule;
 import br.com.tokadacoruja.repositories.ChildrenRepository;
 import br.com.tokadacoruja.repositories.ScheduleRepository;
+import br.com.tokadacoruja.services.BillingService;
 
 @Controller
 public class BillingController {
@@ -23,17 +24,17 @@ public class BillingController {
 	@Autowired
 	private ScheduleRepository scheduleRepository;
 	
-	@SuppressWarnings("unused")
 	@Autowired
 	private ChildrenRepository childrenRepository;
+	
+	@Autowired
+	private BillingService billingService;
 	
 	@GetMapping("/faturamento")
 	public ModelAndView form(Schedule schedule) {
 		ModelAndView mv = new ModelAndView("billings/list");
-		
-		//Schedule schedule = (Schedule) scheduleRepository.buscaCriancaPorDataInicialEDataFinal(dateInitial, dateFinal, id);
-		//System.out.println("Total: " + schedule);
-		
+		List<Children> childrens = childrenRepository.findAll();
+		mv.addObject("childrens", childrens);
 		return mv;
 	}
 	
@@ -45,12 +46,35 @@ public class BillingController {
 		return mv;
 	}*/
 	
-	@RequestMapping(value="/search")
-	public String Search(Schedule schedule, BindingResult result, @RequestParam("id") Long id, @RequestParam("dateInitial") String dateInitial, @RequestParam("dateFinal") String dateFinal) {
-		
-		System.out.println(scheduleRepository.buscaCriancaPorDataInicialEDataFinal(dateInitial, dateFinal, id));
-		
-	    return "search";
+//	@RequestMapping(value="/search", method = RequestMethod.GET)
+//	public String Search(Schedule schedule, @RequestParam("id") Long id, @RequestParam("dateInitial") String dateInitial) {
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-mm-yyyy");
+//		LocalTime lt = schedule.getHourInitial();
+//		String ltString = lt.format(formatter);
+//		System.out.println(ltString);
+//		//System.out.println(scheduleRepository.buscaCriancaPorDataInicialEDataFinal(ltString, schedule.getHourFinale(), schedule.getId()));
+//		
+//	    return "search";
+//	}
+	
+//	@RequestMapping("{id}/billings")
+//    public ModelAndView buscaFaturamentoCriancaPorData(@PathVariable("id") Long childrenId,
+//              @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+//              @RequestParam("startDate") LocalTime startDate) {
+//		ModelAndView mv = new ModelAndView();
+//        mv.addObject("faturamento", scheduleRepository.buscaCriancaPorData(startDate, childrenId));
+//        System.out.println("TESTE: " + scheduleRepository.buscaCriancaPorData(startDate, childrenId));
+//        return mv;
+//    }
+	
+	@RequestMapping("/faturamento/pesquisar")
+	public ModelAndView buscaSomaFaturamentoCriancaPorId(@RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-mm-dd") Date startDate, @RequestParam("id") Children id, Schedule s ) {
+		List<Schedule> schedule = billingService.search(s.getDate(), s.getChildren());
+		ModelAndView mv = new ModelAndView("billings/list");
+		mv.addObject("schedules", schedule);
+		return mv;
 	}
+	
+	
 	
 }
