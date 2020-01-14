@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.tokadacoruja.domain.Children;
 import br.com.tokadacoruja.domain.Parent;
-import br.com.tokadacoruja.dto.request.ChildrenDtoRequest;
+import br.com.tokadacoruja.dto.ChildrenDto;
 import br.com.tokadacoruja.repositories.ChildrenRepository;
 import br.com.tokadacoruja.repositories.ParentRepository;
 import br.com.tokadacoruja.services.ChildrenService;
@@ -36,11 +36,11 @@ public class ChildrenController {
 	private ParentRepository parentRepository;
 	
 	@GetMapping("/criancas")
-	public ModelAndView form(ChildrenDtoRequest children) {
+	public ModelAndView form(ChildrenDto children) {
 		ModelAndView mv = new ModelAndView("registration/childrens/form");
 		List<Parent> parents = parentRepository.findAll();
 		mv.addObject("parents", parents);
-		mv.addObject("children", ChildrenDtoRequest.from(children));
+		mv.addObject("children", ChildrenDto.from(children));
 		return mv;
 	}
 	
@@ -52,9 +52,9 @@ public class ChildrenController {
 	}
 	
 	@PostMapping("/criancas/salvar")
-	public ModelAndView save(@Valid ChildrenDtoRequest childrenDtoRequest, BindingResult result, Model model, RedirectAttributes attributes) throws ParseException {
+	public ModelAndView save(@Valid ChildrenDto childrenDtoRequest, BindingResult result, Model model, RedirectAttributes attributes) throws ParseException {
 		childrenDtoRequest.setStatus(true);
-		Children children = ChildrenDtoRequest.from(childrenDtoRequest);
+		Children children = ChildrenDto.from(childrenDtoRequest);
 		if(result.hasErrors()) {
 			return form(childrenDtoRequest);
 		}
@@ -74,8 +74,8 @@ public class ChildrenController {
 	}
 	
 	@GetMapping("/criancas/remover/{id}")
-	public ModelAndView remove(@PathVariable Long id, ChildrenDtoRequest childrenDtoRequest){
-		Children children = ChildrenDtoRequest.from(childrenDtoRequest);
+	public ModelAndView remove(@PathVariable Long id, ChildrenDto childrenDtoRequest){
+		Children children = ChildrenDto.from(childrenDtoRequest);
 		children = childrenRepository.getOne(id);
 		children.setStatus(false);
 		childrenRepository.save(children);

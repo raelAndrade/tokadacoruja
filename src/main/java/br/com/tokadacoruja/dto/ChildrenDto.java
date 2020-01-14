@@ -1,4 +1,4 @@
-package br.com.tokadacoruja.dto.request;
+package br.com.tokadacoruja.dto;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,7 +9,7 @@ import javax.validation.constraints.Past;
 import br.com.tokadacoruja.domain.Children;
 import br.com.tokadacoruja.domain.Parent;
 
-public class ChildrenDtoRequest implements Serializable {
+public class ChildrenDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -85,7 +85,7 @@ public class ChildrenDtoRequest implements Serializable {
 		else this.status = false;
 	}
 
-	public static Children from(final ChildrenDtoRequest request) {
+	public static Children from(final ChildrenDto request) {
 		return Children.of(
 				request.getName(),
 				request.getDateBirth(), 
