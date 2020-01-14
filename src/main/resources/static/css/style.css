@@ -187,6 +187,15 @@ a:focus, a:hover {
 	text-align: center;
 }
 
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #f8f8f8;
+  color: #79a020;
+  text-align: center;
+}
 
 
 

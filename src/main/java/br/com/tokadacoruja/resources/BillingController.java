@@ -32,9 +32,10 @@ public class BillingController {
 	
 	@GetMapping("/faturamento")
 	public ModelAndView form(Schedule schedule) {
-		ModelAndView mv = new ModelAndView("billings/list");
+		ModelAndView mv = new ModelAndView("billings/billing");
 		List<Children> childrens = childrenRepository.findAll();
 		mv.addObject("childrens", childrens);
+		mv.addObject("schedules", scheduleRepository.findAll());
 		return mv;
 	}
 	
