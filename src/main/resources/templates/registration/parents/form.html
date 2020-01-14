@@ -30,21 +30,8 @@
 		</div>
 
 		<form role="form" th:action="@{/pais/salvar}" method="POST" th:object="${parent}">
-			<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-
-				<div th:each="erro : ${#fields.detailedErrors()}">
-					<i class="fa fa-exclamation-circle"></i>
-					<span th:text="${erro.message}">Mensagem erro.</span>
-				</div>
-			</div>
-							
-			<div class="alert  alert-success" th:if="${!#strings.isEmpty(mensagem)}">
-				<i class="fa fa-check-circle"></i>
-				<span th:text="${mensagem}">Mensagem sucesso!</span>
-			</div>
+			
+			<th:block th:include="fragments/messageErrorValidation"></th:block>
 						
 			<div class="col-md-2">
 				<div class="form-group">
@@ -55,43 +42,43 @@
 			<div class="col-md-12">
 				<div class="form-group">
 					<label>Nome do Responsável</label>
-					<input class="form-control" placeholder="Digite o nome do Responsável" type="text" name="name" th:field="*{name}">
+					<input class="form-control" placeholder="Digite o nome do Responsável" type="text" th:field="*{name}">
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label>CPF</label>
-					<input class="form-control cpf" id="cpf" placeholder="Digite o CPF" type="text" name="cpf" th:field="*{cpf}">
+					<input class="form-control cpf" id="cpf" placeholder="Digite o CPF" type="text" th:field="*{cpf}">
 				</div>
 			</div>
 			<div class="col-md-8">
 				<div class="form-group">
 					<label>Endereço</label>
-					<input class="form-control" placeholder="Rua Exemplo, 123" type="text" name="address" th:field="*{address}">
+					<input class="form-control" placeholder="Rua Exemplo, 123" type="text" th:field="*{address}">
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="form-group">
 					<label>Cidade</label>
-					<input class="form-control" placeholder="Digite a cidade" type="text" name="city" th:field="*{city}">
+					<input class="form-control" placeholder="Digite a cidade" type="text" th:field="*{city}">
 				</div>
 			</div>
 			<div class="col-md-12">
 				<div class="form-group">
 					<label>E-mail</label>
-					<input class="form-control" placeholder="email@exemple.com" type="email" name="email" th:field="*{email}">
+					<input class="form-control" placeholder="email@exemple.com" type="email" th:field="*{email}">
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label>Telefone</label>
-					<input class="form-control telephone" id="telephone" placeholder="Digite o telefone" type="text" name="telephones" th:field="*{telephones}">
+					<input class="form-control telephone" id="telephone" placeholder="Digite o telefone" type="text" th:field="*{telephones}">
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label>Telefone de Emergência</label>
-					<input class="form-control telephone" id="telephoneContact" placeholder="Digite o telefone de emergência" type="text" name="telephonesContact" th:field="*{telephonesContact}">
+					<input class="form-control telephone" id="telephoneContact" placeholder="Digite o telefone de emergência" type="text" th:field="*{telephonesContact}">
 				</div>
 			</div>
 			<div class="col-md-12">
@@ -108,7 +95,7 @@
 			<div class="col-md-12">
 				<div class="form-group">
 					<label>Nome do responsável</label>
-					<input class="form-control" placeholder="Digite o nome do responsável" id="responsible" type="text" name="responsible" th:field="*{responsible}" disabled="disabled">
+					<input class="form-control" placeholder="Digite o nome do responsável" id="responsible" type="text" th:field="*{responsible}" disabled="disabled">
 				</div>
 			</div>
 

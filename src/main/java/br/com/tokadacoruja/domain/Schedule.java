@@ -17,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
@@ -42,6 +44,7 @@ public class Schedule implements Serializable {
 	@JoinColumn(name = "sch_children_id", referencedColumnName = "chi_id")
 	private Children children;
 	
+	@PastOrPresent(message = "Data é obrigatório!")
 	@Column(name = "sch_date")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -53,10 +56,12 @@ public class Schedule implements Serializable {
 	@Column(name = "sch_hour_finale")
 	private String hourFinale;
 	
+	@NotNull(message = "Tipo de pagamento é obrigatório!")
 	@Column(name = "sch_payment")
 	@Enumerated(EnumType.STRING)
 	private Payment payment;
 	
+	@NotNull(message = "Valor da hora é obrigatório!")
 	@Column(name = "sch_amount")
 	@NumberFormat(pattern = "#,##0.00")
 	private Double amount;

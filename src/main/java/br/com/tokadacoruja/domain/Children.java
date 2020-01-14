@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "children")
 @JsonIgnoreProperties
-public class Children implements Serializable {
+public final class Children implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -34,9 +34,11 @@ public class Children implements Serializable {
 	@Column(name = "chi_id")
 	private Long id;
 	
+	//@NotBlank(message = "Nome é obrigatório!")
 	@Column(name = "chi_name")
 	private String name;
 	
+	//@Past(message = "Data de nascimento é obrigatório!")
 	@Column(name = "chi_date_birth")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="dd/MM/yyyy")
@@ -63,6 +65,7 @@ public class Children implements Serializable {
 	@Column(name = "chi_observation")
 	private String observation;
 	
+	//@NotBlank(message = "Permitir uso de imagem é obrigatório!")
 	@Column(name = "chi_publicity")
 	private String publicity;
 	
@@ -80,13 +83,10 @@ public class Children implements Serializable {
 		this.create = LocalDateTime.now();
 	}
 
-	public Children(final Long id, final String name, final Date dateBirth, final Boolean status, final Boolean allergy, final String allergyDescription,
-			final String food, final Boolean foodRestriction, final String foodRestrictionDescription, final String observation,
-			final String publicity, final Parent parent) {
-		this.id = id;
+	public Children(final String name, final Date dateBirth, final Boolean allergy, final String allergyDescription, final String food, final Boolean foodRestriction, 
+			final String foodRestrictionDescription, final String observation, final String publicity, final Parent parent, final Boolean status) {
 		this.name = name;
 		this.dateBirth = dateBirth;
-		this.status = status;
 		this.allergy = allergy;
 		this.allergyDescription = allergyDescription;
 		this.food = food;
@@ -95,37 +95,31 @@ public class Children implements Serializable {
 		this.observation = observation;
 		this.publicity = publicity;
 		this.parent = parent;
+		this.status = status;
 		this.create = LocalDateTime.now();
+	}
+	
+	public static Children of(final String name, final Date dateBirth, final Boolean allergy, final String allergyDescription, final String food, final Boolean foodRestriction, 
+			final String foodRestrictionDescription, final String observation, final String publicity, final Parent parent, final Boolean status) {
+				return new Children(name, dateBirth, allergy, allergyDescription, food, foodRestriction, foodRestrictionDescription, observation, publicity, parent, status);
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	
 	public Date getDateBirth() {
 		return dateBirth;
 	}
 	
-	public void setDateBirth(Date dateBirth) {
-		this.dateBirth = dateBirth;
-	}
-
 	public Boolean getStatus() {
 		return status;
 	}
-
+	
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
@@ -134,74 +128,38 @@ public class Children implements Serializable {
 		return allergy;
 	}
 	
-	public void setAllergy(Boolean allergy) {
-		this.allergy = allergy;
-	}
-
 	public String getAllergyDescription() {
 		return allergyDescription;
-	}
-
-	public void setAllergyDescription(String allergyDescription) {
-		this.allergyDescription = allergyDescription;
 	}
 
 	public String getFood() {
 		return food;
 	}
 
-	public void setFood(String food) {
-		this.food = food;
-	}
-
 	public Boolean getFoodRestriction() {
 		return foodRestriction;
 	}
 	
-	public void setFoodRestriction(Boolean foodRestriction) {
-		this.foodRestriction = foodRestriction;
-	}
-
 	public String getFoodRestrictionDescription() {
 		return foodRestrictionDescription;
-	}
-
-	public void setFoodRestrictionDescription(String foodRestrictionDescription) {
-		this.foodRestrictionDescription = foodRestrictionDescription;
 	}
 
 	public String getObservation() {
 		return observation;
 	}
 
-	public void setObservation(String observation) {
-		this.observation = observation;
-	}
-
 	public String getPublicity() {
 		return publicity;
-	}
-
-	public void setPublicity(String publicity) {
-		this.publicity = publicity;
 	}
 
 	public LocalDateTime getCreate() {
 		return create;
 	}
 
-	public void setCreate(LocalDateTime create) {
-		this.create = create;
-	}
-
 	public Parent getParent() {
 		return parent;
 	}
 
-	public void setParent(Parent parent) {
-		this.parent = parent;
-	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

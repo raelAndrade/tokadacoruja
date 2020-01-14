@@ -14,8 +14,8 @@ public class ChildrenService {
 	private ChildrenRepository childrenRepository;
 	
 	@Transactional
-	public void save(Children children) {
-		childrenRepository.save(children);
+	public Children save(Children children) {
+		return childrenRepository.save(children);
 	}
 	
 }

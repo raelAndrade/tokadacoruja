@@ -30,21 +30,9 @@
 		</div>
 		
 		<form role="form" th:action="@{/criancas/salvar}" th:object="${children}" method="POST">
-			<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<div th:each="erro : ${#fields.detailedErrors()}">
-					<i class="fa fa-exclamation-circle"></i>
-					<span th:text="${erro.message}">Mensagem erro.</span>
-				</div>
-			</div>
-
-			<div class="alert  alert-success" th:if="${!#strings.isEmpty(mensagem)}" >
-				<i class="fa fa-check-circle"></i>
-				<span th:text="${mensagem}">Mensagem sucesso!</span>
-			</div>
 			
+			<th:block th:include="fragments/messageErrorValidation"></th:block>
+
 			<div class="col-md-2">
 				<div class="form-group">
 					<label>Código</label>
@@ -134,10 +122,8 @@
 	        	<button type="submit" class="btn btn-primary">Salvar</button>
     	        <button type="reset" class="btn btn-danger">Cancelar</button>
             </div>
-            
-            <div class="clearfix"></div>
-            
 		</form>
+        <br /><br />
 		<div class="clearfix"></div>
 		<div th:replace="layout/footer::footer"></div>
 	</div>

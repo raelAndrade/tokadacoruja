@@ -17,6 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -32,15 +34,18 @@ public class Parent implements Serializable{
 	@Column(name = "par_id")
 	private Long id;
 	
+	@NotBlank(message = "Nome é obrigatório!")
 	@Column(name = "par_name")
 	private String name;
 	
 	@Column(name = "par_cpf")
 	private String cpf;
 	
+	@NotBlank(message = "Endereço é obrigatório!")
 	@Column(name = "par_address")
 	private String address;
 	
+	@NotBlank(message = "Cidade é obrigatório!")
 	@Column(name = "par_city")
 	private String city;
 	
@@ -50,12 +55,14 @@ public class Parent implements Serializable{
 	@Column(name = "par_status_responsible")
 	private Boolean statusResponsible;
 	
+	@NotBlank(message = "Responsável é obrigatório!")
 	@Column(name = "par_responsible")
 	private String responsible;
 	
 	@Column(name = "par_status")
 	private Boolean status;
 	
+	@NotEmpty(message = "Telefone é obrigatório!")
 	@ElementCollection
 	@CollectionTable(name = "par_telephone")
 	private Set<String> telephones = new HashSet<>();

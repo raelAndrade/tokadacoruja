@@ -6,11 +6,12 @@ import java.time.format.ResolverStyle;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,7 +47,7 @@ public class ScheduleController {
 	private ScheduleService scheduleService;
 	
 	@GetMapping("/agendamentos/calendario")
-	public ModelAndView form(Schedule schedule) {
+	public ModelAndView getCalendar(Schedule schedule) {
 		ModelAndView mv = new ModelAndView("schedule/calendar");
 		List<Children> childrens = childrenRepository.findAll();
 		mv.addObject("payments", Payment.values());
@@ -56,7 +57,7 @@ public class ScheduleController {
 	}
 	
 	@GetMapping("/agendamentos/agendar")
-	public ModelAndView getCalendar(Schedule schedule) {
+	public ModelAndView form(Schedule schedule) {
 		ModelAndView mv = new ModelAndView("schedule/form");
 		List<Children> childrens = childrenRepository.findAll();
 		mv.addObject("payments", Payment.values());
@@ -73,8 +74,8 @@ public class ScheduleController {
 	}
 	
 	@PostMapping("/agendamentos/salvar")
-	public ModelAndView save(@Validated Schedule schedule, BindingResult result, Errors errors, RedirectAttributes attributes) {
-		if(errors.hasErrors()) {
+	public ModelAndView save(@Valid Schedule schedule, BindingResult result, Model model, RedirectAttributes attributes) {
+		if(result.hasErrors()) {
 			return form(schedule);
 		}	
 		schedule.setStatus(true);
