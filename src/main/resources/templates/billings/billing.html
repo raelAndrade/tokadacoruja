@@ -20,28 +20,45 @@
 		<br />
 
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="#">Faturamento</a></li>
+			<li class="breadcrumb-item"><a href="#">Fechamento</a></li>
 		</ol>
+		
+		<br />
 
-		<form class="form-inline" th:action="@{/pesquisar}" method="get" th:object="${schedule}">
+		<form class="form-inline" th:action="@{/buscar}" method="get" th:object="${schedule}">
 			<div class="row">
-				<div class="col-md-6">
-					<label for="inlineFormInputName2">Nome</label>
+				<div class="col-md-2">
+					<label for="date1">Data Inicial: </label>
+					<div class="input-group date" data-date-format="dd/mm/yyyy">
+						<input type="text" class="form-control dateFormat" id="date1" placeholder="dd/mm/yyyy" />
+		                <div class="input-group-addon" >
+		                	<span class="glyphicon glyphicon-th"></span>
+		                </div>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<label for="date2">Data final: </label>
+					<div class="input-group date" data-date-format="dd/mm/yyyy">
+						<input type="text" class="form-control dateFormat" id="date2" placeholder="dd/mm/yyyy" />
+		                <div class="input-group-addon" >
+		                	<span class="glyphicon glyphicon-th"></span>
+		                </div>
+					</div>
+				</div>
+				<div class="col-md-7">
+					<label for="inlineFormInputName2">Filtrar por nome </label> <br />
 					<select id="autocompleteCriancas" th:field="*{children.id}" class="form-control" style="display: none;">
 						<option value=""></option>
 						<option th:each="c : ${childrens}" th:value="${c.id}" th:text="${c.name}"></option>
 					</select>
 				</div>
-				<div class="col-md-6">
-					<label for="date">Data: </label>
-					<div class="input-group date" data-date-format="dd/mm/yyyy">
-						<input type="text" class="form-control dateFormat" id="date" placeholder="dd/mm/yyyy" />
-		                <div class="input-group-addon" >
-		                	<span class="glyphicon glyphicon-th"></span>
-		                </div>
-					</div>
-					<button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
-				</div>
+				<br />
+				<button type="submit" class="btn btn-primary mb-2" aria-label="Alinhar na esquerda">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
+				</button>
+				
+				<div class="clearfix"></div>
+				
 			</div>
 		</form>
 
@@ -56,23 +73,20 @@
 							<thead class="thead-light">
 								<tr>
 									<th>Nome</th>
-									<th>Hora início</th>
-									<th>Hora Término</th>
 									<th>Total de Horas</th>
-									<th>Data</th>
+									<th>Valor total</th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr class="odd gradeX" th:each="s : ${schedules}">
 									<td th:text="${s.children.name}">Nome da criança</td>
-									<td th:text="${s.hourInitial}">Hora inicial</td>
-									<td th:text="${s.hourFinale}">Hora final</td>
-									<td th:text="${s.totalHours}">Hora final</td>
-									<td th:text="${#dates.format(s.date, 'dd/MM/yyyy')}">Data</td>
+									<td th:text="${s.totalHours}">Total de Horas</td>
+									<td th:text="${s.totalHours}">Valor Total</td>
+									<!-- <td th:text="${#dates.format(s.date, 'dd/MM/yyyy')}">Data</td> -->
 									<td>
-										<span class="label label-success">Fechado</span>
-										<span class="label label-danger">Aberto</span>
+										<span class="label label-success">Finalizado</span>
+										<span class="label label-danger">Pendente</span>
 									</td>
 								</tr>
 <!-- 								<tr th:if="${#lists.isEmpty(schedules)}"> -->
