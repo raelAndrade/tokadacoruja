@@ -10,7 +10,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,10 +40,10 @@ public class ScheduleController {
 	private ScheduleRepository scheduleRepository;
 	
 	@Autowired
-	private ChildrenRepository childrenRepository;
+	private ScheduleService scheduleService; 
 	
 	@Autowired
-	private ScheduleService scheduleService;
+	private ChildrenRepository childrenRepository;
 	
 	@GetMapping("/agendamentos/calendario")
 	public ModelAndView getCalendar(Schedule schedule) {
@@ -74,15 +73,14 @@ public class ScheduleController {
 	}
 	
 	@PostMapping("/agendamentos/salvar")
-	public ModelAndView save(@Valid Schedule schedule, BindingResult result, Model model, RedirectAttributes attributes) {
+	public ModelAndView save(@Valid Schedule schedule, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
 			return form(schedule);
 		}	
 		schedule.setStatus(true);
 		schedule.setTotalHours(show(schedule.getHourInitial(), schedule.getHourFinale()));
-		
+    			
 		calculeOfHours(schedule);
-
 		scheduleService.save(schedule);
 		attributes.addFlashAttribute("mensagem", "Salvo com sucesso!");		
 		return new ModelAndView("redirect:/agendamentos/calendario");

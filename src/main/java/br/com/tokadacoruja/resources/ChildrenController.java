@@ -8,7 +8,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.tokadacoruja.domain.Children;
 import br.com.tokadacoruja.domain.Parent;
-import br.com.tokadacoruja.dto.ChildrenDto;
 import br.com.tokadacoruja.repositories.ChildrenRepository;
 import br.com.tokadacoruja.repositories.ParentRepository;
 import br.com.tokadacoruja.services.ChildrenService;
@@ -36,11 +34,11 @@ public class ChildrenController {
 	private ParentRepository parentRepository;
 	
 	@GetMapping("/criancas")
-	public ModelAndView form(ChildrenDto children) {
+	public ModelAndView form(Children children) {
 		ModelAndView mv = new ModelAndView("registration/childrens/form");
 		List<Parent> parents = parentRepository.findAll();
 		mv.addObject("parents", parents);
-		mv.addObject("children", ChildrenDto.from(children));
+		mv.addObject("children", children);
 		return mv;
 	}
 	
@@ -52,11 +50,10 @@ public class ChildrenController {
 	}
 	
 	@PostMapping("/criancas/salvar")
-	public ModelAndView save(@Valid ChildrenDto childrenDtoRequest, BindingResult result, Model model, RedirectAttributes attributes) throws ParseException {
-		childrenDtoRequest.setStatus(true);
-		Children children = ChildrenDto.from(childrenDtoRequest);
+	public ModelAndView save(@Valid Children children, BindingResult result, RedirectAttributes attributes) throws ParseException {
+		children.setStatus(true);
 		if(result.hasErrors()) {
-			return form(childrenDtoRequest);
+			return form(children);
 		}
 		childrenService.save(children);
 		attributes.addFlashAttribute("mensagem", "Salvo com sucesso!");
@@ -74,8 +71,8 @@ public class ChildrenController {
 	}
 	
 	@GetMapping("/criancas/remover/{id}")
-	public ModelAndView remove(@PathVariable Long id, ChildrenDto childrenDtoRequest){
-		Children children = ChildrenDto.from(childrenDtoRequest);
+	public ModelAndView remove(@PathVariable Long id){
+		Children children = childrenRepository.getOne(id);
 		children = childrenRepository.getOne(id);
 		children.setStatus(false);
 		childrenRepository.save(children);

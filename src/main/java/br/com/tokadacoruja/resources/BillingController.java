@@ -68,13 +68,13 @@ public class BillingController {
 //        return mv;
 //    }
 	
-	@RequestMapping("/faturamento/pesquisar")
-	public ModelAndView buscaSomaFaturamentoCriancaPorId(@RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-mm-dd") Date startDate, @RequestParam("id") Children id, Schedule s ) {
-		List<Schedule> schedule = billingService.search(s.getDate(), s.getChildren());
-		ModelAndView mv = new ModelAndView("billings/list");
-		mv.addObject("schedules", schedule);
-		return mv;
-	}
+//	@RequestMapping("/faturamento/pesquisar")
+//	public ModelAndView buscaSomaFaturamentoCriancaPorId(@RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-mm-dd") Date startDate, @RequestParam("id") Children id, Schedule s ) {
+//		List<Schedule> schedule = billingService.search(s.getDate(), s.getChildren());
+//		ModelAndView mv = new ModelAndView("billings/list");
+//		mv.addObject("schedules", schedule);
+//		return mv;
+//	}
 	
 	
 	
