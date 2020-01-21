@@ -28,11 +28,11 @@ public class BillingController {
 	private BillingService billingService;
 	
 	@GetMapping("/faturamento")
-	public ModelAndView form(Schedule schedule) throws ParseException {
+	public ModelAndView form(Schedule schedule) {
 		ModelAndView mv = new ModelAndView("billings/billing");
 		List<Children> childrens = childrenRepository.findAll();
 		mv.addObject("childrens", childrens);
-		mv.addObject("schedules", scheduleRepository.findAll());
+		//mv.addObject("schedules", scheduleRepository.findAll());
 		return mv;
 	}
 	

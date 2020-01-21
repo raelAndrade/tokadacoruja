@@ -37,8 +37,7 @@
 	
 	<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css" />
 	
-	<link th:href="@{/css/fullcalendar.css}" rel='stylesheet' />
-	<link th:href="@{/css/fullcalendar.print.css}" rel='stylesheet' media='print' />
+	<link th:href="@{/css/calendar/fullcalendar.min.css}" rel="stylesheet" />
 	
 	<link type="text/css" th:href="@{/js/bootstrap-datepicker-1.9.0/css/bootstrap-datepicker.min.css}" />
 	
@@ -174,9 +173,10 @@
     <script type="text/javascript" th:src="@{/js/jquery-ui.js}"></script>
     
     <!-- Full Calendar -->
-    <script type="text/javascript" th:src="@{/js/calendar-script.js}"></script>
-    <script type="text/javascript" th:src="@{/js/fullcalendar.js}"></script>
-    <script type="text/javascript" th:src="@{/js/calendar.js}"></script>
+    <script th:src="@{/js/calendar/moment.min.js}"></script>
+	<script th:src="@{/js/calendar/fullcalendar.min.js}"></script>
+	<script th:src="@{/js/calendar/lang-all.js}"></script>
+	<script th:src="@{/js/calendar/agenda.js}"></script>
     
     <!-- DataTables JavaScript -->
     <script th:src="@{/js/dataTables/jquery.dataTables.min.js}"></script>
@@ -189,7 +189,6 @@
 	<!-- Datepicker -->
 	<script type="text/javascript" th:src="@{/js/bootstrap-datepicker-1.9.0/js/bootstrap-datepicker.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/bootstrap-datepicker-1.9.0/locales/bootstrap-datepicker.pt-BR.min.js}"></script>
-	<!-- <script type="text/javascript" th:src="@{/js/bootstrap-datepicker.min.js}"></script> -->
 	
 	<!-- Combobox -->
 	<script type="text/javascript" th:src="@{/js/combo.js}"></script>
