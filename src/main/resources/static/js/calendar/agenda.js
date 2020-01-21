@@ -36,7 +36,7 @@ $(document).ready(function() {
 			    today: 'Hoje',
 			    month: 'Mês',
 			    week: 'Semana',
-			    day: 'Dia'
+			    day: 'Dia',
 			},
 			events:
 				schedule
