@@ -43,7 +43,7 @@ public class BillingController {
 	
 	@GetMapping(value="/buscar")
 	public ModelAndView Search(
-			@RequestParam(value = "id", required = false) Long id, 
+			@RequestParam(value = "id") Long id, 
 			@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam(value = "dateInitial") Date dateInitial, 
 			@RequestParam(value = "dateFinal") String dateFinal, 
 			HttpServletRequest request, 
