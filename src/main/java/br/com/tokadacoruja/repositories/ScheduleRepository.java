@@ -1,6 +1,6 @@
 package br.com.tokadacoruja.repositories;
 
-
+import java.math.BigDecimal;
 import java.sql.Date;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,12 +15,11 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 
 	// SELECT sum(s.sch_amount) as total FROM SCHEDULE s where s.sch_children_id=7 and s.sch_date between '2020-01-01' and '2020-01-31';
 	// SELECT c.chi_name, s.sch_total_hours, sum(s.sch_amount) as total FROM SCHEDULE s, CHILDREN c where s.sch_children_id=7 and s.sch_date between '2020-01-01' and '2020-01-31' group by c.chi_name;
-	@Query(value = 
-			"SELECT SUM(s.amount) AS total "
-			+ "FROM Schedule s "
-			+ "WHERE s.children.id=:id "
-			+ "AND s.date BETWEEN ':dateInitial' AND ':dateFinal'")
-	Schedule somaFaturamento(@Param("id") Long id, @Param("dateInitial") Date date, @Param("dateFinal") String dateFinal);
+	@Query(value = "select sum(s.amount) as total "
+			+ "from Schedule s "
+			+ "where s.children.id=:id "
+			+ "and s.date between ':dateInitial' and ':dateFinal'", nativeQuery = true)
+	BigDecimal somaFaturamento(@Param("id") Long id, @Param("dateInitial") Date date, @Param("dateFinal") String dateFinal);
 	
 	/*@Query("SELECT hourInitial, hourFinale, totalHours, payment "
 			+ "FROM Schedule "

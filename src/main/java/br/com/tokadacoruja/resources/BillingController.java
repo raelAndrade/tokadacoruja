@@ -1,11 +1,16 @@
 package br.com.tokadacoruja.resources;
 
-import java.text.ParseException;
+import java.sql.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.tokadacoruja.domain.Children;
@@ -34,6 +39,20 @@ public class BillingController {
 		mv.addObject("childrens", childrens);
 		//mv.addObject("schedules", scheduleRepository.findAll());
 		return mv;
+	}
+	
+	@GetMapping(value="/buscar")
+	public ModelAndView Search(
+			@RequestParam(value = "id", required = false) Long id, 
+			@RequestParam(value = "dateInitial") Date dateInitial, 
+			@RequestParam(value = "dateFinal") String dateFinal, 
+			HttpServletRequest request, 
+			HttpServletResponse response) {
+	    ModelAndView mv = new ModelAndView("billings/billing");
+	    Children children = childrenRepository.getOne(id);
+	    mv.addObject("searchResult", scheduleRepository.somaFaturamento(id, dateInitial, dateFinal));      
+
+	    return mv;
 	}
 	
 	/*@PostMapping("/faturamento/{id}/{dateInitial}/{dateFinal}")
