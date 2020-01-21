@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -44,12 +44,15 @@ public class BillingController {
 	@GetMapping(value="/buscar")
 	public ModelAndView Search(
 			@RequestParam(value = "id", required = false) Long id, 
-			@RequestParam(value = "dateInitial") Date dateInitial, 
+			@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam(value = "dateInitial") Date dateInitial, 
 			@RequestParam(value = "dateFinal") String dateFinal, 
 			HttpServletRequest request, 
 			HttpServletResponse response) {
 	    ModelAndView mv = new ModelAndView("billings/billing");
 	    Children children = childrenRepository.getOne(id);
+	    
+	    System.out.println("ID: " + children);
+	    
 	    mv.addObject("searchResult", scheduleRepository.somaFaturamento(id, dateInitial, dateFinal));      
 
 	    return mv;
