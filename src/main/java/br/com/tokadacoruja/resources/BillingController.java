@@ -1,5 +1,6 @@
 package br.com.tokadacoruja.resources;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class BillingController {
 	private BillingService billingService;
 	
 	@GetMapping("/faturamento")
-	public ModelAndView form(Schedule schedule) {
+	public ModelAndView form(Schedule schedule) throws ParseException {
 		ModelAndView mv = new ModelAndView("billings/billing");
 		List<Children> childrens = childrenRepository.findAll();
 		mv.addObject("childrens", childrens);
