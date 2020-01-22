@@ -25,7 +25,7 @@
 		
 		<br />
 
-		<form class="form-inline" th:action="@{/buscar}" method="get" th:object="${schedule}">
+		<form class="form-inline" th:action="@{/pesquisar}" method="get" th:object="${children}">
 			<div class="row">
 				<div class="col-md-2">
 					<label for="date1">Data Inicial: </label>
@@ -47,8 +47,8 @@
 				</div>
 				<div class="col-md-7">
 					<label for="inlineFormInputName2">Filtrar por nome </label> <br />
-					<select id="autocompleteCriancas" th:field="*{children.id}" class="form-control" style="display: none;">
-						<option value=""></option>
+					<select id="autocompleteCriancas" class="form-control" style="display: none;" name="id">
+						<option value="">-- Selecione o nome da criança --</option>
 						<option th:each="c : ${childrens}" th:value="${c.id}" th:text="${c.name}"></option>
 					</select>
 				</div>

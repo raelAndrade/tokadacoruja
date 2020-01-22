@@ -33,15 +33,16 @@ public class BillingController {
 	private BillingService billingService;
 	
 	@GetMapping("/faturamento")
-	public ModelAndView form(Schedule schedule) {
+	public ModelAndView form(Children children) {
 		ModelAndView mv = new ModelAndView("billings/billing");
 		List<Children> childrens = childrenRepository.findAll();
 		mv.addObject("childrens", childrens);
+		mv.addObject("children", children);
 		//mv.addObject("schedules", scheduleRepository.findAll());
 		return mv;
 	}
 	
-	@GetMapping(value="/buscar")
+	@GetMapping("/buscar")
 	public ModelAndView Search(
 			@RequestParam(value = "id") Long id, 
 			@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam(value = "dateInitial") Date dateInitial, 
@@ -56,6 +57,12 @@ public class BillingController {
 	    mv.addObject("searchResult", scheduleRepository.somaFaturamento(id, dateInitial, dateFinal));      
 
 	    return mv;
+	}
+	
+	@GetMapping("/pesquisar")
+	public String pesquisar(@RequestParam("id") Long id, @RequestParam("dataInicial") String dataInicial, @RequestParam("dataFinal") String dataFinal, Schedule schedule) {
+		scheduleRepository.getOne(id);
+		return "ID: " + id + " - DI: " + dataInicial + " - DF: " + dataFinal;
 	}
 	
 	/*@PostMapping("/faturamento/{id}/{dateInitial}/{dateFinal}")

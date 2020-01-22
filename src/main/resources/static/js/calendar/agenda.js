@@ -19,6 +19,8 @@ $(document).ready(function() {
 			return {
 				title : item.children.name,
 				start : item.date,
+				minTime : item.hourInitial,
+				maxTime : item.hourFinale,
 				className: 'info'
 	    	}
 	    });	
@@ -38,6 +40,7 @@ $(document).ready(function() {
 			    week: 'Semana',
 			    day: 'Dia',
 			},
+			timeFormat: 'HH:mm',
 			events:
 				schedule
 		});
