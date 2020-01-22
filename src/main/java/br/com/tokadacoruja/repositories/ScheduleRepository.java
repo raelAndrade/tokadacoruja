@@ -1,11 +1,12 @@
 package br.com.tokadacoruja.repositories;
 
-import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Repository;
 
 import br.com.tokadacoruja.domain.Schedule;
@@ -18,8 +19,11 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 	@Query(value = "select sum(s.amount) as total "
 			+ "from Schedule s "
 			+ "where s.children.id=:id "
-			+ "and s.date between ':dateInitial' and ':dateFinal'", nativeQuery = true)
-	BigDecimal somaFaturamento(@Param("id") Long id, @Param("dateInitial") Date date, @Param("dateFinal") String dateFinal);
+			+ "and s.date between :dataInicial and :dataFinal")
+	Double somaFaturamento(
+			@Param("id") Long id, 
+			@Param("dataInicial") @DateTimeFormat(pattern = "yyyy-MM-dd", iso = ISO.DATE) Date dataInicial, 
+			@Param("dataFinal") @DateTimeFormat(pattern = "yyyy-MM-dd", iso = ISO.DATE) Date dataFinal);
 	
 	/*@Query("SELECT hourInitial, hourFinale, totalHours, payment "
 			+ "FROM Schedule "
@@ -33,6 +37,5 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
     List<Todo> findBySearchTerm(@Param("searchTerm") String searchTerm);*/
 	
 	// select c.chi_name, s.sch_date, s.sch_amount from schedule s, children c where c.chi_id = s.sch_children_id;
-	
 	
 }

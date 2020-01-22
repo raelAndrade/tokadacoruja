@@ -18,7 +18,7 @@ $(document).ready(function() {
 	
 	// ================== Calendário ================== //
 	$('.input-group.date').datepicker({
-	    format: "dd/mm/yyyy",
+	    format: "dd-mm-yyyy",
 	    language: "pt-BR",
 	    clearBtn: true,
 	    todayHighlight: true,
@@ -26,7 +26,7 @@ $(document).ready(function() {
 	});
 	
 	$('.input-daterange input').datepicker({
-	    format: "dd/mm/yyyy",
+	    format: "dd-mm-yyyy",
 	    language: "pt-BR",
 	    clearBtn: true,
 	    todayHighlight: true,
@@ -35,7 +35,7 @@ $(document).ready(function() {
 	// =============================================== //
 	
 	// ================== Máscara ================== //
-	$(".dateFormat").mask('99/99/9999');
+	$(".dateFormat").mask('99-99-9999');
 	
     //$(".telephone").mask('(00) 0000-0000?9');
     $('.telephone').mask('(00) 0000-00009');

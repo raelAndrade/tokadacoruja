@@ -45,7 +45,7 @@ public class Schedule implements Serializable {
 	
 	@Column(name = "sch_date")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date date;
 	
 	@Column(name = "sch_hour_initial")
