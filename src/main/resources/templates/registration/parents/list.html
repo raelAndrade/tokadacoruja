@@ -49,7 +49,7 @@
 										<th class="center-table">Código</th>
 										<th>Nome</th>
 										<th>Telefone</th>
-										<th class="center-table">Ações</th>
+										<th class="center-table"></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -60,7 +60,6 @@
 										<td class="center-table">
 											<a th:href="@{/pais/editar/{id} (id=${p.id})}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Editar</a>
 											<a th:href="@{/pais/remover/{id} (id=${p.id})}" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Remover</a>
-											<a th:href="@{#}" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Ativar</a>
 										</td>
 									</tr>
 									<tr th:if="${parents.empty}">

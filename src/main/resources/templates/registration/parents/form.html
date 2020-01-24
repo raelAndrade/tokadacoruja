@@ -29,6 +29,8 @@
 			</div>
 		</div>
 
+		<th:block th:include="fragments/messageSuccessValidation"></th:block>
+		
 		<form role="form" th:action="@{/pais/salvar}" method="POST" th:object="${parent}">
 			
 			<th:block th:include="fragments/messageErrorValidation"></th:block>
@@ -45,12 +47,12 @@
 					<input class="form-control" placeholder="Digite o nome do Responsável" type="text" th:field="*{name}">
 				</div>
 			</div>
-			<div class="col-md-6">
+			<!-- div class="col-md-6">
 				<div class="form-group">
 					<label>CPF</label>
 					<input class="form-control cpf" id="cpf" placeholder="Digite o CPF" type="text" th:field="*{cpf}">
 				</div>
-			</div>
+			</div> -->
 			<div class="col-md-8">
 				<div class="form-group">
 					<label>Endereço</label>
@@ -101,7 +103,7 @@
 
 			<div class="col-md-12 text-right">
 				<button type="submit" class="btn btn-primary">Salvar</button>
-				<button type="reset" class="btn btn-danger">Cancelar</button>
+				<a th:href="@{/pais/listar}" type="reset" class="btn btn-danger">Cancelar</a>
 			</div>
 		</form>
 		<br /><br />

@@ -18,7 +18,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Past;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -36,14 +36,13 @@ public class Children implements Serializable {
 	@Column(name = "chi_id")
 	private Long id;
 	
-	@NotBlank(message = "Nome é obrigatório!")
+	@NotNull(message = "Nome é obrigatório!")
 	@Column(name = "chi_name")
 	private String name;
 	
-	@Past(message = "Data de nascimento é obrigatório!")
 	@Column(name = "chi_date_birth")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@DateTimeFormat(pattern="dd-MM-yyyy")
 	private Date dateBirth;
 	
 	@Column(name = "chi_status")

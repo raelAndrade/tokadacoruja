@@ -1,6 +1,7 @@
 package br.com.tokadacoruja.domain;
 
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
@@ -48,11 +49,13 @@ public class Schedule implements Serializable {
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date date;
 	
+	@NotNull(message = "Hora Inicial é obrigatório!")
 	@Column(name = "sch_hour_initial")
 	private LocalTime hourInitial;
 	
+	@NotNull(message = "Hora Final é obrigatório!")
 	@Column(name = "sch_hour_finale")
-	private String hourFinale;
+	private LocalTime hourFinale;
 	
 	@NotNull(message = "Tipo de pagamento é obrigatório!")
 	@Column(name = "sch_payment")
@@ -71,14 +74,12 @@ public class Schedule implements Serializable {
 	private Boolean status;
 	
 	@Column(name = "sch_total_hours")
-	private LocalTime totalHours;
-
-	public Schedule() {
-		this.create = LocalDateTime.now();
-	}
+	private String totalHours;
+	
+	public Schedule() { this.create = LocalDateTime.now(); }
 	 
-	public Schedule(final Long id, final Children children, final Date date, final LocalTime hourInitial, final String hourFinale, 
-			final Payment payment, final Double amount, final Boolean status, final LocalTime totalHours) {
+	public Schedule(final Long id, final Children children, final Date date, final LocalTime hourInitial, final LocalTime hourFinale, 
+			final Payment payment, final Double amount, final Boolean status, final String totalHours) {
 		this.id = id;
 		this.children = children;
 		this.date = date;
@@ -91,76 +92,47 @@ public class Schedule implements Serializable {
 		this.totalHours = totalHours;
 	}
 	
-	public Long getId() {
-		return id;
-	}
+	public Long getId() { return id; }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(Long id) { this.id = id; }
 
-	public LocalTime getHourInitial() {
-		return hourInitial;
-	}
+	public LocalTime getHourInitial() { return hourInitial; }
 
-	public void setHourInitial(LocalTime hourInitial) {
-		this.hourInitial = hourInitial;
-	}
+	public void setHourInitial(LocalTime hourInitial) { this.hourInitial = hourInitial; }
 
-	public String getHourFinale() {
-		return hourFinale;
-	}
+	public LocalTime getHourFinale() { return hourFinale; }
 
-	public void setHourFinale(String hourFinale) {
-		this.hourFinale = hourFinale;
-	}
+	public void setHourFinale(LocalTime hourFinale) { this.hourFinale = hourFinale; }
 	
-	public Date getDate() {
-		return date;
-	}
+	public Date getDate() { return date; }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+	public void setDate(Date date) { this.date = date; }
 
-	public Payment getPayment() {
-		return payment;
-	}
+	public Payment getPayment() { return payment; }
 
-	public void setPayment(Payment payment) {
-		this.payment = payment;
-	}
+	public void setPayment(Payment payment) { this.payment = payment; }
 
-	public Double getAmount() {
-		return amount;
-	}
+	public Double getAmount() { return amount; }
 
-	public void setAmount(Double amount) {
-		this.amount = amount;
-	}
+	public void setAmount(Double amount) { this.amount = amount; }
 	
-	public Boolean getStatus() {
-		return status;
-	}
+	public Boolean getStatus() { return status; }
 	
-	public void setStatus(Boolean status) {
-		this.status = status;
-	}
+	public void setStatus(Boolean status) { this.status = status; }
 	
-	public LocalTime getTotalHours() {
-		return totalHours;
-	}
+	public String getTotalHours() { return totalHours; }
 	
-	public void setTotalHours(LocalTime localTime) {
-		this.totalHours = localTime;
-	}
+	public void setTotalHours(String localTime) { this.totalHours = localTime; }
 	
-	public Children getChildren() {
-		return children;
-	}
+	public Children getChildren() { return children; }
 	
-	public void setChildren(Children children) {
-		this.children = children;
+	public void setChildren(Children children) { this.children = children; }
+	
+	public String calculeHours(LocalTime start, LocalTime end) {
+		LocalTime hoursInitial = LocalTime.of(start.getHour(), start.getMinute());
+		LocalTime hoursFinal = LocalTime.of(end.getHour(), end.getMinute());
+		Duration diff = Duration.between(hoursInitial, hoursFinal);
+		return (diff.toHours() % 24)+":"+(diff.toMinutes() % 60);
 	}
 	
 	@Override
@@ -188,12 +160,15 @@ public class Schedule implements Serializable {
 		return true;
 	}
 
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Schedule [id=").append(id).append(", children=").append(children).append(", date=").append(date)
-				.append(", hourInitial=").append(hourInitial).append(", hourFinale=").append(hourFinale).append(", payment=")
-				.append(payment).append(", amount=").append(amount).append(", create=").append(create).append(", status=").append(status).append("]");
+				.append(", hourInitial=").append(hourInitial).append(", hourFinale=").append(hourFinale)
+				.append(", payment=").append(payment).append(", amount=").append(amount).append(", create=")
+				.append(create).append(", status=").append(status).append(", totalHours=").append(totalHours)
+				.append("]");
 		return builder.toString();
 	}
 

@@ -29,10 +29,12 @@
 			</div>
 		</div>
 		
+		<th:block th:include="fragments/messageSuccessValidation"></th:block>
+		
 		<form role="form" th:action="@{/criancas/salvar}" th:object="${children}" method="POST">
 			
 			<th:block th:include="fragments/messageErrorValidation"></th:block>
-
+			
 			<div class="col-md-2">
 				<div class="form-group">
 					<label>Código</label>
@@ -56,9 +58,12 @@
 				</div>
 			</div>
 			<div class="col-md-3">
-				<div class="form-group">
-					<label>Data de Nascimento</label>
-					<input class="form-control date" id="date" name="dateBirth" type="text" th:field="*{dateBirth}">
+				<label>Data de Nascimento</label>
+				<div class="input-group date" data-date-format="dd-mm-yyyy">
+					<input type="text" class="form-control dateFormat" id="date" th:field="*{dateBirth}" placeholder="dd-mm-yyyy" />
+					<div class="input-group-addon">
+	                	<span class="glyphicon glyphicon-th"></span>
+	                </div>
 				</div>
 			</div>
 			<div class="col-md-12">
@@ -120,7 +125,7 @@
 			
 			<div class="col-md-12 text-right">
 	        	<button type="submit" class="btn btn-primary">Salvar</button>
-    	        <button type="reset" class="btn btn-danger">Cancelar</button>
+    	        <a th:href="@{/pais}" type="reset" class="btn btn-danger">Cancelar</a>
             </div>
 		</form>
         <br /><br />

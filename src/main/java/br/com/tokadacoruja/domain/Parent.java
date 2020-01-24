@@ -38,9 +38,6 @@ public class Parent implements Serializable{
 	@Column(name = "par_name")
 	private String name;
 	
-	@Column(name = "par_cpf")
-	private String cpf;
-	
 	@NotBlank(message = "Endereço é obrigatório!")
 	@Column(name = "par_address")
 	private String address;
@@ -55,7 +52,6 @@ public class Parent implements Serializable{
 	@Column(name = "par_status_responsible")
 	private Boolean statusResponsible;
 	
-	@NotBlank(message = "Responsável é obrigatório!")
 	@Column(name = "par_responsible")
 	private String responsible;
 	
@@ -82,12 +78,11 @@ public class Parent implements Serializable{
 		this.create = LocalDateTime.now();
 	}
 
-	public Parent(final Long id, final String name, final String cpf, final String address, final String city, final String email,
+	public Parent(final Long id, final String name, final String address, final String city, final String email,
 			final Boolean statusResponsible, final String responsible, final Boolean status, final Set<String> telephones,
 			final Set<String> telephonesContact, final List<Children> childrens) {
 		this.id = id;
 		this.name = name;
-		this.cpf = cpf;
 		this.address = address;
 		this.city = city;
 		this.email = email;
@@ -114,14 +109,6 @@ public class Parent implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
 	}
 
 	public String getAddress() {
@@ -225,7 +212,7 @@ public class Parent implements Serializable{
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Parent [id=").append(id).append(", name=").append(name).append(", cpf=").append(cpf)
+		builder.append("Parent [id=").append(id).append(", name=").append(name)
 				.append(", address=").append(address).append(", city=").append(city).append(", email=").append(email)
 				.append(", statusResponsible=").append(statusResponsible).append(", responsible=").append(responsible)
 				.append(", status=").append(status).append(", telephones=").append(telephones)
