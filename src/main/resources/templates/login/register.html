@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout-padrao}">
+
+<head></head>
+
+<body>
+
+	<div id="page-wrapper" layout:fragment="content">
+	
+		<br />
+
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Crianças</a></li>
+			<li class="breadcrumb-item active">Agendamento</li>
+		</ol>
+		
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+				<div class="col-md-2">
+					<a class="btn btn-primary" th:href="@{/usuario/listar}">
+						<i class="fa fa-list-alt"></i>
+						<span class="hidden-xs hidden-sm">Listar</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		
+	
+		<th:block th:include="fragments/messageSuccessValidation"></th:block>
+		
+		<form class="form-horizontal" action="/cadastrar-usuario" method="post" th:object="${user}">
+			
+			<th:block th:include="fragments/messageErrorValidation"></th:block>
+			
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2 offset-md-5">
+						<div class="form-group">
+							<label>Código</label>
+							<input class="form-control" name="id" readonly="readonly"/>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6 offset-md-3">
+						<div class="form-group">
+							<label>E-mail</label> 
+							<input type="text" class="form-control" th:field="*{email}">
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6 offset-md-3">
+						<div class="form-group">
+							<label>Perfil</label> 
+							<input type="text" class="form-control">
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6 offset-md-3">
+						<div class="form-group">
+							<label>Senha</label> 
+							<input type="password" class="form-control"	th:field="*{pwd}">
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-2 offset-md-5">
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary">Salvar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	
+</body>
+</html>
