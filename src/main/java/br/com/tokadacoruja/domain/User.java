@@ -1,18 +1,18 @@
 package br.com.tokadacoruja.domain;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-import br.com.tokadacoruja.domain.enums.Role;
 
 @Entity
 @Table(name = "user")
@@ -29,19 +29,29 @@ public class User implements Serializable {
     private String email;
 	
 	@Column(name = "usr_name")
-	private String name;
+	private String userName;
 	
 	@Column(name = "usr_password")
-	private String pwd;
+	private String password;
 	
-	@NotNull(message = "Perfil é obrigatório!")
-	@Column(name = "usr_role")
-	@Enumerated(EnumType.STRING)
-	private Role role;
+	@ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "usr_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles;
 	
-	@Column(name = "usr_status")
-	private Boolean status;
+	@Column(name = "usr_active")
+	private Boolean active;
 	
+	public User() { }
+	
+	public User(Long id, String email, String userName, String password, Set<Role> roles, Boolean active) {
+		this.id = id;
+		this.email = email;
+		this.userName = userName;
+		this.password = password;
+		this.roles = roles;
+		this.active = active;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -59,35 +69,35 @@ public class User implements Serializable {
 	}
 
 	public String getName() {
-		return name;
+		return userName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String userName) {
+		this.userName = userName;
 	}
 
-	public String getPwd() {
-		return pwd;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public Boolean getStatus() {
-		return status;
+	public Boolean getActive() {
+		return active;
 	}
 
-	public void setStatus(Boolean status) {
-		this.status = status;
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 	
-	public Role getRole() {
-		return role;
+	public Set<Role> getRoles() {
+		return roles;
 	}
 	
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 }

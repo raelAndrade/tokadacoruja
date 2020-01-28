@@ -1,41 +1,31 @@
 package br.com.tokadacoruja.config;
 
-/*import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import br.com.tokadacoruja.services.MyUserDetailsService;
+
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
-	private DataSource dataSource;
+	private MyUserDetailsService userDetailsService;
 	
-	@Value("${spring.queries.users-query}")
-	private String userQuery;
-	
-	@Value("${spring.queries.roles-query}")
-	private String roleQuery;
-
-	
-
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
-			.jdbcAuthentication()
-			.usersByUsernameQuery(userQuery)
-			.authoritiesByUsernameQuery(roleQuery)
-			.dataSource(dataSource)
+			.userDetailsService(userDetailsService)
 			.passwordEncoder(passwordEncoder);
 	}
 	
@@ -44,23 +34,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 			.antMatchers("/login").permitAll()
-			.antMatchers("/registration").permitAll()
+			.antMatchers("/cadastrar-usuario").permitAll()
+			.antMatchers("/home/**").hasAuthority("ADMIN")
+			.antMatchers("/registration/**").hasAuthority("ADMIN")
+			.antMatchers("/schedule/**").hasAuthority("ADMIN")
 			.anyRequest()
 				.authenticated()
-					.and().csrf().disable()
+				.and()
 				.formLogin()
-					.loginPage("/login").failureUrl("/login?error=true").defaultSuccessUrl("/")
-					.usernameParameter("email").passwordParameter("pwd")
-				.and().logout()
-					.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
+					.loginPage("/login").failureUrl("/login?error=true").defaultSuccessUrl("/index")
+					.usernameParameter("user_name").passwordParameter("password")
+				.and()
+				.logout()
+					.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+				.and()
+				.exceptionHandling()
+					.accessDeniedPage("/access-denied");
 	}
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring()
-		.antMatchers("/css/**")
-		.antMatchers("/js/**")
-		.antMatchers("/img/**")
-		.antMatchers("/fonts/**");
+		web
+			.ignoring()
+			.antMatchers("/css/**", "/js/**", "/img/**", "/fonts/**");
 	}
-}*/
+}

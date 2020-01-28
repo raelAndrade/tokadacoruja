@@ -1,6 +1,5 @@
 package br.com.tokadacoruja.config;
 
-/*
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,5 +13,9 @@ public class WebMvcConfig implements WebMvcConfigurer{
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		return passwordEncoder;
 	}
+	
+	/*public static void main(String[] args) {
+		System.out.println(new BCryptPasswordEncoder().encode("123"));
+	}*/
 
-}*/
+}

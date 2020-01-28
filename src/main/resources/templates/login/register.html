@@ -31,7 +31,7 @@
 		
 		<th:block th:include="fragments/messageSuccessValidation"></th:block>
 		
-		<form class="form-horizontal" action="/cadastrar-usuario" method="post" th:object="${user}">
+		<form class="form-horizontal" th:action="@{/cadastrar-usuario}" method="post" th:object="${user}" autocomplete="off">
 			
 			<th:block th:include="fragments/messageErrorValidation"></th:block>
 			
@@ -49,7 +49,7 @@
 					<div class="col-md-6 offset-md-3">
 						<div class="form-group">
 							<label>Nome</label> 
-							<input type="text" class="form-control" th:field="*{name}">
+							<input type="text" class="form-control" th:field="*{userName}" placeholder="Usuário">
 						</div>
 					</div>
 				</div>
@@ -58,19 +58,7 @@
 					<div class="col-md-6 offset-md-3">
 						<div class="form-group">
 							<label>E-mail</label> 
-							<input type="text" class="form-control" th:field="*{email}">
-						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-6 offset-md-3">
-						<div class="form-group">
-							<label>Perfil</label>
-							<select th:field="*{role}" class="form-control" style="display: inline;">
-								<option value="">-- Selecione o perfil --</option>
-								<option th:each="perfil : ${T(br.com.tokadacoruja.domain.enums.Role).values()}" th:value="${perfil}" th:text="${perfil}"></option>
-							</select>
+							<input type="text" class="form-control" th:field="*{email}" >
 						</div>
 					</div>
 				</div>
@@ -79,7 +67,7 @@
 					<div class="col-md-6 offset-md-3">
 						<div class="form-group">
 							<label>Senha</label> 
-							<input type="password" class="form-control"	th:field="*{pwd}">
+							<input type="password" class="form-control"	th:field="*{password}" placeholder="Senha">
 						</div>
 					</div>
 				</div>
