@@ -13,8 +13,8 @@
 		<br />
 
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="#">Crianças</a></li>
-			<li class="breadcrumb-item active">Agendamento</li>
+			<li class="breadcrumb-item"><a href="#">Login</a></li>
+			<li class="breadcrumb-item active">Cadastro</li>
 		</ol>
 		
 		<div class="container-fluid">
@@ -29,8 +29,6 @@
 			</div>
 		</div>
 		
-		
-	
 		<th:block th:include="fragments/messageSuccessValidation"></th:block>
 		
 		<form class="form-horizontal" action="/cadastrar-usuario" method="post" th:object="${user}">
@@ -50,6 +48,15 @@
 				<div class="row">
 					<div class="col-md-6 offset-md-3">
 						<div class="form-group">
+							<label>Nome</label> 
+							<input type="text" class="form-control" th:field="*{name}">
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6 offset-md-3">
+						<div class="form-group">
 							<label>E-mail</label> 
 							<input type="text" class="form-control" th:field="*{email}">
 						</div>
@@ -59,8 +66,11 @@
 				<div class="row">
 					<div class="col-md-6 offset-md-3">
 						<div class="form-group">
-							<label>Perfil</label> 
-							<input type="text" class="form-control">
+							<label>Perfil</label>
+							<select th:field="*{role}" class="form-control" style="display: inline;">
+								<option value="">-- Selecione o perfil --</option>
+								<option th:each="perfil : ${T(br.com.tokadacoruja.domain.enums.Role).values()}" th:value="${perfil}" th:text="${perfil}"></option>
+							</select>
 						</div>
 					</div>
 				</div>

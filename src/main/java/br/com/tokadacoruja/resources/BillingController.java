@@ -57,13 +57,7 @@ public class BillingController {
 		mv.addObject("valorTotal", scheduleRepository.somaFaturamento(children.getId(), new SimpleDateFormat("yyyy-MM-dd").parse(dataInicial), new SimpleDateFormat("yyyy-MM-dd").parse(dataFinal)));
 		return mv;
 	}
-	
-	
-	
-	
-	
-	
-	
+		
 	/*@GetMapping("/buscar")
 	public ModelAndView Search(
 			@RequestParam(value = "id") Long id, 

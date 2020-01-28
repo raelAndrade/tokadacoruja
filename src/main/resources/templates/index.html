@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout-padrao}">
+
+<head></head>
+
+<body>
+
+	<div id="page-wrapper" layout:fragment="content">
+
+		<div class="row">
+			<div class="col-lg-3 col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-3">
+								<img th:src="@{/img/icons/baby-child-kid-toddler_113286.png}" />
+							</div>
+							<div class="col-xs-9 text-right">
+								<div class="huge" th:text="${children}"></div>
+								<div>Crianças</div>
+							</div>
+						</div>
+					</div>
+					<a th:href="@{/criancas/listar}">
+						<div class="panel-footer">
+							<span class="pull-left">Visualizar</span> <span
+								class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+							<div class="clearfix"></div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="panel panel-green">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-3">
+								<img th:src="@{/img/icons/organizer_calendar_48.png}" />
+							</div>
+							<div class="col-xs-9 text-right">
+								<div class="huge" th:text="${schedule}">12</div>
+								<div>Agendamentos</div>
+							</div>
+						</div>
+					</div>
+					<a th:href="@{/agendamentos/calendario}">
+						<div class="panel-footer">
+							<span class="pull-left">Visualizar</span> <span
+								class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+							<div class="clearfix"></div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="panel panel-yellow">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-3">
+								<i class="fa fa-shopping-cart fa-5x"></i>
+							</div>
+							<div class="col-xs-9 text-right">
+								<div class="huge">124</div>
+								<div>New Orders!</div>
+							</div>
+						</div>
+					</div>
+					<a href="#">
+						<div class="panel-footer">
+							<span class="pull-left">View Details</span> <span
+								class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+							<div class="clearfix"></div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="panel panel-red">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-3">
+								<i class="fa fa-support fa-5x"></i>
+							</div>
+							<div class="col-xs-9 text-right">
+								<div class="huge">13</div>
+								<div>Support Tickets!</div>
+							</div>
+						</div>
+					</div>
+					<a href="#">
+						<div class="panel-footer">
+							<span class="pull-left">View Details</span> <span
+								class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+							<div class="clearfix"></div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div th:replace="layout/footer::footer"></div>
+	</div>
+
+</body>
+</html>

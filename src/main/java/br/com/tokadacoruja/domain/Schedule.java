@@ -74,6 +74,7 @@ public class Schedule implements Serializable {
 	private Boolean status;
 	
 	@Column(name = "sch_total_hours")
+	@DateTimeFormat(pattern = "HH:mm")
 	private String totalHours;
 	
 	public Schedule() { this.create = LocalDateTime.now(); }
@@ -128,7 +129,7 @@ public class Schedule implements Serializable {
 	
 	public void setChildren(Children children) { this.children = children; }
 	
-	public String calculeHours(LocalTime start, LocalTime end) {
+	public String differenceHours(LocalTime start, LocalTime end) {
 		LocalTime hoursInitial = LocalTime.of(start.getHour(), start.getMinute());
 		LocalTime hoursFinal = LocalTime.of(end.getHour(), end.getMinute());
 		Duration diff = Duration.between(hoursInitial, hoursFinal);
@@ -159,7 +160,6 @@ public class Schedule implements Serializable {
 			return false;
 		return true;
 	}
-
 
 	@Override
 	public String toString() {

@@ -51,7 +51,7 @@
 										<th>Total de Horas</th>
 										<th>Valor Total</th>
 										<th>Data</th>
-										<th>Ação</th>
+										<th></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -59,8 +59,8 @@
 										<td th:text="${s.children.name}"></td>
 										<td th:text="${s.hourInitial}"></td>
 										<td th:text="${s.hourFinale}"></td>
-										<td th:text="${s.totalHours}"></td>
-										<td th:text="|R$ ${{s.amount}}"></td>
+										<td th:text="|${{s.totalHours}}|"></td>
+										<td th:text="|R$ ${{s.amount}}|"></td>
 										<td th:text="${#dates.format(s.date, 'dd/MM/yyyy')}"></td>
 										<td>
 											<a th:href="@{/agendamentos/editar/{id}(id=${s.id})}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Editar</a>

@@ -69,18 +69,12 @@ public class ScheduleController {
 			return form(schedule);
 		}		
 		schedule.setStatus(true);
-		schedule.setTotalHours(schedule.calculeHours(schedule.getHourInitial(), schedule.getHourFinale()));
-		
-		if(schedule.getChildren().getId() == null) {
-			attributes.addFlashAttribute("mensagem", "Criança " + schedule.getChildren().getName() + " já está agendada!");
-			return new ModelAndView("redirect:/agendamentos/agendar");
-		}else {
-			scheduleService.save(schedule);
-			attributes.addFlashAttribute("mensagem", "Criança " + schedule.getChildren().getName() + " salvo com sucesso!");		
-			return new ModelAndView("redirect:/agendamentos/calendario");
-		}
+		schedule.setTotalHours(schedule.differenceHours(schedule.getHourInitial(), schedule.getHourFinale()));
+		calculeOfHours(schedule);		
+		scheduleService.save(schedule);					
+		attributes.addFlashAttribute("mensagem", "Criança " + schedule.getChildren().getName() + " salvo com sucesso!");		
+		return new ModelAndView("redirect:/agendamentos/calendario");
 	}
-
 
 	@GetMapping("/agendamentos/editar/{id}")
 	public ModelAndView edit(@PathVariable("id") Long id) {
@@ -110,5 +104,28 @@ public class ScheduleController {
 		List<Schedule> schedules = scheduleRepository.findAll();
 		return schedules;
 	}
-	        
+	
+	private void calculeOfHours(Schedule schedule) {
+		String hour = schedule.getTotalHours();
+		String hours[] = hour.split(":");
+		Long h = Long.parseLong(hours[0]);
+		Long m = Long.parseLong(hours[1]);
+		Double valuePerHours = 0.0;
+		Double valuePerMinutes = 0.0;
+		Double totalValuePerHours = 0.0;
+		
+    	if(h < 0 && m <= 59) {
+    		valuePerMinutes = schedule.getAmount();
+    		schedule.setAmount(valuePerMinutes);
+    	}else if(h >= 1 && m != 0) {
+    		valuePerHours = h * schedule.getAmount();
+    		valuePerMinutes = (schedule.getAmount() / 60.0) * m;
+    		totalValuePerHours = valuePerHours + valuePerMinutes;
+    		schedule.setAmount(totalValuePerHours);
+    	}else if(h >= 1 && m == 0){
+    		valuePerHours = h * schedule.getAmount();
+    		schedule.setAmount(valuePerHours);
+    	}
+	}
+	
 }

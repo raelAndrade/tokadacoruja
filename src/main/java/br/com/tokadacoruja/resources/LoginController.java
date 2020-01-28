@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.tokadacoruja.domain.User;
+import br.com.tokadacoruja.domain.enums.Role;
 import br.com.tokadacoruja.services.UserService;
 
 @Controller
@@ -26,6 +27,7 @@ public class LoginController {
 	@GetMapping("/cadastrar-usuario")
 	public ModelAndView register(User user) {
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("perfil", Role.values());
 		mv.setViewName("login/register");
 		mv.addObject("user", user);
 		mv.addObject("usuario", new User());
@@ -36,6 +38,7 @@ public class LoginController {
 	public ModelAndView register(@Valid User user, BindingResult result) {
 		ModelAndView mv = new ModelAndView();
 		User usr = userService.findByEmail(user.getEmail());
+		user.setStatus(true);
 		if(usr != null) {
 			result.rejectValue("email", "", "Usuário já cadastrado!");
 		}
