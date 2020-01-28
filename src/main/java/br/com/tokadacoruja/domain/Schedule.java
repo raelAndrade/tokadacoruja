@@ -164,11 +164,10 @@ public class Schedule implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Schedule [id=").append(id).append(", children=").append(children).append(", date=").append(date)
-				.append(", hourInitial=").append(hourInitial).append(", hourFinale=").append(hourFinale)
+		builder.append("Schedule [id=").append(id).append(", childrens=").append(children).append(", date=")
+				.append(date).append(", hourInitial=").append(hourInitial).append(", hourFinale=").append(hourFinale)
 				.append(", payment=").append(payment).append(", amount=").append(amount).append(", create=")
-				.append(create).append(", status=").append(status).append(", totalHours=").append(totalHours)
-				.append("]");
+				.append(create).append(", status=").append(status).append(", totalHours=").append(totalHours).append("]");
 		return builder.toString();
 	}
 

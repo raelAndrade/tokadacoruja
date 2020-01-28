@@ -1,6 +1,8 @@
 package br.com.tokadacoruja.resources;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -65,9 +67,16 @@ public class ScheduleController {
 	
 	@PostMapping("/agendamentos/salvar")
 	public ModelAndView save(@Valid Schedule schedule, BindingResult result, RedirectAttributes attributes) {
+		Map<Long, Schedule> map = new HashMap<>();
+		map.put(schedule.getId(), schedule);
+		
+		for (Long sch : map.keySet()) {
+			System.out.println(sch);
+		}
+		
 		if(result.hasErrors()) {
 			return form(schedule);
-		}		
+		}
 		schedule.setStatus(true);
 		schedule.setTotalHours(schedule.differenceHours(schedule.getHourInitial(), schedule.getHourFinale()));
 		calculeOfHours(schedule);		
