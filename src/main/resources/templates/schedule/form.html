@@ -9,27 +9,21 @@
 <body>
 
 	<div id="page-wrapper" layout:fragment="content">
-
 		<br />
-
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="#">Crianças</a></li>
 			<li class="breadcrumb-item active">Agendamento</li>
 		</ol>
-		
 		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-2">
-					<div class="page-header-controls">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="row">
+					<div class="form-group text-left">
 						<a class="btn btn-primary" th:href="@{/agendamentos/calendario}">
 							<i class="fa fa-calendar"></i>
 							<span class="hidden-xs hidden-sm"> Calendário</span>
 						</a>
 					</div>
-				</div>
-				<div class="col-md-8"></div>
-				<div class="col-md-2">						
-					<div class="page-header-controls">
+					<div class="form-group text-right">
 						<a class="btn btn-primary" th:href="@{/agendamentos/listar}">
 							<i class="fa fa-plus-square"></i>
 							<span class="hidden-xs hidden-sm"> Listar agendamentos</span>
@@ -38,89 +32,87 @@
 				</div>
 			</div>
 		</div>
-
-		<th:block th:include="fragments/messageSuccessValidation"></th:block>
 		
-		<form class="form-horizontal" role="form" th:action="@{/agendamentos/salvar}" th:object="${schedule}" method="POST">
-    		
-    		<th:block th:include="fragments/messageErrorValidation"></th:block>
-    		
-			<div class="col-md-2">
-				<div class="form-group">
-					<label>Código</label>
-					<input class="form-control" name="id" th:field="*{id}" readonly="readonly" />
-				</div>
-			</div>
-			
-			<div class="col-md-12">
-				<div class="form-group">
-					<label for="children">Nome da criança</label>					
-					<select id="autocompleteCriancas" th:field="*{children.id}" name="children.name" class="form-control" style="display: none;">
-						<option value=""></option>
-						<option th:each="c : ${childrens}" th:value="${c.id}" th:text="${c.name}"></option>
-					</select>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="form-group">
-					<label for="date">Data </label>
-					<div class="input-group date" data-date-format="dd/mm/yyyy">
-						<input type="text" class="form-control dateFormat" id="date" th:field="*{date}" placeholder="dd/mm/yyyy" />
-		                <div class="input-group-addon" >
-		                	<span class="glyphicon glyphicon-th"></span>
-		                </div>
+		<div class="col-md-10 col-md-offset-1">
+			<th:block th:include="fragments/messageSuccessValidation"></th:block>
+				<form class="form-horizontal" role="form" th:action="@{/agendamentos/salvar}" th:object="${schedule}" method="POST">
+		    		<th:block th:include="fragments/messageErrorValidation"></th:block>
+					<div class="col-md-2">
+						<div class="form-group">
+							<label>Código</label>
+							<input class="form-control" name="id" th:field="*{id}" readonly="readonly" />
+						</div>
 					</div>
-				</div>
-			</div>
-			
-			<div class="col-md-4">
-				<label for="hourInitial">Hora Início </label>
-				<div class='input-group' id='hourInitial'>
-					<input class="form-control time" id="hourInitial" type="time" th:field="*{hourInitial}" placeholder="HH:mm"  min="06:00" max="24:00" />
-					<span class="input-group-addon">
-	        	        <span class="glyphicon glyphicon-time"></span>
-	        	    </span>
-				</div>
-			</div>
-			
-			<div class="col-md-4">
-				<label for="hourFinale">Hora Fim </label>
-				<div class='form-group input-group' id='hourFinale'>
-					<input class="form-control time" id="hourFinale" type="time" th:field="*{hourFinale}" placeholder="HH:mm" min="06:00" max="24:00" />
-	                <span class="input-group-addon">
-	                  	<span class="glyphicon glyphicon-time"></span>
-	                </span>
-	            </div>
-			</div>
-			
-			<div class="col-md-8">
-				<div class="form-group">
-					<label for="payment">Forma de Pagamento</label>
-					<select th:field="*{payment}" class="form-control ui-autocomplete-input" id="payment" style="display: inline;">
-						<option value="">-- Selecione a forma de pagamento --</option>
-						<option th:each="payment : ${T(br.com.tokadacoruja.domain.enums.Payment).values()}" th:value="${payment}" th:text="${payment}"></option>
-					</select>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<div class="col-md-4">
-					<label for="amount">Valor</label>
-					<div class="input-group">
-				        <div class="input-group-addon">
-				          <span class="input-group-text" id="inputGroupPrepend">R$</span>
-				        </div>
-						<input class="form-control amount" id="amount" type="text" name="amount" th:field="*{amount}" aria-describedby="inputGroupPrepend"/>
+					
+					<div class="col-md-12">
+						<div class="form-group">
+							<label for="children">Nome da criança</label>					
+							<select id="autocompleteCriancas" th:field="*{children.id}" name="children.name" class="form-control" style="display: none;">
+								<option value=""></option>
+								<option th:each="c : ${childrens}" th:value="${c.id}" th:text="${c.name}"></option>
+							</select>
+						</div>
 					</div>
-				</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label for="date">Data </label>
+							<div class="input-group date" data-date-format="dd/mm/yyyy">
+								<input type="text" class="form-control dateFormat" id="date" th:field="*{date}" placeholder="dd/mm/yyyy" />
+				                <div class="input-group-addon" >
+				                	<span class="glyphicon glyphicon-th"></span>
+				                </div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-4">
+						<label for="hourInitial">Hora Início </label>
+						<div class='input-group' id='hourInitial'>
+							<input class="form-control time" id="hourInitial" type="time" th:field="*{hourInitial}" placeholder="HH:mm"  min="06:00" max="24:00" />
+							<span class="input-group-addon">
+			        	        <span class="glyphicon glyphicon-time"></span>
+			        	    </span>
+						</div>
+					</div>
+					
+					<div class="col-md-4">
+						<label for="hourFinale">Hora Fim </label>
+						<div class='form-group input-group' id='hourFinale'>
+							<input class="form-control time" id="hourFinale" type="time" th:field="*{hourFinale}" placeholder="HH:mm" min="06:00" max="24:00" />
+			                <span class="input-group-addon">
+			                  	<span class="glyphicon glyphicon-time"></span>
+			                </span>
+			            </div>
+					</div>
+					
+					<div class="col-md-8">
+						<div class="form-group">
+							<label for="payment">Forma de Pagamento</label>
+							<select th:field="*{payment}" class="form-control ui-autocomplete-input" id="payment" style="display: inline;">
+								<option value="">-- Selecione a forma de pagamento --</option>
+								<option th:each="payment : ${T(br.com.tokadacoruja.domain.enums.Payment).values()}" th:value="${payment}" th:text="${payment}"></option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-md-4">
+							<label for="amount">Valor</label>
+							<div class="input-group">
+						        <div class="input-group-addon">
+						          <span class="input-group-text" id="inputGroupPrepend">R$</span>
+						        </div>
+								<input class="form-control amount" id="amount" type="text" name="amount" th:field="*{amount}" aria-describedby="inputGroupPrepend"/>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-12 text-right">
+						<button type="submit" class="btn btn-primary">Salvar</button>
+						<a th:href="@{/agendamentos/agendar}" type="reset" class="btn btn-danger">Cancelar</a>
+					</div>
+				</form>
 			</div>
-			
-			<div class="col-md-12 text-right">
-				<button type="submit" class="btn btn-primary">Salvar</button>
-				<a th:href="@{/agendamentos/agendar}" type="reset" class="btn btn-danger">Cancelar</a>
-			</div>
-		</form>
-		
 		<div th:replace="layout/footer::footer"></div>
 	</div>
 </body>

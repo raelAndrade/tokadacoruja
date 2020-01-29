@@ -13,6 +13,8 @@ import br.com.tokadacoruja.domain.Schedule;
 
 @Repository
 public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
+	
+	Schedule findByIdAndDate(Long id, Date date);
 
 	// SELECT sum(s.sch_amount) as total FROM SCHEDULE s where s.sch_children_id=7 and s.sch_date between '2020-01-01' and '2020-01-31';
 	// SELECT c.chi_name, s.sch_total_hours, sum(s.sch_amount) as total FROM SCHEDULE s, CHILDREN c where s.sch_children_id=7 and s.sch_date between '2020-01-01' and '2020-01-31' group by c.chi_name;

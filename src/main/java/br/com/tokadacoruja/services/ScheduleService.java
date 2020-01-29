@@ -1,5 +1,7 @@
 package br.com.tokadacoruja.services;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,8 +16,12 @@ public class ScheduleService {
 	private ScheduleRepository scheduleRepository;
 	
 	@Transactional
-	public void save(Schedule schedule) {
-		scheduleRepository.save(schedule);
+	public Schedule saveSchedule(Schedule schedule) {
+		return scheduleRepository.save(schedule);
+	}
+	
+	public Schedule findScheduleChildrenByIdAndData(Long id, Date date) {
+		return scheduleRepository.findByIdAndDate(id, date);
 	}
 	
 }

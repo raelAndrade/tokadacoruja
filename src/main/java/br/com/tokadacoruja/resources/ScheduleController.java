@@ -80,7 +80,7 @@ public class ScheduleController {
 		schedule.setStatus(true);
 		schedule.setTotalHours(schedule.differenceHours(schedule.getHourInitial(), schedule.getHourFinale()));
 		calculeOfHours(schedule);		
-		scheduleService.save(schedule);					
+		scheduleService.saveSchedule(schedule);					
 		attributes.addFlashAttribute("mensagem", "Criança " + schedule.getChildren().getName() + " salvo com sucesso!");		
 		return new ModelAndView("redirect:/agendamentos/calendario");
 	}

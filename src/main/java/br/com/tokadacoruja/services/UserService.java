@@ -2,6 +2,7 @@ package br.com.tokadacoruja.services;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -40,8 +41,12 @@ public class UserService {
 	public User saveUser(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setActive(true);
-		Role userRole = roleRepository.findByRole("ADMIN");
-		user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+		List<Role> userRole = roleRepository.findAll();		
+		for (Role role : userRole) {
+			if(role.equals(user.getRoles())){
+				user.setRoles(new HashSet<Role>(Arrays.asList(role)));
+			}
+		}		
 		return userRepository.save(user);
 	}
 

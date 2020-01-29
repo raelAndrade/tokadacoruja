@@ -29,34 +29,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.passwordEncoder(passwordEncoder);
 	}
 	
-	/*@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http
-			.authorizeRequests()
-			.antMatchers("/login").permitAll()
-			.antMatchers("/cadastrar-usuario").permitAll()
-			.antMatchers("/home/**").hasAuthority("ADMIN")
-			.antMatchers("/registration/**").hasAuthority("ADMIN")
-			.antMatchers("/schedule/**").hasAuthority("ADMIN")
-			.anyRequest()
-				.authenticated()
-				.and()
-				.formLogin()
-					.loginPage("/login").failureUrl("/login?error=true").defaultSuccessUrl("/index")
-					.usernameParameter("user_name").passwordParameter("password")
-				.and()
-				.logout()
-					.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
-				.and()
-				.exceptionHandling()
-					.accessDeniedPage("/access-denied");
-	}*/
-	
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
 			.antMatchers("/login").permitAll() // A Url /login pode ser acessado por todo mundo, autenticado ou não
-			.antMatchers("/cadastro").permitAll() // A Url /registration para a criação de usuários, o usuário pode ser acessar-la autenticado ou não  
+			.antMatchers("/cadastro").permitAll() // A Url /registration para a criação de usuários, o usuário pode ser acessar-la autenticado ou não
 			.anyRequest() // Agora o restante
 				.authenticated() // O usuário deve estar autenticado
 					.and().csrf().disable() // Desabilitar o CSRF
@@ -71,6 +49,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 		web
 			.ignoring()
-			.antMatchers("/css/**", "/js/**", "/img/**", "/fonts/**");
+			.antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**", "/fonts/**");
 	}
+	
+	
+	
+	/*@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http
+			.authorizeRequests()
+			.antMatchers("/login").permitAll()
+			.antMatchers("/cadastro").permitAll()
+			.antMatchers("/home/**").hasAuthority("ADMIN")
+			.antMatchers("/registration/**").hasAuthority("ADMIN")
+			.antMatchers("/schedule/**").hasAuthority("ADMIN")
+			.anyRequest()
+				.authenticated()
+				.and()
+				.formLogin()
+					.loginPage("/login").failureUrl("/login?error=true").defaultSuccessUrl("/index")
+					.usernameParameter("user_name").passwordParameter("password")
+				.and()
+				.logout()
+					.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
+				.and()
+				.exceptionHandling()
+					.accessDeniedPage("/access-denied");
+	}*/
 }
+
