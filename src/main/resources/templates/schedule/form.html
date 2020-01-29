@@ -47,7 +47,7 @@
 					<div class="col-md-12">
 						<div class="form-group">
 							<label for="children">Nome da criança</label>					
-							<select id="autocompleteCriancas" th:field="*{children.id}" name="children.name" class="form-control" style="display: none;">
+							<select id="autocompleteCriancas" name="children.name" class="form-control" style="display: none;">
 								<option value=""></option>
 								<option th:each="c : ${childrens}" th:value="${c.id}" th:text="${c.name}"></option>
 							</select>

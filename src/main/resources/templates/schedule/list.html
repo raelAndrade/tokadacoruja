@@ -56,7 +56,7 @@
 								</thead>
 								<tbody>
 									<tr class="odd gradeX" th:each="s : ${schedules}">
-										<td th:text="${s.children.name}"></td>
+										<td th:text="${s.childrens.name}"></td>
 										<td th:text="${s.hourInitial}"></td>
 										<td th:text="${s.hourFinale}"></td>
 										<td th:text="|${{s.totalHours}}|"></td>

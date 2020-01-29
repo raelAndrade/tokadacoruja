@@ -5,7 +5,9 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,7 +16,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,9 +43,11 @@ public class Schedule implements Serializable {
 	private Long id;
 	
 	@JsonIgnoreProperties
-	@ManyToOne
-	@JoinColumn(name = "sch_children_id", referencedColumnName = "chi_id")
-	private Children children;
+	@ManyToMany(cascade = CascadeType.MERGE)
+	@JoinTable(name = "sch_children", 
+			joinColumns =  @JoinColumn(name = "sch_id"), 
+			inverseJoinColumns =  @JoinColumn(name = "chi_id"))
+	private Set<Children> childrens;
 	
 	@Column(name = "sch_date")
 	@Temporal(TemporalType.DATE)
@@ -79,10 +84,10 @@ public class Schedule implements Serializable {
 	
 	public Schedule() { this.create = LocalDateTime.now(); }
 	 
-	public Schedule(final Long id, final Children children, final Date date, final LocalTime hourInitial, final LocalTime hourFinale, 
+	public Schedule(final Long id, final Set<Children> childrens, final Date date, final LocalTime hourInitial, final LocalTime hourFinale, 
 			final Payment payment, final Double amount, final Boolean status, final String totalHours) {
 		this.id = id;
-		this.children = children;
+		this.childrens = childrens;
 		this.date = date;
 		this.hourInitial = hourInitial;
 		this.hourFinale = hourFinale;
@@ -125,9 +130,9 @@ public class Schedule implements Serializable {
 	
 	public void setTotalHours(String localTime) { this.totalHours = localTime; }
 	
-	public Children getChildren() { return children; }
+	public void setChildrens(Set<Children> childrens) { this.childrens = childrens; }
 	
-	public void setChildren(Children children) { this.children = children; }
+	public Set<Children> getChildrens() { return childrens; }
 	
 	public String differenceHours(LocalTime start, LocalTime end) {
 		LocalTime hoursInitial = LocalTime.of(start.getHour(), start.getMinute());
@@ -164,10 +169,11 @@ public class Schedule implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Schedule [id=").append(id).append(", childrens=").append(children).append(", date=")
+		builder.append("Schedule [id=").append(id).append(", childrens=").append(childrens).append(", date=")
 				.append(date).append(", hourInitial=").append(hourInitial).append(", hourFinale=").append(hourFinale)
 				.append(", payment=").append(payment).append(", amount=").append(amount).append(", create=")
-				.append(create).append(", status=").append(status).append(", totalHours=").append(totalHours).append("]");
+				.append(create).append(", status=").append(status).append(", totalHours=").append(totalHours)
+				.append("]");
 		return builder.toString();
 	}
 

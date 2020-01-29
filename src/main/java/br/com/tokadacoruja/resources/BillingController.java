@@ -1,17 +1,13 @@
 package br.com.tokadacoruja.resources;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.tokadacoruja.domain.Children;
-import br.com.tokadacoruja.domain.Schedule;
 import br.com.tokadacoruja.repositories.ChildrenRepository;
 import br.com.tokadacoruja.repositories.ScheduleRepository;
 import br.com.tokadacoruja.services.BillingService;
@@ -19,6 +15,7 @@ import br.com.tokadacoruja.services.BillingService;
 @Controller
 public class BillingController {
 
+	@SuppressWarnings("unused")
 	@Autowired
 	private ScheduleRepository scheduleRepository;
 	
@@ -39,7 +36,7 @@ public class BillingController {
 		return mv;
 	}
 	
-	@GetMapping("/pesquisar")
+	/*@GetMapping("/pesquisar")
 	public ModelAndView pesquisar(
 			@RequestParam("id") Long id, 
 			@RequestParam("dataInicial") String dataInicial, 
@@ -56,7 +53,7 @@ public class BillingController {
 		mv.addObject("children", children);
 		mv.addObject("valorTotal", scheduleRepository.somaFaturamento(children.getId(), new SimpleDateFormat("yyyy-MM-dd").parse(dataInicial), new SimpleDateFormat("yyyy-MM-dd").parse(dataFinal)));
 		return mv;
-	}
+	}*/
 		
 	/*@GetMapping("/buscar")
 	public ModelAndView Search(

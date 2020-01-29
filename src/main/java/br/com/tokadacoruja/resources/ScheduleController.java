@@ -1,8 +1,6 @@
 package br.com.tokadacoruja.resources;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -21,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.tokadacoruja.domain.Children;
 import br.com.tokadacoruja.domain.Schedule;
+import br.com.tokadacoruja.domain.User;
 import br.com.tokadacoruja.domain.enums.Payment;
 import br.com.tokadacoruja.repositories.ChildrenRepository;
 import br.com.tokadacoruja.repositories.ScheduleRepository;
@@ -66,22 +65,20 @@ public class ScheduleController {
 	}
 	
 	@PostMapping("/agendamentos/salvar")
-	public ModelAndView save(@Valid Schedule schedule, BindingResult result, RedirectAttributes attributes) {
-		Map<Long, Schedule> map = new HashMap<>();
-		map.put(schedule.getId(), schedule);
-		
-		for (Long sch : map.keySet()) {
-			System.out.println(sch);
-		}
-		
+	public ModelAndView save(@Valid Schedule schedule, Children children, BindingResult result, RedirectAttributes attributes) {
+		ModelAndView mv = new ModelAndView();		
+		if(schedule.getChildrens() != null) {
+			mv.addObject("mensagem", "Usuário já cadastrado!");
+			mv.addObject("user", new User());
+		}		
 		if(result.hasErrors()) {
 			return form(schedule);
 		}
-		schedule.setStatus(true);
-		schedule.setTotalHours(schedule.differenceHours(schedule.getHourInitial(), schedule.getHourFinale()));
-		calculeOfHours(schedule);		
+		//schedule.setStatus(true);
+		//schedule.setTotalHours(schedule.differenceHours(schedule.getHourInitial(), schedule.getHourFinale()));
+		//calculeOfHours(schedule);
 		scheduleService.saveSchedule(schedule);					
-		attributes.addFlashAttribute("mensagem", "Criança " + schedule.getChildren().getName() + " salvo com sucesso!");		
+		//attributes.addFlashAttribute("mensagem", "Criança " + schedule.getChildren().getName() + " salvo com sucesso!");		
 		return new ModelAndView("redirect:/agendamentos/calendario");
 	}
 
@@ -112,29 +109,6 @@ public class ScheduleController {
 	public List<Schedule> fullCalendar(Schedule schedule) {
 		List<Schedule> schedules = scheduleRepository.findAll();
 		return schedules;
-	}
-	
-	private void calculeOfHours(Schedule schedule) {
-		String hour = schedule.getTotalHours();
-		String hours[] = hour.split(":");
-		Long h = Long.parseLong(hours[0]);
-		Long m = Long.parseLong(hours[1]);
-		Double valuePerHours = 0.0;
-		Double valuePerMinutes = 0.0;
-		Double totalValuePerHours = 0.0;
-		
-    	if(h < 0 && m <= 59) {
-    		valuePerMinutes = schedule.getAmount();
-    		schedule.setAmount(valuePerMinutes);
-    	}else if(h >= 1 && m != 0) {
-    		valuePerHours = h * schedule.getAmount();
-    		valuePerMinutes = (schedule.getAmount() / 60.0) * m;
-    		totalValuePerHours = valuePerHours + valuePerMinutes;
-    		schedule.setAmount(totalValuePerHours);
-    	}else if(h >= 1 && m == 0){
-    		valuePerHours = h * schedule.getAmount();
-    		schedule.setAmount(valuePerHours);
-    	}
 	}
 	
 }
