@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.passwordEncoder(passwordEncoder);
 	}
 	
-	@Override
+	/*@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
@@ -50,6 +50,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.exceptionHandling()
 					.accessDeniedPage("/access-denied");
+	}*/
+	
+	protected void configure(HttpSecurity http) throws Exception {
+		http
+			.authorizeRequests()
+			.antMatchers("/login").permitAll() // A Url /login pode ser acessado por todo mundo, autenticado ou não
+			.antMatchers("/cadastro").permitAll() // A Url /registration para a criação de usuários, o usuário pode ser acessar-la autenticado ou não  
+			.anyRequest() // Agora o restante
+				.authenticated() // O usuário deve estar autenticado
+					.and().csrf().disable() // Desabilitar o CSRF
+				.formLogin() // Onde o usuário vai fazer o login
+					.loginPage("/login").failureUrl("/login?error=true").defaultSuccessUrl("/index")
+					.usernameParameter("user_name").passwordParameter("password")
+				.and().logout()
+					.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
 	}
 	
 	@Override

@@ -27,7 +27,7 @@ public class LoginController {
         return modelAndView;
 	}
 	
-	@GetMapping("/cadastrar-usuario")
+	@GetMapping("/cadastro")
 	public ModelAndView register() {
 		ModelAndView mv = new ModelAndView();
 		User user = new User();
@@ -36,7 +36,7 @@ public class LoginController {
 		return mv;
 	}
 	
-	@PostMapping("/cadastrar-usuario")
+	@PostMapping("/cadastro")
 	public ModelAndView createNewUser(@Valid User user, BindingResult result) {
 		ModelAndView mv = new ModelAndView();
 		User userExists = userService.findUserByUserName(user.getName());
@@ -59,7 +59,6 @@ public class LoginController {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUserName(auth.getName());
-        //modelAndView.addObject("userName", "Bem-vindo " + user.getName() + "/" + user.getName() + " " + user.getName() + " (" + user.getEmail() + ")");
         modelAndView.addObject("mensagem", user.getName());
         modelAndView.setViewName("index");
         return modelAndView;
