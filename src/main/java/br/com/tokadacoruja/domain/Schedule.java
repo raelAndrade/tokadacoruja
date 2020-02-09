@@ -1,41 +1,8 @@
 package br.com.tokadacoruja.domain;
 
-import java.io.Serializable;
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
-import java.util.Set;
+public class Schedule {
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.NumberFormat;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import br.com.tokadacoruja.domain.enums.Payment;
-
-@Entity
-@Table(name = "schedule")
-@JsonIgnoreProperties
-public class Schedule implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+	/*private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -175,7 +142,7 @@ public class Schedule implements Serializable {
 				.append(create).append(", status=").append(status).append(", totalHours=").append(totalHours)
 				.append("]");
 		return builder.toString();
-	}
+	}*/
 
 }
 

@@ -9,15 +9,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.tokadacoruja.domain.Children;
 import br.com.tokadacoruja.repositories.ChildrenRepository;
-import br.com.tokadacoruja.repositories.ScheduleRepository;
 import br.com.tokadacoruja.services.BillingService;
 
 @Controller
 public class BillingController {
 
-	@SuppressWarnings("unused")
+	/*@SuppressWarnings("unused")
 	@Autowired
-	private ScheduleRepository scheduleRepository;
+	private ScheduleRepository scheduleRepository;*/
 	
 	@Autowired
 	private ChildrenRepository childrenRepository;

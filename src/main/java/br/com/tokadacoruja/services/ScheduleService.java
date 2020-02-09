@@ -1,21 +1,17 @@
 package br.com.tokadacoruja.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.tokadacoruja.domain.Children;
-import br.com.tokadacoruja.domain.Schedule;
 import br.com.tokadacoruja.repositories.ChildrenRepository;
-import br.com.tokadacoruja.repositories.ScheduleRepository;
 
 @Service
 public class ScheduleService {
 
-	@Autowired
-	private ScheduleRepository scheduleRepository;
+	/*@Autowired
+	private ScheduleRepository scheduleRepository;*/
 	
+	@SuppressWarnings("unused")
 	@Autowired
 	private ChildrenRepository childrenRepository;
 	
@@ -34,7 +30,7 @@ public class ScheduleService {
 	}*/
 	
 	
-	public Schedule saveSchedule(Schedule schedule) {
+	/*public Schedule saveSchedule(Schedule schedule) {
 		schedule.setStatus(true);
 		schedule.setTotalHours(schedule.differenceHours(schedule.getHourInitial(), schedule.getHourFinale()));
 		calculeOfHours(schedule);
@@ -45,11 +41,11 @@ public class ScheduleService {
 				//schedule.setChildrens(children.getId());
 			}
 		}*/
-		return scheduleRepository.save(schedule);
-	}
+		/*return scheduleRepository.save(schedule);*/
+	/*}*/
 	
 	
-	private void calculeOfHours(Schedule schedule) {
+	/*private void calculeOfHours(Schedule schedule) {
 		String hour = schedule.getTotalHours();
 		String hours[] = hour.split(":");
 		Long h = Long.parseLong(hours[0]);
@@ -70,6 +66,6 @@ public class ScheduleService {
     		valuePerHours = h * schedule.getAmount();
     		schedule.setAmount(valuePerHours);
     	}
-	}
+	}*/
 	
 }

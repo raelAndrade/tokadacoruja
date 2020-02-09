@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.tokadacoruja.repositories.ChildrenRepository;
-import br.com.tokadacoruja.repositories.ScheduleRepository;
+import br.com.tokadacoruja.repositories.ScheduleChildrenRepository;
 
 @Controller
 public class IndexController {
@@ -15,14 +15,15 @@ public class IndexController {
 	@Autowired
 	private ChildrenRepository childrenRepository;
 	
+	@SuppressWarnings("unused")
 	@Autowired
-	private ScheduleRepository scheduleRepository;
+	private ScheduleChildrenRepository scheduleChildrenRepository;
 	
 	@GetMapping("/")
 	public ModelAndView index() {
-		ModelAndView mv = new ModelAndView("/index");
+		final ModelAndView mv = new ModelAndView("/index");
 		mv.addObject("children", childrenRepository.count());
-		mv.addObject("schedule", scheduleRepository.count());
+		//mv.addObject("schedule", scheduleRepository.count());
 		return mv;
 	}
 

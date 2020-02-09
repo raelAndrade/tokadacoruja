@@ -13,7 +13,7 @@ insert into children (chi_name, chi_publicity, par_id) values ('Ana Lívia', 'si
 insert into children (chi_name, chi_publicity, par_id) values ('Breno', 'sim', 5);
 insert into children (chi_name, chi_publicity, par_id) values ('Bianca', 'sim', 6);
 
-insert into user (usr_active, usr_email, usr_name, usr_password) values(true,'teste@teste.com', 'israel', '$2a$10$npnxIqn0zTWBl.t2.LltQeZutM6RPCuf/4NdWotZLLvid8BGNLNC2');
+insert into user (usr_active, usr_email, usr_name, usr_password) values(true,'teste@teste.com', 'israel', '$2a$10$nB.uwPV/x5FCJfGNvAos2OfVQ4drQNPTZOUQsaYAOXxBvl11T8tUi');
 
 insert into roles (role) values ('ADMIN');
 insert into roles (role) values ('COMUM');

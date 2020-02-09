@@ -113,7 +113,7 @@
 						
 						<li>
 							<a th:href="@{/}" class="active"> 
-								<i class="fa fa-dashboard fa-fw"></i> Toka da Coruja
+								<i class="fa fa-dashboard fa-fw"></i> Home
 							</a>
 						</li>
 						<li>
@@ -122,9 +122,21 @@
 							</a>
 						</li>
 						<li>
-							<a th:href="@{/agendamentos/calendario}">
-								<i class="fa fa-calendar fa-fw"></i> Agendamento
+							<a th:href="@{/agenda/}">
+								<i class="fa fa-calendar fa-fw"></i> Agenda <span class="fa arrow"></span>
 							</a>
+							<ul class="nav nav-second-level">
+								<li>
+									<a th:href="@{/agenda/cadastrar}">
+										<i class="fa fa-list-alt fa-fw"></i> Cadastrar Agenda
+									</a>
+								</li>
+								<li>
+									<a th:href="@{/agenda/listar}">
+										<i class="fa fa-user fa-fw"></i> Listar Agenda
+									</a>
+								</li>
+							</ul>
 						</li>
 						<li>
 							<a th:href="@{/funcionarios}">

@@ -43,6 +43,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.usernameParameter("user_name").passwordParameter("password")
 				.and().logout()
 					.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
+
+		// Configuração de acesso ao banco H2
+		http.authorizeRequests().antMatchers("/").permitAll().and()
+		        .authorizeRequests().antMatchers("/console/**").permitAll();
+		http.csrf().disable();
+		http.headers().frameOptions().disable();
 	}
 	
 	@Override

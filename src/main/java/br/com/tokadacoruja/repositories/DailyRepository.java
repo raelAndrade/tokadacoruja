@@ -1,0 +1,11 @@
+package br.com.tokadacoruja.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import br.com.tokadacoruja.domain.Daily;
+
+@Repository
+public interface DailyRepository extends JpaRepository<Daily, Long> {
+
+}
