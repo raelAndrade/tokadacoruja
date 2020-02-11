@@ -27,23 +27,25 @@ public class LoginController {
 	
 	@GetMapping("/login")
 	public ModelAndView login() {
-		ModelAndView modelAndView = new ModelAndView("login/login");
+		final ModelAndView modelAndView = new ModelAndView("login/login");
         return modelAndView;
 	}
 	
 	@GetMapping("/cadastro")
-	public ModelAndView register(User user) {
-		ModelAndView mv = new ModelAndView("login/register");
+	public ModelAndView register(final User user) {
+		final ModelAndView mv = new ModelAndView("login/register");
 		mv.addObject("roles", roleRepository.findAll());
         mv.addObject("user", user);
 		return mv;
 	}
 	
 	@PostMapping("/cadastro")
-	public ModelAndView createNewUser(@Valid User user, BindingResult result, RedirectAttributes attributes) {
-		ModelAndView mv = new ModelAndView();
-		User userExists = userService.findUserByUserName(user.getUserName());
-		User emailExists = userService.findUserByEmail(user.getEmail());
+	public ModelAndView createNewUser(@Valid final User user, final BindingResult result, final RedirectAttributes attributes) {
+		
+		final ModelAndView mv = new ModelAndView();
+		final User userExists = userService.findUserByUserName(user.getUserName());
+		final User emailExists = userService.findUserByEmail(user.getEmail());
+		
 		if(userExists != null) {
 			result.rejectValue("userName", "error.user", "Usuário já cadastrado!");
 			mv.addObject("user", new User());
@@ -61,9 +63,9 @@ public class LoginController {
 	
 	@GetMapping("/index")
 	public ModelAndView home(){
-        ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByUserName(auth.getName());
+        final ModelAndView modelAndView = new ModelAndView();
+        final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        final User user = userService.findUserByUserName(auth.getName());
         modelAndView.addObject("mensagem", user.getUserName());
         modelAndView.setViewName("index");
         return modelAndView;
