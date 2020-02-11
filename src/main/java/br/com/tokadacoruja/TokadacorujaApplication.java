@@ -44,6 +44,10 @@ public class TokadacorujaApplication implements CommandLineRunner {
 		
 		inscricaoRepository.save(inscricao);
 		eventoRepository.save(evento);
+		
+//		Map<Long, String> inscr = new HashMap<Long, String>();
+//		inscr.put(inscricao.getId(), evento.getName());
+//		System.out.println(inscr);
 	}
 
 }
